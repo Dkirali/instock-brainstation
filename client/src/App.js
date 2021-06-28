@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import HeroHeader from './components/HeroHeader/HeroHeader';
 import Inventory from './components/Inventory/Inventory';
 import Warehouses from './components/Warehouses/Warehouses';

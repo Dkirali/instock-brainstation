@@ -1,5 +1,9 @@
+@use './partials/variables' as *;
+@use './partials/typography' as *;
+
 .App {
   text-align: center;
+  font-family: 'Titillium';
 }
 
 .App-logo {
@@ -14,7 +18,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: $red;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
