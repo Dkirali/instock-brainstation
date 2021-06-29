@@ -1,0 +1,104 @@
+@use "../../partials/typography" as *;
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+.warehouse {
+    padding: 0 1rem;
+
+    &__nav {
+
+    }
+
+    &__title {
+        @include demi;
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 0;
+
+    }
+
+    &__form {
+        position: relative;
+
+        &-label {
+
+        }
+
+        &-search {
+            width: 295px;
+            height: 36px;
+            border: 1px solid #BDC5D5;
+
+
+            &-icon {
+                position: absolute;
+                left: 12.5%;
+                right: 14.63%;
+                top: 12.5%;
+                bottom: 14.63%;
+
+            }
+            
+        }
+
+    }
+
+    &__button {
+
+    }
+
+    &__information {
+
+        &-top {
+
+        }
+
+        &-contact {
+
+            &-information {
+
+            }
+
+        }
+
+        &-bottom {
+            
+        }
+
+    }
+
+    &__subheader {
+
+    }
+
+    &__location {
+
+    }
+
+    &__contact {
+
+        &-name {
+
+        }
+    }
+
+    &__address {
+
+        &-details {
+
+        }
+    }
+
+    &__contact {
+
+        &-number {
+
+        }
+
+        &-email {
+            
+        }
+    }
+
+
+}
