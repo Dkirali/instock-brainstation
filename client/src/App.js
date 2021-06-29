@@ -1,17 +1,24 @@
-import './App.scss';
+import HeroHeader from './components/HeroHeader/HeroHeader';
+import Inventory from './components/Inventory/Inventory';
+import Warehouses from './components/Warehouses/Warehouses';
 import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header'
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import './App.scss';
 
-function App() {
-  return (
+class App extends React.Component {
+  render() {
+    return ( 
     <BrowserRouter>
-    <div className="App">
-      <Header/>
+      <HeroHeader/>
+        <Switch>
+          <Route exact path="/warehouses" component={Warehouses}/>
+          <Route exact path="/inventory" component={Inventory}/>
+        </Switch>
       <Footer/>
-    </div>
     </BrowserRouter>
-  );
+    );
+  }
 }
 
 export default App;
