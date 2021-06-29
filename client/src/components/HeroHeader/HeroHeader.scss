@@ -8,6 +8,7 @@
     flex-direction: column;
     padding-top: $mobile-margins*1.5;
     padding-bottom: $mobile-margins;
+    height: 150px;
     @include tablet {
         flex-direction: row;
         padding-bottom: 1.5rem;
