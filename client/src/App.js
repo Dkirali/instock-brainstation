@@ -1,10 +1,10 @@
-import './App.scss';
 import HeroHeader from './components/HeroHeader/HeroHeader';
 import Inventory from './components/Inventory/Inventory';
 import Warehouses from './components/Warehouses/Warehouses';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React from 'react';
+import './App.scss';
 
 class App extends React.Component {
   render() {
