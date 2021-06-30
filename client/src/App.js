@@ -1,6 +1,7 @@
 import HeroHeader from "./components/HeroHeader/HeroHeader";
 import Inventory from "./components/Inventory/Inventory";
 import Warehouses from "./components/Warehouses/Warehouses";
+import InventoryItemDetails from "./components/InventoryItemDetails/InventoryItemDetails";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
@@ -10,45 +11,61 @@ import "./App.scss";
 import { API_URL } from "./utils/utils";
 
 class App extends React.Component {
-  state = {
-    inventory: null,
-    loaded: false,
-  };
+    state = {
+        inventory: null,
+        loaded: false,
+    };
 
-  componentDidMount() {
-    axios
-      .get(`${API_URL}/inventory`)
-      .then((response) => {
-        this.setState({
-          inventory: response.data,
-          loaded: true,
-        });
-      })
-      .catch((err) => console.log("error!", err));
-  }
-
-  render() {
-    if (this.state.loaded === false) {
-      return <main className="load-screen">Loading...</main>;
+    componentDidMount() {
+        axios
+            .get(`${API_URL}/inventory`)
+            .then((response) => {
+                this.setState({
+                    inventory: response.data,
+                    loaded: true,
+                });
+            })
+            .catch((err) => console.log("error!", err));
     }
-    return (
-      <BrowserRouter>
-        <HeroHeader />
-        <Switch>
-          <Route exact path="/warehouses" component={Warehouses} />
-          <Route
-            path="/inventory"
-            render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
-          />
 
-<Route
-            path="/"
-            render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
-          />        </Switch>
-        <Footer />
-      </BrowserRouter>
-    );
-  }
+    render() {
+        if (this.state.loaded === false) {
+            return <main className='load-screen'>Loading...</main>;
+        }
+        return (
+            <BrowserRouter>
+                <HeroHeader />
+                <Switch>
+                    <Route exact path='/warehouses' component={Warehouses} />
+                    <Route
+                        exact
+                        path='/inventory'
+                        render={(props) => (
+                            <Inventory
+                                {...props}
+                                inventory={this.state.inventory}
+                            />
+                        )}
+                    />
+                    <Route
+                        path='/inventory/:id'
+                        render={(props) => <InventoryItemDetails {...props} />}
+                    />
+                    <Route
+                        exact
+                        path='/'
+                        render={(props) => (
+                            <Inventory
+                                {...props}
+                                inventory={this.state.inventory}
+                            />
+                        )}
+                    />{" "}
+                </Switch>
+                <Footer />
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;
