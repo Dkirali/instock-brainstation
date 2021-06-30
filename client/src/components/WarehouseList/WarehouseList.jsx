@@ -4,6 +4,7 @@ import Edit from "../../assets/icon/edit-24px.svg"
 import { API_URL } from '../../utils/utils.js';
 import axios from 'axios'
 import './WarehouseList.scss'
+import { Link, BrowserRouter, Route, Switch } from "react-router-dom";
 
 class WarehouseList extends React.Component {
     
@@ -29,12 +30,12 @@ class WarehouseList extends React.Component {
         <>
         {this.state.allWarehouses.map (warehouse => {
             return (
-                <div className="warehouse__information">
+                <div key = {warehouse.id} className="warehouse__information">
                     <div className="warehouse__information-data">
                         <div className="warehouse__information-top">
                             <div className="warehouse__information-location">
                                 <h4 className="warehouse__subheader">WAREHOUSE</h4>
-                                <h3 className="warehouse__location">{warehouse.name} </h3>
+                                <Link to = {`warehouses/${warehouse.id}`} className="warehouse__location">{warehouse.name}</Link> 
                             </div>
                             <div className="warehouse__information-address">
                                 <h4 className="warehouse__subheader">ADDRESS</h4>
