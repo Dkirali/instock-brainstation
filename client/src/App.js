@@ -40,8 +40,7 @@ class App extends React.Component {
             path="/inventory"
             render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
           />
-
-<Route
+          <Route
             path="/"
             render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
           />        </Switch>
