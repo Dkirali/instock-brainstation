@@ -2,7 +2,7 @@
 @use "../../partials/mixin" as *;
 @use "../../partials/variables" as *;
 
-.inventory {
+.warehousedetails{
   position: absolute;
   left: 1rem;
   right: 1rem;
@@ -71,19 +71,19 @@
     &__category {
       position: absolute;
 
-      right: 70%;
+      right: 68%;
     }
 
     &__qty {
       position: absolute;
 
-      right: 40%;
+      right: 25%;
     }
 
     &__status {
       position: absolute;
 
-      right: 55%;
+      right: 50%;
     }
   }
 
@@ -104,12 +104,18 @@
     @include tablet {
       display: flex;
     }
+    &-edit-icon{
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(201deg) brightness(300%) contrast(100%);
+
+    }
+
     &-search {
       width: 100%;
       height: 36px;
       border: 1px solid #bdc5d5;
       box-sizing: border-box;
       border-radius: 20px;
+      
       @include tablet {
         position: relative;
         margin-right: 1rem;
@@ -146,7 +152,7 @@
     border: none;
     @include tablet {
       margin: 0;
-      width: 40%;
+      width: 100%;
     }
     &-text {
       width: 127px;
@@ -190,7 +196,8 @@
     &-status {
       @include tablet {
         position: absolute;
-        right: 55%;
+
+        right: 50%;
         width: 5rem;
       }
     }
@@ -199,7 +206,7 @@
       @include tablet {
         position: absolute;
         margin: 0;
-        right: 70%;
+        right: 68%;
         width: 4.5rem;
       }
     }
@@ -222,8 +229,9 @@
       &-information {
         margin-top: 1rem;
         @include tablet {
-          position: absolute;
-          right: 39%;
+            position: absolute;
+
+            right: 25%;
           margin: 0;
           width: 3rem;
         }

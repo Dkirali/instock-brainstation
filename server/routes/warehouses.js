@@ -27,7 +27,7 @@ router.get("/:id/inventory", (req, res) => {
 
 const warehouseData = () => {
     let warehousesInfo = [];
-    warehousesJson.forEach(warehouse => {
+    warehouses.forEach(warehouse => {
         console.log(warehouse)
       let warehouseData =
       {
@@ -47,7 +47,7 @@ const warehouseData = () => {
   
   
   router.get('/', (req, res) => {
-    res.status(200).json(warehouseData(warehousesJson))
+    res.status(200).json(warehouseData(warehouses))
     });
 
 module.exports = router;
