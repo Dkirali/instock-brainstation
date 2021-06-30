@@ -1,18 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Logo from '../../assets/logo/logo1.png'
-import './HeroHeader.scss'
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo/logo1.png";
+import "./HeroHeader.scss";
 
 const HeroHeader = () => {
-    return(
-        <nav className="header">
-            <img src={Logo} alt="instock logo two arrows"/>
-            <div className="header-container">
-                <Link className="header-container__link">Warehouses</Link>
-                <Link className="header-container__link">Inventory</Link>
-            </div>
-        </nav >
-    )
-}
+  return (
+    <nav className="nav" >
+      <div className="header">
+        <img src={Logo} alt="instock logo two arrows" />
+        <div className="header-container">
+          <Link to="/warehouses" className="header-container__link">
+            Warehouses
+          </Link>
+          <Link to="/inventory" className="header-container__link">
+            Inventory
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default HeroHeader;

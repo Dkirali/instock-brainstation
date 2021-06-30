@@ -2,6 +2,7 @@ import React from 'react'
 import './Warehouses.scss'
 import search from "../../assets/icons/search-24px.svg"
 import WarehouseList from "../WarehouseList/WarehouseList"
+import Sort from "../../assets/icon/sort-24px.svg"
 
 
 const Warehouses = () => {
@@ -18,6 +19,13 @@ const Warehouses = () => {
                     <button className="warehouse__button" type="submit"><h3 className="warehouse__button-text">+Add New Warehouse</h3> </button>
                 </div>
             </div>
+            <ul className="warehouse-topbar">
+                <li className="warehouse-topbar__warehouse">WAREHOUSE<img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+                <li className="warehouse-topbar__address">ADDRESS <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+                <li className="warehouse-topbar__contact-name">CONTACT NAME <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+                <li className="warehouse-topbar__contact-information"> CONTACT INFORMATION  <img className=" warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+                <li className="warehouse-topbar__actions"> ACTIONS <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            </ul>      
             <WarehouseList/>
         </section>  
     )

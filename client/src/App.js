@@ -1,22 +1,51 @@
-import HeroHeader from './components/HeroHeader/HeroHeader';
-import Inventory from './components/Inventory/Inventory';
-import Warehouses from './components/Warehouses/Warehouses';
-import Footer from './components/Footer/Footer';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import React from 'react';
-import './App.scss';
+import HeroHeader from "./components/HeroHeader/HeroHeader";
+import Inventory from "./components/Inventory/Inventory";
+import Warehouses from "./components/Warehouses/Warehouses";
+import Footer from "./components/Footer/Footer";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import axios from "axios";
+import React from "react";
+import "./App.scss";
+
+import { API_URL } from "./utils/utils";
 
 class App extends React.Component {
+  state = {
+    inventory: null,
+    loaded: false,
+  };
+
+  componentDidMount() {
+    axios
+      .get(`${API_URL}/inventory`)
+      .then((response) => {
+        this.setState({
+          inventory: response.data,
+          loaded: true,
+        });
+      })
+      .catch((err) => console.log("error!", err));
+  }
+
   render() {
-    return ( 
-    <BrowserRouter>
-      <HeroHeader/>
+    if (this.state.loaded === false) {
+      return <main className="load-screen">Loading...</main>;
+    }
+    return (
+      <BrowserRouter>
+        <HeroHeader />
         <Switch>
-          <Route exact path="/warehouses" component={Warehouses}/>
-          <Route exact path="/inventory" component={Inventory}/>
-        </Switch>
-      <Footer/>
-    </BrowserRouter>
+          <Route exact path="/warehouses" component={Warehouses} />
+          <Route
+            path="/inventory"
+            render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
+          />
+          <Route
+            path="/"
+            render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
+          />        </Switch>
+        <Footer />
+      </BrowserRouter>
     );
   }
 }

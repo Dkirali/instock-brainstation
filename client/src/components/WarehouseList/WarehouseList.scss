@@ -2,7 +2,10 @@
 @use "../../partials/mixin" as *;
 @use "../../partials/variables" as *;
 
+
+
 .warehouse {
+    @include regular;
     
     &__information {
         padding: 1rem 0;
@@ -14,7 +17,16 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2.5rem;
+            position: relative;
+        }
+
+        @include desktop {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3.5rem;
+            position: relative;
         }
 
         &-data {
@@ -65,6 +77,9 @@
             display: flex;
             flex-direction: column;
             padding-right: 1.5rem;
+            position: absolute;
+            width: 150px;
+            right: -40px;
 
             @include tablet {
                 flex-direction: row;
@@ -86,6 +101,7 @@
 
         @include tablet {
             display: none;
+            
         }
 
     }
@@ -93,21 +109,43 @@
     &__location {
         margin:0;
         @include demi;
-        font-size: 13px;
+        font-size: 12px;
         line-height: 20px;  
         color: #2E66E6;
         margin:0;
         margin-top:0.3rem; 
 
+        @include tablet {
+            width: 72px;
+        }
+
+        @include desktop {
+            width: 72px;
+        }
+        
     }
 
     &__address {
 
         &-details {
             @include regular;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 20px; 
             margin-top:0.3rem; 
+
+            @include tablet {
+                position: absolute;
+                right: 64%;
+                width: 100px;
+                top:10px;
+            }
+
+            @include desktop {
+                position: absolute;
+                right: 59%;
+                width: 220px;
+                top:30px;
+            }
 
 
         }
@@ -117,35 +155,92 @@
 
         &-number {
             @include regular;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 20px; 
             margin:0;
             margin-top:0.3rem; 
+            
+            @include tablet {
+                position: absolute;
+                top:-15px;
+                right: 30%;
+            }
 
-
+            @include desktop {
+                position: absolute;
+                top:-15px;
+                right: 25.5%;
+            }
         }
 
         &-email {
             @include regular;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 20px;
             margin: 0; 
+            
+            @include tablet {
+                position: absolute;
+                right: 29%;
+                width: 104px;   
+                bottom: -8px;
+
+            }
+
+            @include desktop {
+                position: absolute;
+                right: 25%;
+                width: 104px;   
+                bottom: -8px;
+
+            }
             
         }
         &-name {
             @include regular;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 20px;
             margin:0;
             margin-top:0.3rem; 
 
+            @include tablet {
+                position: absolute;
+                right: 49%;
+                bottom:0px;
+                width:100px;
+            }
+
+            @include desktop {
+                right: 44.5%;
+                width:100px;
+            }
         }
+
     }
 
     &__actions {
         padding: 0.5rem 1rem;
         display: flex;
         justify-content: space-between;
+
+        @include tablet {
+            padding:0.5rem 0;
+        }
+
+        &-trash {
+            @include tablet {
+                margin-right: 0.5rem;
+            }
+           
+            @include desktop {
+                margin-right: 1rem;
+            }
+           
+        }
+
+        &-edit {
+            
+        }
     }
 
 

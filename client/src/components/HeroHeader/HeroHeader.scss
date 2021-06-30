@@ -1,6 +1,11 @@
 @use '../../partials/variables' as *;
 @use '../../partials/mixin' as *;
 
+.nav {
+    display: flex;
+    flex-direction: column;
+}
+
 .header{
     background-color: $graphite;
     display: flex;
@@ -14,11 +19,14 @@
         padding-bottom: 1.5rem;
         padding-left: 2rem;
         padding-right: 2rem;
-
+        position: relative;
+        bottom: 3.5rem;
+        height:190px;
     }
     @include desktop {
         padding-left: 5rem;
         padding-right: 5rem;
+        height:190px;
     }
 
     &-container {

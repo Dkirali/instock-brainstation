@@ -12,7 +12,7 @@ class WarehouseList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`${API_URL}/api/warehouses`)
+        axios.get(`${API_URL}/warehouses`)
         .then(res => {
             console.log(res)
             this.setState({
@@ -54,8 +54,8 @@ class WarehouseList extends React.Component {
                         </div>
                     </div>
                     <div className="warehouse__actions">
-                        <img claasName ="warehouse__action-trash" src={Trash} alt="trashcan"/>
-                        <img claasName ="warehouse__action-edit"src={Edit} alt="trashcan"/>
+                        <img className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
+                        <img className ="warehouse__actions-edit"src={Edit} alt="trashcan"/>
                     </div>
                 </div> 
             )

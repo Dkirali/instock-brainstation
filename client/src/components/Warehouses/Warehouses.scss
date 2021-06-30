@@ -2,15 +2,102 @@
 @use "../../partials/mixin" as *;
 @use "../../partials/variables" as *;
 
+// * {
+//   overflow: hidden;
+// }
+
 .warehouse {
     position: absolute;
     left: 20px;
     right: 20px;
     top: 125px;
-
     background: #FFFFFF;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
     border-radius: 3px;
+
+    @include tablet {
+        margin: 0 0.5rem;
+        top:100px;
+    }
+
+    @include desktop {
+        margin: 0 4rem;
+        top:100px;
+    }
+
+    &-topbar {
+        @include demi;
+        color: $graphite;
+        display: none;
+        margin: 0;
+        padding: 1rem;
+        background-color: $light-grey;
+        font-size: 11px;
+        position: relative;
+
+        @include tablet {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            display: flex;
+            justify-content: space-between;
+            list-style-type: none;
+        }
+
+        @include desktop {
+            padding-left: 3rem;
+            padding-right: 3rem;
+            display: flex;
+            justify-content: space-between;
+            list-style-type: none;
+        }
+
+        &__sort {
+            width: 1rem;
+            position: relative;
+            top: 0.2rem;
+            left: 0.5rem;
+        }
+
+        &__warehouse {
+
+         
+        }
+
+        &__address {
+            position: absolute;
+            right: 67%;
+
+            @include desktop {
+                right:72%;
+            }
+            
+        }
+
+        &__contact {
+
+            &-name {
+                position: absolute;
+                right: 45%;
+
+                @include desktop {
+                    right:42%;
+                }
+            }
+
+
+            &-information {
+                position: absolute;
+                right: 20%;
+                
+            }
+            
+        }
+
+      
+        &__actions{
+            
+        }
+    }
 
     &__nav {
         padding: 0 1rem;
@@ -19,6 +106,13 @@
             display: flex;
             justify-content: space-between;
             align-items:center;
+        }
+
+        @include desktop {
+            display: flex;
+            justify-content: space-between;
+            align-items:center;
+            padding: 0 2rem;
         }
 
         &-right {
@@ -60,6 +154,12 @@
             @include tablet {
                 padding-right: 1.5rem;
                 margin-right: 1rem;
+                width: -webkit-fill-available;
+            }
+
+            @include desktop {
+                padding-right: 6.5rem;
+        
                 width: -webkit-fill-available;
             }
 
