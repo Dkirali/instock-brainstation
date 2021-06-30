@@ -41,8 +41,8 @@ const Warehouses = () => {
                     </div>
                 </div>
                 <div className="warehouse__actions">
-                    <img claasName ="warehouse__action-trash" src={Trash} alt="trashcan"/>
-                    <img claasName ="warehouse__action-edit"src={Edit} alt="trashcan"/>
+                    <img className ="warehouse__action-trash" src={Trash} alt="trashcan"/>
+                    <img className ="warehouse__action-edit"src={Edit} alt="trashcan"/>
                 </div>
             </div> 
         </section>  
