@@ -30,12 +30,12 @@ const Inventory = (props) => {
 
       </div>
       <ul className="inventory-topbar">
-            <li>INVENTORY ITEM<img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-            <li>CATEGORY <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-            <li>STATUS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li className="inventory-topbar__inventory">INVENTORY ITEM<img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li className="inventory-topbar__category">CATEGORY <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li className="inventory-topbar__status">STATUS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
             <li className="inventory-topbar__qty"> QTY <img className=" inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-            <li>WAREHOUSE <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-            <li>ACTIONS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li className="inventory-topbar__warehouse">WAREHOUSE <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li className="inventory-topbar__actions">ACTIONS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
 
       </ul>
       {props.inventory.map((item) => {
