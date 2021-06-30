@@ -1,5 +1,29 @@
-const router = require('express').Router();
-const warehousesJson = require('../data/warehouses.json')
+const express = require("express");
+const router = express.Router();
+const warehouses = require("../data/warehouses.json");
+const inventory = require("../data/inventories.json");
+
+const getWarehouse = (id) => {
+    const foundWarehouse = warehouses.find((warehouse) => {
+        return id === warehouse.id;
+    });
+    return foundWarehouse;
+};
+
+router.get("/:id", (req, res) => {
+    let { id } = req.params;
+    const warehouseFound = getWarehouse(id);
+    res.status(200).json(warehouseFound);
+});
+
+router.get("/:id/inventory", (req, res) => {
+    let { id } = req.params;
+    const warehouseFound = getWarehouse(id);
+    const warehouseInventory = inventory.filter((item) => {
+        return item.warehouseID === warehouseFound?.id;
+    });
+    res.status(200).json(warehouseInventory);
+});
 
 const warehouseData = () => {
     let warehousesInfo = [];
@@ -22,8 +46,9 @@ const warehouseData = () => {
   }
   
   
-  router.get('/warehouses', (req, res) => {
+  router.get('/', (req, res) => {
     res.status(200).json(warehouseData(warehousesJson))
     });
 
 module.exports = router;
+
