@@ -29,6 +29,7 @@ const Warehouses = () => {
                 <li className="warehouse-topbar__actions"> ACTIONS <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
             </ul>      
             <WarehouseList/>
+            <WarehouseDetails/>
         </section>  
     )
 }

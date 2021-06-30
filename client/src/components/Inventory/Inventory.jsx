@@ -7,7 +7,6 @@ import Chevron from "../../assets/icon/chevron_right-24px.svg";
 import Sort from "../../assets/icon/sort-24px.svg"
 
 const Inventory = (props) => {
-
     let stockDecide;
 
   return (
