@@ -1,12 +1,4 @@
-@use '../../partials/mixin' as *;
-@use '../../partials/variables' as *;
-
 .footer{
-    font-size: 11px;
-    text-align: center;
-
-    ;
-    @include tablet {
-        font-size: 12px;
-    }
+    display: flex;
+    justify-content: center;
 }

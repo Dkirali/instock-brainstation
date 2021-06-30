@@ -8,8 +8,8 @@ const HeroHeader = () => {
         <nav className="header">
             <img src={Logo} alt="instock logo two arrows"/>
             <div className="header-container">
-                <Link className="header-container__link">Warehouses</Link>
-                <Link className="header-container__link">Inventory</Link>
+                <Link to="/warehouses" className="header-container__link">Warehouses</Link>
+                <Link to="/inventory" className="header-container__link">Inventory</Link>
             </div>
         </nav >
     )
