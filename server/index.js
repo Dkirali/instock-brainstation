@@ -15,11 +15,8 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-
-app.use('/api/inventory', inventoryRoute)
-
-
-
+app.use("/api/warehouses", warehouseRoute);
+app.use("/api/inventory", inventoryRoute);
 
 app.listen(port, () => {
     console.log(`App is running on port ${port}`);
