@@ -7,6 +7,9 @@ import Chevron from "../../assets/icon/chevron_right-24px.svg";
 import Sort from "../../assets/icon/sort-24px.svg"
 
 const Inventory = (props) => {
+
+    let stockDecide;
+
   return (
     <section className="inventory">
       <div className="inventory__nav">
@@ -24,7 +27,7 @@ const Inventory = (props) => {
             alt="search-icon"
           />
                   <button className="inventory__button" type="submit">
-          <h3 className="inventory__button-text">+ Add New Item</h3>{" "}
+          <h3 className="inventory__button-text">+ Add New Item</h3>
         </button>
         </form>
 
@@ -39,6 +42,11 @@ const Inventory = (props) => {
 
       </ul>
       {props.inventory.map((item) => {
+        if(item.status === "Out of Stock") {
+            stockDecide = "inventory__warehouse-status inventory__warehouse-status--outstock"
+        } else {
+            stockDecide = "inventory__warehouse-status inventory__warehouse-status--instock"
+        }
         return (
           <div key = {item.id}>
             <div className="inventory__information">
@@ -57,7 +65,7 @@ const Inventory = (props) => {
                   </div>
                   <div className="inventory__information-category">
                     <h4 className="inventory__subheader">CATEGORY</h4>
-                    <p className="inventory__address-details">
+                    <p className="inventory__category-details">
                       {item.category}
                     </p>
                   </div>
@@ -65,7 +73,8 @@ const Inventory = (props) => {
                 <div className="inventory__information-bottom">
                   <div className="inventory__information-status">
                     <h4 className="inventory__subheader">STATUS</h4>
-                    <p className="inventory__warehouse-status"> {item.status}</p>
+                   
+                    <p className={stockDecide} > {item.status}</p>
                   </div>
                   <div className="inventory__information-quantity-information">
                     <h4 className="inventory__subheader">

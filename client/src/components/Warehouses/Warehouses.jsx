@@ -1,6 +1,6 @@
 import React from 'react'
 import './Warehouses.scss'
-import search from "../../assets/icons/search-24px.svg"
+import search from "../../assets/icon/search-24px.svg"
 import Trash from "../../assets/icon/delete_outline-24px.svg"
 import Edit from "../../assets/icon/edit-24px.svg"
 
