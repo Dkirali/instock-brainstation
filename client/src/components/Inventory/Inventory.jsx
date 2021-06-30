@@ -4,6 +4,7 @@ import search from "../../assets/icons/search-24px.svg";
 import Trash from "../../assets/icon/delete_outline-24px.svg";
 import Edit from "../../assets/icon/edit-24px.svg";
 import Chevron from "../../assets/icon/chevron_right-24px.svg";
+import Sort from "../../assets/icon/sort-24px.svg"
 
 const Inventory = (props) => {
   return (
@@ -22,19 +23,28 @@ const Inventory = (props) => {
             src={search}
             alt="search-icon"
           />
-        </form>
-        <button className="inventory__button" type="submit">
-          <h3 className="inventory__button-text">+Add New Item</h3>{" "}
+                  <button className="inventory__button" type="submit">
+          <h3 className="inventory__button-text">+ Add New Item</h3>{" "}
         </button>
+        </form>
+
       </div>
+      <ul className="inventory-topbar">
+            <li>INVENTORY ITEM<img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li>CATEGORY <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li>STATUS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li className="inventory-topbar__qty"> QTY <img className=" inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li>WAREHOUSE <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+            <li>ACTIONS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+
+      </ul>
       {props.inventory.map((item) => {
-          console.log(item)
         return (
-          <div>
+          <div key = {item.id}>
             <div className="inventory__information">
               <div className="inventory__information-data">
                 <div className="inventory__information-top">
-                  <div className="inventory__information-location">
+                  <div className="inventory__information-item">
                     <h4 className="inventory__subheader">INVENTORY ITEM</h4>
                     <h3 className="inventory__itemname">
                       {item.itemName}
@@ -53,19 +63,19 @@ const Inventory = (props) => {
                   </div>
                 </div>
                 <div className="inventory__information-bottom">
-                  <div className="inventory__information-contact">
+                  <div className="inventory__information-status">
                     <h4 className="inventory__subheader">STATUS</h4>
-                    <p className="inventory__contact-name"> {item.status}</p>
+                    <p className="inventory__warehouse-status"> {item.status}</p>
                   </div>
-                  <div className="inventory__information-contact-information">
+                  <div className="inventory__information-quantity-information">
                     <h4 className="inventory__subheader">
                       QTY
                     </h4>
-                    <p className="inventory__contact-number">{item.quantity}</p>
+                    <p className="inventory__warehouse-info">{item.quantity}</p>
                   </div>
-                  <div className="inventory__information-contact-information">
+                  <div className="inventory__information-warehouse-information">
                     <h4 className="inventory__subheader">WAREHOUSE</h4>
-                    <p className="inventory__contact-number">{item.warehouseName}</p>
+                    <p className="inventory__warehouse-info">{item.warehouseName}</p>
                   </div>
                 </div>
               </div>

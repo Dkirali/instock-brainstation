@@ -41,8 +41,10 @@ class App extends React.Component {
             render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
           />
 
-          <Route exact path="/" component={Inventory} />
-        </Switch>
+<Route
+            path="/"
+            render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
+          />        </Switch>
         <Footer />
       </BrowserRouter>
     );
