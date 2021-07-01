@@ -5,12 +5,43 @@ import { API_URL } from '../../utils/utils.js';
 import axios from 'axios'
 import './WarehouseList.scss'
 import { Link, BrowserRouter, Route, Switch } from "react-router-dom";
+import DelModal from "../DelModal/DelModal"
 
 class WarehouseList extends React.Component {
     
     state = {
         allWarehouses:[],
+        show: false,
+        warehouseId: null,
     }
+
+    onCloseHandler = () => {
+        this.setState({
+          show: false
+        })
+      }
+      onTrashHandler = (e) => {
+        console.log(e.target.id)
+        this.setState({
+          show: true,
+          warehouseId: e.target.id
+        })
+        console.log(this.state.itemId)
+      }
+      onDeleteHandler = (itemid) => {
+            console.log(itemid)
+        axios
+          .delete(`${API_URL}/warehouses/${itemid}/warehouse`)
+          .then((response) => {
+            console.log(response)
+            this.setState({
+                allWarehouses: response.data,
+              show: false
+  
+            });
+          })
+          .catch((err) => console.log("error!", err))
+      }
 
     componentDidMount() {
         axios.get(`${API_URL}/warehouses`)
@@ -55,12 +86,14 @@ class WarehouseList extends React.Component {
                         </div>
                     </div>
                     <div className="warehouse__actions">
-                        <img className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
-                        <img className ="warehouse__actions-edit"src={Edit} alt="trashcan"/>
+                        <img id = {warehouse.id}  onClick={this.onTrashHandler} className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
+                        <img className ="warehouse__actions-edit"src={Edit} alt="edit"/>
                     </div>
                 </div> 
             )
         })}
+         <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
+      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.warehouseId} name = "Warehouse"/>
         </>
         )
     }
