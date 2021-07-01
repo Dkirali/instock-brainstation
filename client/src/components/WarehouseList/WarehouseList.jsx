@@ -4,7 +4,7 @@ import Edit from "../../assets/icon/edit-24px.svg"
 import { API_URL } from '../../utils/utils.js';
 import axios from 'axios'
 import './WarehouseList.scss'
-import { Link, BrowserRouter, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class WarehouseList extends React.Component {
     
@@ -17,7 +17,7 @@ class WarehouseList extends React.Component {
         .then(res => {
             console.log(res)
             this.setState({
-                allWarehouses: res.data
+                allWarehouses: res.data,
             })
         })
         .catch(err => {
@@ -35,7 +35,7 @@ class WarehouseList extends React.Component {
                         <div className="warehouse__information-top">
                             <div className="warehouse__information-location">
                                 <h4 className="warehouse__subheader">WAREHOUSE</h4>
-                                <Link to = {`warehouses/${warehouse.id}`} className="warehouse__location">{warehouse.name}</Link> 
+                                <Link to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p></Link> 
                             </div>
                             <div className="warehouse__information-address">
                                 <h4 className="warehouse__subheader">ADDRESS</h4>

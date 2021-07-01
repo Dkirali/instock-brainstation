@@ -35,7 +35,7 @@ class App extends React.Component {
     }
     return (
       <BrowserRouter>
-        <HeroHeader />
+        <HeroHeader/>
         <Switch>
           <Route exact path="/warehouses" component={Warehouses} />
           <Route
@@ -46,8 +46,7 @@ class App extends React.Component {
             exact path="/"
             render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
           />        </Switch>
-          <Route exact path="/warehouses/:id"component={WarehouseDetails} />
-         
+          <Route exact path="/warehouses/:id"component={WarehouseDetails} />        
         <Footer />
       </BrowserRouter>
     );

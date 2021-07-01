@@ -7,10 +7,10 @@
   left: 1rem;
   right: 1rem;
   top: 125px;
-
   background: #ffffff;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   border-radius: 3px;
+  
   @include tablet {
     top: 6rem;
     left: 2rem;
@@ -31,12 +31,27 @@
 
   &__nav {
     padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
     @include tablet {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
     }
+  }
+
+  &__image {
+    margin-top: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   &-topbar {
@@ -50,7 +65,6 @@
     @include tablet {
       padding-left: 2rem;
       padding-right: 2rem;
-
       display: flex;
       justify-content: space-between;
       list-style-type: none;
@@ -89,12 +103,21 @@
 
   &__title {
     @include demi;
-    padding: 0 1rem 1rem;
+    padding: 0 0 1rem 0;
     font-size: 28px;
     line-height: 36px;
     margin-bottom: 0;
+    
     @include tablet {
       padding-left: 0;
+      padding: 0 0 0.9rem 0;
+    }
+
+    @include desktop {
+      padding-left: 1.5rem;
+      font-size: 32px;
+      line-height: 40px;
+      padding: 0 0 1.3rem 0;
     }
   }
 
@@ -107,6 +130,11 @@
     &-edit-icon{
         filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(201deg) brightness(300%) contrast(100%);
 
+        @include tablet {
+          position: absolute;
+          left: 13px;
+          height: 18px;
+        }
     }
 
     &-search {
@@ -150,17 +178,193 @@
     border-radius: 20px;
     margin: 1rem 0;
     border: none;
-    @include tablet {
-      margin: 0;
-      width: 100%;
+
+    @include tablet{
+      width: 75px;
     }
+   
     &-text {
-      width: 127px;
-      height: 20px;
+      display: none;
+
+      @include tablet {
+        display: flex;
+        height: 20px;
+        @include demi;
+        font-size: 14px;
+        line-height: 22px;
+        color: #ffffff;
+        position:absolute;
+        right: 15px;
+      }
+    }
+  }
+
+  &__specifics {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    
+
+    @include tablet {
+      padding: 1rem 2rem;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+      border-top: 1px solid #BDC5D5;
+    }
+
+
+
+    &-location {
       @include demi;
+      font-size: 11px;
+      line-height: 16px;
+      color: #5C667E;
+      margin:0.5rem 0;
+
+      @include tablet {
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+    }
+
+    &-address {
+      @include regular;
       font-size: 13px;
       line-height: 20px;
-      color: #ffffff;
+      color: #13182C;
+      margin:0;
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+
+    &-country {
+      @include regular;
+      font-size: 13px;
+      line-height: 20px;
+      color: #13182C;
+      margin:0;
+
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+    }
+
+    &-bottom {
+      display: flex;
+      justify-content: space-between;
+
+      @include tablet {
+        width: 300px;
+        margin-right: 5rem;
+        border-left: 1px solid #BDC5D5;
+        padding-left: 3rem;
+      }
+
+      @include desktop {
+        width: 420px;
+        margin-right: 8rem;
+        border-left: 1px solid #BDC5D5;
+        padding-left: 3rem;
+      }
+
+    }
+
+    &-contact {
+      @include demi;
+      font-size: 11px;
+      line-height: 16px;
+      color: #5C667E;
+      margin:1rem 0 0.5rem;
+
+      @include tablet {
+        margin:0 0 0.5rem;
+        font-size: 12px;
+        line-height: 18px;
+
+      }
+
+      &-name {
+        @include regular;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+        margin:0;
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      }
+
+      &-position {
+        @include regular;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+        margin:0;
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+      }
+        
+      }
+
+      &-information{
+        @include demi;
+        font-size: 11px;
+        line-height: 16px;
+        color: #5C667E;
+        margin:1rem 0 0.5rem;
+        
+
+        @include tablet {
+          margin:0rem 0 0.5rem;
+          font-size: 12px;
+          line-height: 18px;
+        }
+        
+      }
+
+      &-number{
+        @include regular;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+        margin:0;
+
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+      }
+        
+      }
+
+      &-email{
+        @include regular;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+        margin:0;
+
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+      }
+        
+      }
     }
   }
 
@@ -347,3 +551,4 @@
     }
   }
 }
+
