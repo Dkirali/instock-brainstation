@@ -13,6 +13,7 @@ class WarehouseList extends React.Component {
         allWarehouses:[],
         show: false,
         warehouseId: null,
+        warehouseName: null
     }
 
     onCloseHandler = () => {
@@ -24,7 +25,8 @@ class WarehouseList extends React.Component {
         console.log(e.target.id)
         this.setState({
           show: true,
-          warehouseId: e.target.id
+          warehouseId: e.target.id,
+          warehouseName: e.target.name
         })
         console.log(this.state.itemId)
       }
@@ -86,14 +88,14 @@ class WarehouseList extends React.Component {
                         </div>
                     </div>
                     <div className="warehouse__actions">
-                        <img id = {warehouse.id}  onClick={this.onTrashHandler} className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
+                        <img name = {warehouse.name} id = {warehouse.id}  onClick={this.onTrashHandler} className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
                         <img className ="warehouse__actions-edit"src={Edit} alt="edit"/>
                     </div>
                 </div> 
             )
         })}
          <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
-      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.warehouseId} name = "Warehouse"/>
+      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.warehouseId} name = "Warehouse" itemName = {this.state.warehouseName}/>
         </>
         )
     }
