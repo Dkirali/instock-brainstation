@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const inventory = require("../data/inventories.json");
 
+// Helper function to find inventory item by ID
 const getItem = (id) => {
     const foundItem = inventory.find((item) => {
         return id === item.id;
@@ -10,10 +11,12 @@ const getItem = (id) => {
     return foundItem;
 };
 
+// Route to get list of all inventory items
 router.get("/", (req, res) => {
     res.status(200).json(inventory);
 });
 
+// Route to get a single item and details by ID
 router.get("/:id", (req, res) => {
     let { id } = req.params;
     const itemFound = getItem(id);
