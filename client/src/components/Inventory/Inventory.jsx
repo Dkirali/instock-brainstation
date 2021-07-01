@@ -33,10 +33,19 @@ class Inventory extends React.Component {
       console.log(this.state.itemId)
     }
     onDeleteHandler = (itemid) => {
-      console.log(itemid)
-      this.setState({
-        show: true
-      })
+
+      axios
+        .delete(`${API_URL}/inventory/${itemid}/item`)
+        .then((response) => {
+          console.log(response)
+          this.setState({
+            inventory: response.data,
+            loaded: true,
+            show: false
+
+          });
+        })
+        .catch((err) => console.log("error!", err))
     }
     componentDidMount() {
       axios
