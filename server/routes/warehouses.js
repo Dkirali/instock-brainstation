@@ -16,6 +16,43 @@ router.get("/:id", (req, res) => {
     res.status(200).json(warehouseFound);
 });
 
+// Delete a single warehouse, and all the inventories in that warehouse
+
+router.delete("/:id/warehouse", (req, res) => {
+    // Removing from warehouse list
+    let { id } = req.params;
+    const warehouseFound = getWarehouse(id);
+    selectedWarehouse = warehouses.indexOf(warehouseFound);
+    warehouses.splice(selectedWarehouse, 1);
+    res.json(warehouses)
+    // Removing all inventories associated with that inventory
+    inventory.forEach((item) => {
+     if (item.warehouseID === warehouseFound.id) {
+         inventory.splice(indexOf(item), 1)
+     }
+
+    });
+
+    // JSON stringify these arrays back
+    const newObject = JSON.stringify(warehouses, null, 2)
+    const newInv = JSON.stringify(inventory, null, 2)
+
+
+    // fs writefiles
+    fs.writeFileSync("../server/data/warehouses.json", newObject, (err) => {
+        console.log("write success!")
+        if (err) {
+            res.status(403).json("error, not found");
+        }
+    })
+    fs.writeFileSync("../server/data/inventories.json", newInv, (err) => {
+        console.log("write success!")
+        if (err) {
+            res.status(403).json("error, not found");
+        }
+    })
+})
+
 router.get("/:id/inventory", (req, res) => {
     let { id } = req.params;
     const warehouseFound = getWarehouse(id);
