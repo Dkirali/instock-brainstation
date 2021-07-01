@@ -164,7 +164,7 @@ class Inventory extends React.Component {
         );
       })}
       <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
-      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId}/>
+      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId} name = "Inventory"/>
     </section>
   );}
 };
