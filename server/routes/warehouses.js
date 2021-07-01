@@ -120,6 +120,13 @@ router.get("/:id/inventory", (req, res) => {
     res.status(200).json(warehouseInventory);
 });
 
+//edit warehouse based on the id that is being passed
+router.get("/:id/edit", (req, res) => {
+    let { id } = req.params;
+    const warehouseFound = getWarehouse(id);
+    res.status(200).json(warehouseFound);
+});
+
 // Get list of all warehouses
 router.get('/', (req, res) => {
     res.status(200).json(warehouseData(warehouses))

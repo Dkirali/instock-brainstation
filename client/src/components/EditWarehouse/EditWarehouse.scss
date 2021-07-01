@@ -1,0 +1,434 @@
+@use "../../partials/typography" as *;
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+.editwarehouse {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: 125px;
+    background: #ffffff;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 3px;
+
+    @include tablet {
+        top: 6rem;
+        left: 2rem;
+        right: 2rem;
+      }
+      @include desktop {
+        left: 5rem;
+        right: 5rem;
+      }
+
+    &__nav{
+        padding: 0 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    
+        @include tablet {
+          display: flex;
+          align-items: center;
+          padding: 0 2rem 0.7rem;
+        }
+    
+        @include desktop {
+          padding: 0 2rem 0;
+        }
+
+    }
+
+    &__image {
+        margin-top: 0.5rem;
+        padding-right: 0.5rem;
+
+    }
+
+    
+  &__title {
+    @include demi;
+    padding: 0 0 1rem 0;
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 0;
+    
+    @include tablet {
+      padding-left: 0;
+      padding: 0 0 0.9rem 0;
+    }
+
+    @include desktop {
+      padding-left: 1.5rem;
+      font-size: 32px;
+      line-height: 40px;
+      padding: 0 0 1.15rem 0;
+    }
+  }
+
+  &__details {
+      padding:0 1rem 1rem;
+      border-top: 1px solid #BDC5D5;
+
+      @include tablet {
+        width: -webkit-fill-available;
+        border:0;
+        padding: 0 2rem 1rem 0;
+      }
+
+      &-title {
+        font-family: "Titillium";
+        font-weight: 600;
+        font-style: normal;
+        font-size: 20px;
+        line-height: 28px;
+        color: #13182C;
+        
+        @include tablet {
+            margin: 0;
+            margin-bottom: 2rem;
+        }
+
+      }
+      
+    &-top {
+
+    }
+
+    &-name {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input {
+            height: 36px;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        &-text {
+            position: absolute;
+            width: 60px;
+            height: 22px;
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            color: #13182C; 
+            left: 15px;
+            top: 7px;
+            margin: 0;
+        }
+
+    }
+
+    &-mid {
+
+    }
+
+    &-address {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input {
+            height: 36px;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+
+        }
+
+        &-text {
+            position: absolute;
+            width: 125px;
+            height: 22px;
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            color: #13182C; 
+            left: 15px;
+            top: 7px;
+            margin: 0;
+
+        }
+    }
+
+    &-city {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input {
+            height: 36px;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        &-text {
+            position: absolute;
+            width: 60px;
+            height: 22px;
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            color: #13182C; 
+            left: 15px;
+            top: 7px;
+            margin: 0;
+        }
+    }
+
+    &-country {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input {
+            height: 36px;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        &-text {
+            position: absolute;
+            width: 60px;
+            height: 22px;
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            color: #13182C; 
+            left: 15px;
+            top: 7px;
+            margin: 0;
+        }
+    }
+  }
+
+  &__contact{
+
+    &-details {
+        padding:0 1rem;
+        border-top: 1px solid #BDC5D5;
+
+        @include tablet {
+            width: -webkit-fill-available;
+            border:0;
+            border-left: 1px solid #BDC5D5;;
+            padding: 0 0 0 2rem;
+          }
+
+        &-title {
+            @include demi;
+            font-size: 20px;
+            line-height: 28px;
+            color: #13182C;
+
+            @include tablet {
+                margin: 0;
+                margin-bottom: 2rem;
+            }
+        }
+        
+
+    }
+
+    &-top {
+
+    }
+
+    &-name {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input {
+            height: 36px;
+            width: 100%;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+
+            &::placeholder {
+                @include regular;
+                font-size: 13px;
+                line-height: 20px;
+                color: #13182C; 
+                padding-left: 0.8rem
+            }
+        }
+    }
+
+    &-mid {
+
+    }
+
+    &-position {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input{
+            height: 36px;
+            width: 100%;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+
+            &::placeholder {
+                @include regular;
+                font-size: 13px;
+                line-height: 20px;
+                color: #13182C; 
+                padding-left: 0.8rem
+            }
+
+        }
+    }
+
+    &-number {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input {
+            height: 36px;
+            width: 100%;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+
+            &::placeholder {
+                @include regular;
+                font-size: 13px;
+                line-height: 20px;
+                color: #13182C; 
+                padding-left: 0.8rem
+            }
+
+
+        }
+    }
+
+    &-bottom {
+
+    }
+    
+    &-email {
+        @include demi;
+        font-size: 13px;
+        line-height: 20px;
+        color: #13182C;
+
+        &-input {
+            height: 36px;
+            width: 100%;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            position: relative;
+
+            &::placeholder {
+                @include regular;
+                font-size: 13px;
+                line-height: 20px;
+                color: #13182C; 
+                padding-left: 0.8rem
+            }
+
+        }
+    }
+  }
+    &__button {
+
+        &-section {
+            background: rgba(247, 248, 249, 0.7);
+            border-radius: 0px 0px 3px 3px;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 1rem;
+            margin: 1rem 0 0 0;
+
+            @include tablet{
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    &__cancel{
+
+        &-button{
+            display: flex;
+            align-items: center;
+            padding: 8px 34px;
+            background: #FFFFFF;
+            border: 1px solid #BDC5D5;
+            box-sizing: border-box;
+            border-radius: 20px;
+            font-family: Titillium Web;
+            @include demi;
+            font-size: 13px;
+            line-height: 20px;
+            color: #5C667E;
+
+            @include tablet{
+                margin-right:1rem;
+                padding: 8px 21px;
+            }
+        }
+    }
+
+    &__save{
+
+        &-button{
+            display: flex;
+            align-items: center;
+            padding: 8px 43px;
+            background: #2E66E6;
+            border-radius: 20px;
+            font-family: Titillium Web;
+            @include demi;
+            font-size: 13px;
+            line-height: 20px;
+            color: #FFFFFF;
+            border: 0;     
+
+            @include tablet {
+                padding: 8px 28px;
+            }
+        }
+    }
+}
+
+.top-section {
+    @include tablet {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 2rem 0;
+        border-top: 1px solid #BDC5D5;;
+    }
+}
