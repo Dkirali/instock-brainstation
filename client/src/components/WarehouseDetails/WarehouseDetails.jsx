@@ -18,23 +18,29 @@ class WarehouseDetails extends React.Component {
         selectedWarehouse: [],
       };
     
-    componentDidMount() {
-      let id = this.props.match.params.id
-      axios.get(`${API_URL}/warehouses/${id}`)
-      .then ((response => {
-      this.setState ({
-        selectedWarehouse:response.data
-         })
-      }))
-      axios
-      .get(`${API_URL}/warehouses/${id}/inventory`)
-      .then((response) => {
-      this.setState({
-        inventory: response.data,
-        loaded: true,
-      });
+  
+
+  componentDidMount(){
+    let id = this.props.match.params.id
+    let data = []
+
+    axios.get(`${API_URL}/warehouses/${id}`)
+    .then(res => {
+      data = res.data
+      return axios.get(`${API_URL}/warehouses/${id}/inventory`)
     })
-    .catch((err) => console.log("error!", err));
+    .then(res => {
+      this.setState({
+        selectedWarehouse: data,
+        inventory:res.data,   
+        loaded:true
+      })
+      console.log(this.state.selectedWarehouse)
+      console.log(this.state.inventory)
+    })
+  .catch(err => {
+    console.log("error", err)
+    })  
   }
 
       
@@ -45,8 +51,7 @@ class WarehouseDetails extends React.Component {
     }
  
   return (
-
-    // Doruk, I think this is the part you mess with. You probably need to call in another state to get info for that specific warehouse
+    
     <section className="warehousedetails">
       <div className="warehousedetails__nav">
           <div className="warehousedetails__nav-wrapper">
@@ -161,23 +166,3 @@ class WarehouseDetails extends React.Component {
 }
 export default WarehouseDetails;
 
-// componentDidMount() {
-//   let id = this.props.match.params.id
-//    axios.get(`${API_URL}/warehouses/${id}`)
-//    .then ((response => {
-//      console.log(response)
-//      this.setState ({
-//        selectedWarehouse:response.data
-//      })
-//    }))
-   
-//    axios
-//    .get(`${API_URL}/warehouses/${id}/inventory`)
-//    .then((response) => {
-//      this.setState({
-//        inventory: response.data,
-//        loaded: true,
-//      });
-//    })
-//    .catch((err) => console.log("error!", err));
-// }

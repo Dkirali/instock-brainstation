@@ -7,7 +7,7 @@
     width: 254px;
     position: absolute;
     left: 50%;
-    top: 1150%;
+    top: 250%;
     transform: translate(-50%,-50%);
     font-size: 11px;
     line-height: 16px;
@@ -16,6 +16,6 @@
     padding-bottom: 3rem;
 
     @include tablet {
-        top: 110%;
+        top: 130%;
     }
 }
