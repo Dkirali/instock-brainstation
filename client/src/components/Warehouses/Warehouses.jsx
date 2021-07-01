@@ -3,8 +3,9 @@ import './Warehouses.scss'
 import search from "../../assets/icons/search-24px.svg"
 import WarehouseList from "../WarehouseList/WarehouseList"
 import Sort from "../../assets/icon/sort-24px.svg"
-
-
+import Trash from "../../assets/icon/delete_outline-24px.svg"
+import Edit from "../../assets/icon/edit-24px.svg"
+import DelModal from "../DelModal/DelModal"
 
 const Warehouses = () => {
     return(
@@ -27,6 +28,9 @@ const Warehouses = () => {
                 <li className="warehouse-topbar__contact-information"> CONTACT INFORMATION  <img className=" warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
                 <li className="warehouse-topbar__actions"> ACTIONS <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
             </ul>      
+            
+            <DelModal />
+
             <WarehouseList/>
         </section>  
     )

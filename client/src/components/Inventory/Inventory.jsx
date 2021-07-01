@@ -16,7 +16,8 @@ class Inventory extends React.Component {
       inventory: null,
       loaded: false,
       show: false,
-      itemId: null
+      itemId: null,
+      itemName: null
     };
   
     onCloseHandler = () => {
@@ -25,12 +26,15 @@ class Inventory extends React.Component {
       })
     }
     onTrashHandler = (e) => {
-      console.log(e.target.id)
       this.setState({
         show: true,
-        itemId: e.target.id
+        itemId: e.target.id,
+        itemName: e.target.name
       })
+      console.log(e.target.name)
       console.log(this.state.itemId)
+      console.log(this.state.itemName)
+
     }
     onDeleteHandler = (itemid) => {
 
@@ -147,6 +151,7 @@ class Inventory extends React.Component {
               <div className="inventory__actions">
                 <img
                  id = {item.id}
+                 name = {item.itemName}
                   className="inventory__action-trash"
                   src={Trash}
                   alt="trashcan"
@@ -164,7 +169,7 @@ class Inventory extends React.Component {
         );
       })}
       <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
-      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId}/>
+      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId} name = "Inventory" itemName = {this.state.itemName}/>
     </section>
   );}
 };

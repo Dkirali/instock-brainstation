@@ -15,7 +15,7 @@ const DelModal = props => {
 
                 <div className="modal-del-header">
                     <h4 className="modal-del__title">
-                        Delete  Inventory Item?
+                        Delete {props.itemName} {props.name} Item?
                     </h4>
                     <div className="modal-del__content">
                     Please confirm that you’d like to delete Television from the inventory list.
