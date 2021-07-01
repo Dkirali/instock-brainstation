@@ -7,7 +7,6 @@ import Trash from "../../assets/icon/delete_outline-24px.svg"
 import Edit from "../../assets/icon/edit-24px.svg"
 import DelModal from "../DelModal/DelModal"
 
-
 const Warehouses = () => {
     return(
         <section className="warehouse">
