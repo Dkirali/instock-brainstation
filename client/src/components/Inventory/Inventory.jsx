@@ -1,14 +1,61 @@
-import React from "react";
 import "./Inventory.scss";
+import DelModal from "../DelModal/DelModal"
 import search from "../../assets/icons/search-24px.svg";
 import Trash from "../../assets/icon/delete_outline-24px.svg";
 import Edit from "../../assets/icon/edit-24px.svg";
 import Chevron from "../../assets/icon/chevron_right-24px.svg";
 import Sort from "../../assets/icon/sort-24px.svg"
+import React from "react";
+import axios from "axios";
 
-const Inventory = (props) => {
+import { API_URL } from "../../utils/utils";
 
-    let stockDecide;
+class Inventory extends React.Component {
+
+    state = {
+      inventory: null,
+      loaded: false,
+      show: false,
+      itemId: null
+    };
+  
+    onCloseHandler = () => {
+      this.setState({
+        show: false
+      })
+    }
+    onTrashHandler = (e) => {
+      console.log(e.target.id)
+      this.setState({
+        show: true,
+        itemId: e.target.id
+      })
+      console.log(this.state.itemId)
+    }
+    onDeleteHandler = (itemid) => {
+      console.log(itemid)
+      this.setState({
+        show: true
+      })
+    }
+    componentDidMount() {
+      axios
+        .get(`${API_URL}/inventory`)
+        .then((response) => {
+          console.log(response)
+          this.setState({
+            inventory: response.data,
+            loaded: true,
+          });
+        })
+        .catch((err) => console.log("error!", err));
+    }
+
+    render ( ) {
+      let stockDecide
+      if (this.state.loaded === false) {
+        return <main className="load-screen">Loading...</main>;
+      }
 
   return (
     <section className="inventory">
@@ -41,7 +88,7 @@ const Inventory = (props) => {
             <li className="inventory-topbar__actions">ACTIONS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
 
       </ul>
-      {props.inventory.map((item) => {
+      {this.state.inventory.map((item) => {
         if(item.status === "Out of Stock") {
             stockDecide = "inventory__warehouse-status inventory__warehouse-status--outstock"
         } else {
@@ -90,22 +137,27 @@ const Inventory = (props) => {
               </div>
               <div className="inventory__actions">
                 <img
+                 id = {item.id}
                   className="inventory__action-trash"
                   src={Trash}
                   alt="trashcan"
+                  onClick = {this.onTrashHandler}
                 />
                 <img
                   className="inventory__action-edit"
                   src={Edit}
-                  alt="trashcan"
+                  alt="editing pencil"
+                 
                 />
               </div>
             </div>
           </div>
         );
       })}
+      <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
+      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId}/>
     </section>
-  );
+  );}
 };
 
 export default Inventory;
