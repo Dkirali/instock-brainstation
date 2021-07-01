@@ -60,6 +60,7 @@ class WarehouseDetails extends React.Component {
           </div>
             <form className="warehousedetails__form">
             <label className="warehousedetails__form-label" htmlFor="text"></label>
+                <Link to ={`/warehouses/${this.state.selectedWarehouse.id}/edit`}>
                 <button className="warehousedetails__button" type="submit">
                   <img
                   className="warehousedetails__form-edit-icon"
@@ -68,6 +69,7 @@ class WarehouseDetails extends React.Component {
                   />
                   <h3 className="warehousedetails__button-text">Edit</h3>
                 </button>
+                </Link>
             </form>
             </div>
         <div className="warehousedetails__specifics">
