@@ -4,8 +4,7 @@ import Edit from "../../assets/icon/edit-24px.svg"
 import { API_URL } from '../../utils/utils.js';
 import axios from 'axios'
 import './WarehouseList.scss'
-
-import { Link, BrowserRouter, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DelModal from "../DelModal/DelModal"
 
 class WarehouseList extends React.Component {

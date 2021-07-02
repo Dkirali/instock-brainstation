@@ -2,6 +2,7 @@ import HeroHeader from "./components/HeroHeader/HeroHeader";
 import Inventory from "./components/Inventory/Inventory";
 import Warehouses from "./components/Warehouses/Warehouses";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
+import EditWarehouse from "./components/EditWarehouse/EditWarehouse";
 
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -46,7 +47,8 @@ class App extends React.Component {
             exact path="/"
             render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
           />        </Switch>
-          <Route exact path="/warehouses/:id"component={WarehouseDetails} />        
+          <Route exact path="/warehouses/:id"component={WarehouseDetails} />  
+          <Route exact path="/warehouses/:id/edit" component={EditWarehouse} />
         <Footer />
       </BrowserRouter>
     );
