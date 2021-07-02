@@ -1,6 +1,7 @@
 @use "../../partials/typography" as *;
 @use "../../partials/mixin" as *;
 @use "../../partials/variables" as *;
+@use "../../partials/animations" as *;
 
 .warehousedetails{
   padding-top: 1rem;
@@ -28,6 +29,11 @@
     left: 0.5rem;
     @include tablet {
       top: 0px;
+    }
+    &:hover {
+      animation: 1s ease-out 0s slideFromLeft;
+      animation-iteration-count: infinite;
+
     }
   }
 
