@@ -2,7 +2,7 @@ import HeroHeader from "./components/HeroHeader/HeroHeader";
 import Inventory from "./components/Inventory/Inventory";
 import Warehouses from "./components/Warehouses/Warehouses";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
-
+import AddNewItem from "./components/AddNewItem/AddNewItem";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
@@ -42,12 +42,13 @@ class App extends React.Component {
             exact path="/inventory"
             render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
           />
+          <Route exact path="/inventory/add" component={AddNewItem} />
           <Route
             exact path="/"
             render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
           />        </Switch>
           <Route exact path="/warehouses/:id"component={WarehouseDetails} />
-         
+          
         <Footer />
       </BrowserRouter>
     );
