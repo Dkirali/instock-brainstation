@@ -9,7 +9,37 @@ class InventoryItemDetails extends Component {
     state = {
         item: {},
     };
-
+    onCloseHandler = () => {
+        this.setState({
+          show: false
+        })
+      }
+      onTrashHandler = (e) => {
+        this.setState({
+          show: true,
+          itemId: e.target.id,
+          itemName: e.target.name
+        })
+        console.log(e.target.name)
+        console.log(this.state.itemId)
+        console.log(this.state.itemName)
+  
+      }
+      onDeleteHandler = (itemid) => {
+  
+        axios
+          .delete(`${API_URL}/inventory/${itemid}/item`)
+          .then((response) => {
+            console.log(response)
+            this.setState({
+              inventory: response.data,
+              loaded: true,
+              show: false
+  
+            });
+          })
+          .catch((err) => console.log("error!", err))
+      }
     componentDidMount() {
         axios
             .get(`${API_URL}/inventory/${this.props.match.params.id}`)
