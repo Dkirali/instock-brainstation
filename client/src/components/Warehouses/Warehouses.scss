@@ -7,23 +7,24 @@
 // }
 
 .warehouse {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    top: 125px;
-    background: #FFFFFF;
+    padding-top: 1rem;
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    z-index: 1;
+    top: -4rem;
+  
+    background: #ffffff;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
     border-radius: 3px;
-    overflow-x: hidden;
-
     @include tablet {
-        margin: 0 0.5rem;
-        top:100px;
+      top: -8rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
     }
-
     @include desktop {
-        margin: 0 4rem;
-        top:100px;
+      margin-left: 5rem;
+      margin-right: 5rem;
     }
 
     &-topbar {
@@ -68,21 +69,16 @@
             position: absolute;
             right: 67%;
 
-            @include desktop {
-                right:72%;
-            }
-            
+     
         }
 
         &__contact {
 
             &-name {
                 position: absolute;
-                right: 45%;
+                right: 48%;
 
-                @include desktop {
-                    right:42%;
-                }
+         
             }
 
 

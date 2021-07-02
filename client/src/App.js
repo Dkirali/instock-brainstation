@@ -4,59 +4,28 @@ import Warehouses from "./components/Warehouses/Warehouses";
 import InventoryItemDetails from "./components/InventoryItemDetails/InventoryItemDetails";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import EditWarehouse from "./components/EditWarehouse/EditWarehouse";
-import Footer from "./components/Footer/Footer";
+import HeroFooter from "./components/HeroFooter/HeroFooter";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import axios from "axios";
 import React from "react";
 import "./App.scss";
 
-import { API_URL } from "./utils/utils";
 
-class App extends React.Component {
-    state = {
-        inventory: null,
-        loaded: false,
-    };
+function App () {
 
-    componentDidMount() {
-        axios
-            .get(`${API_URL}/inventory`)
-            .then((response) => {
-                this.setState({
-                    inventory: response.data,
-                    loaded: true,
-                });
-            })
-            .catch((err) => console.log("error!", err));
-    }
-
-  render() {
-        if (this.state.loaded === false) {
-            return <main className='load-screen'>Loading...</main>;
-        } 
-  return (
+    return (
       <BrowserRouter>
-        <HeroHeader/>
+        <HeroHeader />
         <Switch>
           <Route exact path="/warehouses" component={Warehouses} />
-          <Route
-            exact path="/inventory"
-            render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
-          />
-          <Route
-            exact path="/"
-            render={(props) => <Inventory {...props} inventory={this.state.inventory} />}
-          />        </Switch>
-          <Route exact path="/warehouses/:id"component={WarehouseDetails} />  
-          <Route exact path="/warehouses/:id/edit" component={EditWarehouse} />
-          <Route
-                path='/inventory/:id'
-                render={(props) => <InventoryItemDetails {...props} />}
-            />
-        <Footer />
+          <Route exact path="/inventory" component={Inventory}/>
+          <Route exact path="/" component={Warehouses} />
+        </Switch>
+        <Route exact path="/warehouses/:id" component={WarehouseDetails} />
+        <Route exact path="/warehouses/:id/edit" component={EditWarehouse} />
+        <Route path='/inventory/:id' render={(props) => <InventoryItemDetails {...props} />} />
+        <HeroFooter />
       </BrowserRouter>
     );
   }
-}
 
 export default App;
