@@ -21,10 +21,12 @@
         padding-right: 2rem;
         position: relative;
         bottom: 3.5rem;
+        height:190px;
     }
     @include desktop {
         padding-left: 5rem;
         padding-right: 5rem;
+        height:190px;
     }
 
     &-container {
