@@ -3,10 +3,7 @@ import './Warehouses.scss'
 import search from "../../assets/icons/search-24px.svg"
 import WarehouseList from "../WarehouseList/WarehouseList"
 import Sort from "../../assets/icon/sort-24px.svg"
-import Trash from "../../assets/icon/delete_outline-24px.svg"
-import Edit from "../../assets/icon/edit-24px.svg"
 import DelModal from "../DelModal/DelModal"
-
 
 const Warehouses = () => {
     return(

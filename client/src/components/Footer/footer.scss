@@ -1,4 +1,21 @@
-.footer{
-    display: flex;
-    justify-content: center;
-}
+@use "../../partials/typography" as *;
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+
+// .footer {
+//     width: 254px;
+//     position: absolute;
+//     left: 50%;
+//     top: 250%;
+//     transform: translate(-50%,-50%);
+//     font-size: 11px;
+//     line-height: 16px;
+//     text-align: center;
+//     color: #5C667E;
+//     padding-bottom: 3rem;
+
+//     @include tablet {
+//         top: 130%;
+//     }
+// }
