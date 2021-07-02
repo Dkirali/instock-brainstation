@@ -116,8 +116,24 @@
 
     }
 
+    &__chevron {
+        position: relative;
+        bottom: 1.5px;
+        left: 0.5rem;
+        @include tablet {
+          top: 0px;
+        }
+        
+        &:hover {
+          animation: 1s ease-out 0s slideFromLeft;
+          animation-iteration-count: infinite;
+    
+        }
+      }
+
     &__location {
         @include demi;
+        display: flex;
         margin:0;
         font-size: 12px;
         line-height: 20px;  
@@ -127,13 +143,9 @@
         text-decoration: none;    
         width: 7rem;
         @include tablet {
-            width: 72px;
+            width: 10rem; 
         }
-
-        @include desktop {
-            width: 72px;
-        }
-        
+  
     }
 
     &__address {
@@ -150,9 +162,6 @@
                 width: 100px;
                 left: 2rem;
             }
-
-
-
 
         }
     }
