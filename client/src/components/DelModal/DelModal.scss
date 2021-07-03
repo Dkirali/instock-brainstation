@@ -15,6 +15,14 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
+
+    &-header{
+        @include tablet {
+            position: relative;
+            top: 3rem;
+        }
+    }
+
     &-content {
         background-color: white;
         height: 100%;

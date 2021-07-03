@@ -1,4 +1,6 @@
 import React from "react";
+import DelModal from "../DelModal/DelModal"
+
 import "./WarehouseDetails.scss";
 import Arrow from '../../assets/icons/arrow_back-24px.svg'
 import Trash from "../../assets/icon/delete_outline-24px.svg";
@@ -16,8 +18,40 @@ class WarehouseDetails extends React.Component {
         inventory: null,
         loaded: false,
         selectedWarehouse: [],
+        show: false,
+        itemName: null
+
       };
-    
+
+      onCloseHandler = () => {
+        this.setState({
+            show: false
+        })
+    }
+    onTrashHandler = (e) => {
+        console.log(e.target.id)
+        this.setState({
+            show: true,
+            warehouseId: e.target.id,
+            itemName: e.target.name
+        })
+        console.log(this.state.itemId)
+    }
+    onDeleteHandler = (itemid) => {
+        console.log(itemid)
+        axios
+            .delete(`${API_URL}/warehouses/${itemid}/warehouse`)
+            .then((response) => {
+                console.log(response)
+                this.setState({
+                    allWarehouses: response.data,
+                    show: false
+
+                });
+            })
+            .catch((err) => console.log("error!", err))
+    }
+
   
 
   componentDidMount(){
@@ -91,7 +125,6 @@ class WarehouseDetails extends React.Component {
             </div>
           </div>
         </div>
-{/*  */}
   
       <ul className="warehousedetails-topbar">
             <li className="warehousedetails-topbar__inventory">INVENTORY ITEM<img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
@@ -148,9 +181,12 @@ class WarehouseDetails extends React.Component {
               </div>
               <div className="warehousedetails__actions">
                 <img
-                  className="warehousedetails__action-trash"
-                  src={Trash}
-                  alt="trashcan"
+              id = {item.id}
+              name = {item.itemName}
+               className="inventory__action-trash"
+               src={Trash}
+               alt="trashcan"
+               onClick = {this.onTrashHandler}
                 />
                 <img
                   className="warehousedetails__action-edit"
@@ -162,6 +198,8 @@ class WarehouseDetails extends React.Component {
           </div>
         );
       })}
+       <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
+      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId} name = "Inventory" itemName = {this.state.itemName}/>
     </section>
   );
 };

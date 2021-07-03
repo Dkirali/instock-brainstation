@@ -1,7 +1,7 @@
 import React from 'react'
-// import './Footer.scss'
+import './HeroFooter.scss'
 
-const Footer = () => {
+const HeroFooter = () => {
     return(
       <div className="footer">
             <p>&copy; InStock Inc. All Rights Reserved.</p>
@@ -9,4 +9,4 @@ const Footer = () => {
     )
 }
 
-export default Footer;
+export default HeroFooter;
