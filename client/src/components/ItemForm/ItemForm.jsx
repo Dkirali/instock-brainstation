@@ -10,10 +10,10 @@ class ItemForm extends Component {
         warehouses: [],
         itemName: "",
         description: "",
-        category: null,
+        category: "N/A",
         status: null,
         quantity: 0,
-        warehouse: null,
+        warehouse: "N/A",
         nameError:"",
         desError:"",
         categoryError:"",
@@ -39,7 +39,7 @@ class ItemForm extends Component {
         formError.desError = errorMessage;
         
     }
-    if (!this.state.category){
+    if (!this.state.category || this.state.category==="N/A"){
         formError.categoryError = errorMessage;
         
     }
@@ -51,7 +51,7 @@ class ItemForm extends Component {
         formError.quantityError = errorMessage;
         
     }
-    if (!this.state.warehouse){
+    if (!this.state.warehouse || this.state.warehouse==="N/A"){
         formError.warehouseError = errorMessage;
         
     }
@@ -141,7 +141,7 @@ class ItemForm extends Component {
 
                             <label className="itemForm__form--label" htmlFor="category">Category</label>
                             <select className="itemForm__form--select" id="category" name="category" value={this.state.category} onChange={this.changeHandler} >
-                                <option className="itemForm__form--option" hidden disabled selected>Please Select</option>
+                                <option className="itemForm__form--option" hidden disabled value="N/A">Please Select</option>
                                 <option className="itemForm__form--option" value="Electronics">Electronics</option>
                                 <option className="itemForm__form--option" value="Apparel">Apparel</option>
                                 <option className="itemForm__form--option" value="Gear">Gear</option>
@@ -188,7 +188,7 @@ class ItemForm extends Component {
                             </div>
                             <label className="itemForm__form--label" htmlFor="warehouse">Warehouse</label>
                             <select className="itemForm__form--select" id="warehouse" name="warehouse" value={this.state.warehouse} onChange={this.changeHandler} >
-                            <option className="itemForm__form--option" disabled selected hidden  >Please Select</option>
+                            <option className="itemForm__form--option" disabled hidden value="N/A"  >Please Select</option>
                                 {this.state.warehouses
                                 .map((warehouse) => {
                                     return (
