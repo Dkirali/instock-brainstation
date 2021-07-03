@@ -3,6 +3,7 @@ import Back from '../../assets/icons/arrow_back-24px.svg';
 import axios from 'axios';
 import { API_URL } from "../../utils/utils";
 import './AddNewItem.scss'
+import error from '../../assets/icons/error-24px.svg'
 
 class AddNewItem extends Component {
     state={
@@ -13,16 +14,65 @@ class AddNewItem extends Component {
         status: null,
         quantity: 0,
         warehouse: null,
+        nameError:"",
+        desError:"",
+        categoryError:"",
+        statusError: "",
+        quantityError: "",
+        warehouseError: "",
+
     }
     
+
+    validate = () => {
+    const errorMessage = "This field is required"
+    const formError = { }
+
+
+    if (!this.state.itemName){
+        formError.nameError = errorMessage;
+        
+    }
+    if (!this.state.description){
+        formError.desError = errorMessage;
+        
+    }
+    if (!this.state.category){
+        formError.categoryError = errorMessage;
+        
+    }
+    if (!this.state.status){
+        formError.statusError = errorMessage;
+        
+    }
+    if ((this.state.status==="In Stock" || !this.state.status) && !this.state.quantity){
+        formError.quantityError = errorMessage;
+        
+    }
+    if (!this.state.warehouse){
+        formError.warehouseError = errorMessage;
+        
+    }
+    this.setState(formError)
+
+    const hasErrors = Object.keys(formError).length
+
+    return Boolean(hasErrors)
+    
+    
+
+    }
+
     submitHandler = (e) =>{
         e.preventDefault();
-        const foundWarehouse = this.state.warehouses.find((warehouse) =>{
-            return this.state.warehouse === warehouse.id
-            
-        })
-        const warehouseName = foundWarehouse.name
-        axios.post(`${API_URL}/inventory/add`, {...this.state, warehouseName})
+        const isValid = this.validate();
+        if (!isValid) {
+            const foundWarehouse = this.state.warehouses.find((warehouse) =>{
+                return this.state.warehouse === warehouse.id
+            })
+            axios.post(`${API_URL}/inventory/add`, {...this.state, foundWarehouse})
+        }
+        
     }
 
     changeHandler = (e) => {
@@ -66,6 +116,10 @@ class AddNewItem extends Component {
                                 value={this.state.itemName}
                                 onChange={this.changeHandler}
                             />
+                            {this.state.nameError ? <div className="addItem__error">
+                                <img className="addItem__error--image" src={error} alt="error"/>
+                                <p className="addItem__error--text" >{this.state.nameError}</p>
+                                </div> : null}
 
                             <label className="addItem__form--label" htmlFor="itemDescription">Description</label>
                             <textarea className="addItem__form--input"
@@ -77,6 +131,11 @@ class AddNewItem extends Component {
                                 value={this.state.description}
                                 onChange={this.changeHandler}
                             />
+                            {this.state.desError ? <div className="addItem__error">
+                                <img className="addItem__error--image" src={error} alt="error"/>
+                                <p className="addItem__error--text" >{this.state.desError}</p>
+                                </div> : null}
+
                             <label className="addItem__form--label" htmlFor="category">Category</label>
                             <select className="addItem__form--select" id="category" name="category" onChange={this.changeHandler} >
                                 <option className="addItem__form--option" hidden disabled selected>Please Select</option>
@@ -86,6 +145,10 @@ class AddNewItem extends Component {
                                 <option className="addItem__form--option" value="Accessories">Accessories</option>
                                 <option className="addItem__form--option" value="Health">Health</option>
                             </select>
+                            {this.state.categoryError ? <div className="addItem__error">
+                                <img className="addItem__error--image" src={error} alt="error"/>
+                                <p className="addItem__error--text">{this.state.categoryError}</p>
+                                </div> : null}
                         </div>
                         <div className="addItem__availability">
                             <h2 className="addItem__form--title">Item Availability</h2>
@@ -100,6 +163,10 @@ class AddNewItem extends Component {
                                     <p className="addItem__radio--text" className="addItem__radio--text">Out of Stock</p>
                                 </div>
                             </div>
+                            {this.state.statusError ? <div className="addItem__error">
+                                <img className="addItem__error--image" src={error} alt="error"/>
+                                <p className="addItem__error--text">{this.state.statusError}</p>
+                                </div> : null}
                             <div className={stockDecide}>
                                 <label className="addItem__form--label" htmlFor="quantity">Quantity</label>
                                 <input className={"addItem__form--input addItem__form--quantity"}
@@ -110,8 +177,11 @@ class AddNewItem extends Component {
                                 placeholder="0"
                                 value={this.state.quantity}
                                 onChange={this.changeHandler}
-                                
                                 />
+                                {this.state.quantityError ? <div className="addItem__error">
+                                <img className="addItem__error--image" src={error} alt="error"/>
+                                <p className="addItem__error--text">{this.state.quantityError}</p>
+                                </div> : null}
                             </div>
                             <label className="addItem__form--label" htmlFor="warehouseID">Warehouse</label>
                             <select className="addItem__form--select" id="warehouse" name="warehouse" onChange={this.changeHandler} >
@@ -123,6 +193,10 @@ class AddNewItem extends Component {
                                     )
                                 })}
                             </select>
+                            {this.state.warehouseError ? <div className="addItem__error">
+                                <img className="addItem__error--image" src={error} alt="error"/>
+                                <p className="addItem__error--text">{this.state.warehouseError}</p>
+                                </div> : null}
                         </div>
                     </div>
                     <div className="addItem__buttons">
