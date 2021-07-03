@@ -14,75 +14,43 @@ import { Link } from "react-router-dom";
 
 class WarehouseDetails extends React.Component {
 
-    state = {
-        inventory: null,
-        loaded: false,
-        selectedWarehouse: [],
-        show: false,
-        itemName: null
-
-      };
-
-      onCloseHandler = () => {
-        this.setState({
-            show: false
-        })
-    }
-    onTrashHandler = (e) => {
-        console.log(e.target.id)
-        this.setState({
-            show: true,
-            warehouseId: e.target.id,
-            itemName: e.target.name
-        })
-        console.log(this.state.itemId)
-    }
-    onDeleteHandler = (itemid) => {
-        console.log(itemid)
-        axios
-            .delete(`${API_URL}/warehouses/${itemid}/warehouse`)
-            .then((response) => {
-                console.log(response)
-                this.setState({
-                    allWarehouses: response.data,
-                    show: false
-
-                });
-            })
-            .catch((err) => console.log("error!", err))
-    }
-
+  state = {
+    inventory: null,
+    loaded: false,
+    selectedWarehouse: [],
+    };
+  
   
 
   componentDidMount(){
-    let id = this.props.match.params.id
-    let data = []
+  let id = this.props.match.params.id
+  let data = []
 
-    axios.get(`${API_URL}/warehouses/${id}`)
-    .then(res => {
-      data = res.data
-      return axios.get(`${API_URL}/warehouses/${id}/inventory`)
+  axios.get(`${API_URL}/warehouses/${id}`)
+  .then(res => {
+    data = res.data
+    return axios.get(`${API_URL}/warehouses/${id}/inventory`)
+  })
+  .then(res => {
+    this.setState({
+    selectedWarehouse: data,
+    inventory:res.data,   
+    loaded:true
     })
-    .then(res => {
-      this.setState({
-        selectedWarehouse: data,
-        inventory:res.data,   
-        loaded:true
-      })
-      console.log(this.state.selectedWarehouse)
-      console.log(this.state.inventory)
-    })
+    console.log(this.state.selectedWarehouse)
+    console.log(this.state.inventory)
+  })
   .catch(err => {
-    console.log("error", err)
-    })  
+  console.log("error", err)
+  })  
   }
 
-      
+    
  render () {
  let stockDecide
-    if (this.state.loaded === false) {
-        return <main className="load-screen">Loading...</main>; 
-    }
+  if (this.state.loaded === false) {
+    return <main className="load-screen">Loading...</main>; 
+  }
  
   return (
     
@@ -126,13 +94,13 @@ class WarehouseDetails extends React.Component {
           </div>
         </div>
   
-      <ul className="warehousedetails-topbar">
-            <li className="warehousedetails-topbar__inventory">INVENTORY ITEM<img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-            <li className="warehousedetails-topbar__category">CATEGORY <img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-            <li className="warehousedetails-topbar__status">STATUS <img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-            <li className="warehousedetails-topbar__qty"> QUANTITY <img className=" warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+    <ul className="warehousedetails-topbar">
+      <li className="warehousedetails-topbar__inventory">INVENTORY ITEM<img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+      <li className="warehousedetails-topbar__category">CATEGORY <img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+      <li className="warehousedetails-topbar__status">STATUS <img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+      <li className="warehousedetails-topbar__qty"> QUANTITY <img className=" warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
 
-            <li className="warehousedetails-topbar__actions">ACTIONS <img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
+      <li className="warehousedetails-topbar__actions">ACTIONS <img className="warehousedetails-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
 
       </ul>
       {this.state.inventory.map((item) => {

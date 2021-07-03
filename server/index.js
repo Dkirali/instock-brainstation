@@ -20,5 +20,5 @@ app.use("/api/warehouses", warehouseRoute);
 app.use("/api/inventory", inventoryRoute);
 
 app.listen(port, () => {
-    console.log(`App is running on port ${port}`);
+  console.log(`App is running on port ${port}`);
 });
