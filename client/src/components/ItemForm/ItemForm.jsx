@@ -163,7 +163,7 @@ class ItemForm extends Component {
                                 </div>
                                 <div className="itemForm__radio--right">
                                     <input className="itemForm__radio--select" type="radio" name="status" id="status" value="Out of Stock" checked={this.state.status==="Out of Stock"} onChange={this.changeHandler} />
-                                    <p className="itemForm__radio--text" className="itemForm__radio--text">Out of Stock</p>
+                                    <p className="itemForm__radio--text">Out of Stock</p>
                                 </div>
                             </div>
                             {this.state.statusError ? <div className="itemForm__error">
@@ -192,7 +192,7 @@ class ItemForm extends Component {
                                 {this.state.warehouses
                                 .map((warehouse) => {
                                     return (
-                                        <option className="itemForm__form--option" value={warehouse.id} >{warehouse.name}</option>
+                                        <option key={warehouse.id}className="itemForm__form--option" value={warehouse.id} >{warehouse.name}</option>
                                     )
                                 })}
                             </select>
