@@ -18,6 +18,11 @@ class Inventory extends React.Component {
       itemName: null
     };
   
+    clickHandler = (id) => {
+      
+      this.props.history.push(`/inventory/edit/${id}`)
+    }
+
     onCloseHandler = () => {
       this.setState({
         show: false
@@ -159,6 +164,7 @@ class Inventory extends React.Component {
                   className="inventory__action-edit"
                   src={Edit}
                   alt="editing pencil"
+                  onClick={() => this.clickHandler(item.id)}
                  
                 />
               </div>
