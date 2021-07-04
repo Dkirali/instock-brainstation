@@ -18,20 +18,24 @@ class Inventory extends React.Component {
     itemName: null
   };
   
-  onCloseHandler = () => {
-    this.setState({
-    show: false
-    })
-  }
-  onTrashHandler = (e) => {
-    this.setState({
-    show: true,
-    itemId: e.target.id,
-    itemName: e.target.name
-    })
-    console.log(e.target.name)
-    console.log(this.state.itemId)
-    console.log(this.state.itemName)
+    clickHandler = (id) => {
+      this.props.history.push(`/inventory/edit/${id}`)
+    }
+
+    onCloseHandler = () => {
+      this.setState({
+        show: false
+      })
+    }
+    onTrashHandler = (e) => {
+      this.setState({
+        show: true,
+        itemId: e.target.id,
+        itemName: e.target.name
+      })
+      console.log(e.target.name)
+      console.log(this.state.itemId)
+      console.log(this.state.itemName)
 
   }
   onDeleteHandler = (itemid) => {
@@ -97,42 +101,72 @@ class Inventory extends React.Component {
       <li className="inventory-topbar__qty"> QTY <img className=" inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
       <li className="inventory-topbar__warehouse">WAREHOUSE <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
       <li className="inventory-topbar__actions">ACTIONS <img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-
-    </ul>
-    {this.state.inventory.map((item) => {
-    if(item.status === "Out of Stock") {
-      stockDecide = "inventory__warehouse-status inventory__warehouse-status--outstock"
-    } else {
-      stockDecide = "inventory__warehouse-status inventory__warehouse-status--instock"
-    }
-    return (
-      <div key = {item.id}>
-      <div className="inventory__information">
-        <div className="inventory__information-data">
-        <div className="inventory__information-top">
-          <div className="inventory__information-item">
-          <h4 className="inventory__subheader">INVENTORY ITEM</h4>
-          <h3 className="inventory__itemname">
-            {item.itemName}
-            <img
-            className="inventory__chevron"
-            src={Chevron}
-            alt="trashcan"
-            />
-          </h3>
-          </div>
-          <div className="inventory__information-category">
-          <h4 className="inventory__subheader">CATEGORY</h4>
-          <p className="inventory__category-details">
-            {item.category}
-          </p>
-          </div>
-        </div>
-        <div className="inventory__information-bottom">
-          <div className="inventory__information-status">
-          <h4 className="inventory__subheader">STATUS</h4>
-           
-          <p className={stockDecide} > {item.status}</p>
+      </ul>
+      {this.state.inventory.map((item) => {
+        if(item.status === "Out of Stock") {
+            stockDecide = "inventory__warehouse-status inventory__warehouse-status--outstock"
+        } else {
+            stockDecide = "inventory__warehouse-status inventory__warehouse-status--instock"
+        }
+        return (
+          <div key = {item.id}>
+            <div className="inventory__information">
+              <div className="inventory__information-data">
+                <div className="inventory__information-top">
+                  <div className="inventory__information-item">
+                    <h4 className="inventory__subheader">INVENTORY ITEM</h4>
+                    <h3 className="inventory__itemname">
+                      {item.itemName}
+                      <img
+                        className="inventory__chevron"
+                        src={Chevron}
+                        alt="trashcan"
+                      />
+                    </h3>
+                  </div>
+                  <div className="inventory__information-category">
+                    <h4 className="inventory__subheader">CATEGORY</h4>
+                    <p className="inventory__category-details">
+                      {item.category}
+                    </p>
+                  </div>
+                </div>
+                <div className="inventory__information-bottom">
+                  <div className="inventory__information-status">
+                    <h4 className="inventory__subheader">STATUS</h4>
+                   
+                    <p className={stockDecide} > {item.status}</p>
+                  </div>
+                  <div className="inventory__information-quantity-information">
+                    <h4 className="inventory__subheader">
+                      QTY
+                    </h4>
+                    <p className="inventory__warehouse-info">{item.quantity}</p>
+                  </div>
+                  <div className="inventory__information-warehouse-information">
+                    <h4 className="inventory__subheader">WAREHOUSE</h4>
+                    <p className="inventory__warehouse-info">{item.warehouseName}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="inventory__actions">
+                <img
+                 id = {item.id}
+                 name = {item.itemName}
+                  className="inventory__action-trash"
+                  src={Trash}
+                  alt="trashcan"
+                  onClick = {this.onTrashHandler}
+                />
+                <img
+                  className="inventory__action-edit"
+                  src={Edit}
+                  alt="editing pencil"
+                  onClick={() => this.clickHandler(item.id)}
+                 
+                />
+              </div>
+            </div>
           </div>
           <div className="inventory__information-quantity-information">
           <h4 className="inventory__subheader">
