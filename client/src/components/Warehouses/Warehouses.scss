@@ -100,6 +100,7 @@
         padding: 0 1rem;
 
         @include tablet {
+            padding:0 2rem;
             display: flex;
             justify-content: space-between;
             align-items:center;
@@ -109,7 +110,8 @@
             display: flex;
             justify-content: space-between;
             align-items:center;
-            padding: 0 2rem;
+            padding: 0 40px;
+            
         }
 
         &-right {
@@ -131,6 +133,7 @@
         margin-bottom: 0;
 
         @include tablet{
+            padding-left: 0;
             font-size: 32px;
             line-height: 40px;
         }

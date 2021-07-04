@@ -14,12 +14,44 @@ import { Link } from "react-router-dom";
 class WarehouseDetails extends React.Component {
 
   state = {
+    show: false,
     inventory: null,
     loaded: false,
     selectedWarehouse: [],
     isUpdated: false
     };
   
+    onCloseHandler = () => {
+      this.setState({
+        show: false
+      })
+    }
+    onTrashHandler = (e) => {
+      this.setState({
+        show: true,
+        itemId: e.target.id,
+        itemName: e.target.name
+      })
+      console.log(e.target.name)
+      console.log(this.state.itemId)
+      console.log(this.state.itemName)
+
+    }
+    onDeleteHandler = (itemid) => {
+
+      axios
+        .delete(`${API_URL}/inventory/${itemid}/item`)
+        .then((response) => {
+          console.log(response)
+          this.setState({
+            inventory: response.data,
+            loaded: true,
+            show: false
+
+          });
+        })
+        .catch((err) => console.log("error!", err))
+    }
   componentDidMount(){
   let id = this.props.match.params.id
   let data = []

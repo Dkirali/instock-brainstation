@@ -7,7 +7,8 @@ const HeroHeader = () => {
   return (
   <nav className="nav" >
     <div className="header">
-    <img src={Logo} alt="instock logo two arrows" />
+    <Link to="/" ><img src={Logo} alt="instock logo two arrows" />
+    </Link>
     <div className="header-container">
       <Link to="/warehouses" className="header-container__link">
       Warehouses
