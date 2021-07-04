@@ -41,7 +41,7 @@ const addWarehouse = (list) => {
       if (err) {
         console.log("hello", err);
         rej({ err, message: "could not add warehouse" });
-      } else {
+      } else {  
         res("warehouse successfully added");
       }
     });
@@ -76,9 +76,50 @@ router.post('/add', (req, res ) => {
   .catch((err) => res.status(500).json(err))
 })
 
+// Modify an existing warehouse
+router.put('/edit/:id', (req, res ) => {
+
+  const data = req.body;
+  const id = req.params.id
+  console.log(` line 84: ${data}`)
+  console.log(` line 85: ${id}`)
+  let pathToWarehouseFile = "../server/data/warehouses.json"
+  // Constructing a new warehouse object
+  const editedWarehouse = {
+    "id" : id,
+    "name" : data.name,
+    "address":data.address,
+    "city" : data.city,
+    "country": data.country,
+    "contact": {
+      "name": data.contact.name,
+      "position": data.contact.position,
+      "phone": data.contact.phone,
+      "email": data.contact.email,
+    }
+  };
+
+
+  const rawData = fs.readFileSync(pathToWarehouseFile, 'utf8', () => {})
+  const warehouses = JSON.parse(rawData);
+  //Find and update this warehouse in the array
+  const updatedWarehouses = warehouses.map(wh => wh.id !== id ? wh : editedWarehouse);
+  const stringifiedWarehouses = JSON.stringify(updatedWarehouses, null, 2);
+
+
+  //Rewrite warehouse JSON file
+  fs.writeFile(pathToWarehouseFile, stringifiedWarehouses, (err) => {
+    console.log("write success!")
+    if (err) {
+      console.log("Got err: ", err);
+      res.status(403).json("error, not found");
+    }
+    console.log(`line 124: ${req.body}`)
+  });
+  console.log(`line 126: ${req.body}`)
+})
 
 // Delete a single warehouse, and all the inventories in that warehouse
-
 router.delete("/:id/warehouse", (req, res) => {
   // Removing from warehouse list
   let { id } = req.params;
