@@ -96,6 +96,7 @@
         margin-bottom: 1rem
     }
 
+
     &-name {
         @include demi;
         font-size: 13px;
@@ -122,10 +123,11 @@
 
     }
 
+
     &-mid {
         margin-bottom: 1rem
-
     }
+
 
     &-address {
         @include demi;
@@ -232,8 +234,8 @@
 
     &-top {
         margin-bottom: 1rem;
-
     }
+
 
     &-name {
         @include demi;
@@ -259,6 +261,7 @@
     &-mid {
         margin-bottom: 1rem;
     }
+
 
     &-position {
         @include demi;
@@ -306,6 +309,7 @@
     &-bottom {
         margin-bottom: 1rem;
     }
+
     
     &-email {
         @include demi;
