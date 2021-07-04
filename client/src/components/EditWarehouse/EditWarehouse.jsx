@@ -5,6 +5,7 @@ import Arrow from '../../assets/icons/arrow_back-24px.svg'
 import { API_URL } from "../../utils/utils";
 import "./EditWarehouse.scss"
 import { get } from 'lodash';
+import { Link } from "react-router-dom";
 
 
 class EditWarehouse extends React.Component {
@@ -68,28 +69,29 @@ class EditWarehouse extends React.Component {
 
   validateEmail = () => {
     let emailError = "";
-    console.log("Here is the email to submit:");
-    console.log(this.state.editWarehouse.contact.email);
+  
     if (!this.state.editWarehouse.contact.email.includes("@")) {
       emailError = "invalid email";
-      console.log(`Email doesnt include @ sign! email: ${this.state.editWarehouse.contact.email}`);
+      alert("please use @ in the email section in order to submit")
     }
 
     if (emailError) {
       this.setState({ emailError });
       return false
-    }
+    } 
     return true;
   }
 
 
   
   validateInputs = () => {
-    if(this.state.editWarehouse.address !== "" ) {
+    if(this.state.editWarehouse.name !== "" && this.state.editWarehouse.address !== "" && this.state.editWarehouse.city !== "" && this.state.editWarehouse.country !== "" && this.state.editWarehouse.contact.name !== "" && this.state.editWarehouse.contact.position !== "" && this.state.editWarehouse.contact.phone !== ""  && this.state.editWarehouse.contact.email !== "") {
       console.log("true")
     } else {
-      console.log("no")
+      alert("All fields must be filled to save")
+      return false;
     }
+    return true;
   }
 
   handleSubmit = (e) => {
@@ -99,7 +101,7 @@ class EditWarehouse extends React.Component {
     const isValidEmail = this.validateEmail();
     const isValidInputs = this.validateInputs();
 
-    if (isValidEmail) {
+    if (isValidEmail && isValidInputs) {
       console.log("ID: ", id);
       axios.put(`${API_URL}/warehouses/edit/${id}`, {
         name: this.state.editWarehouse.name,
@@ -114,27 +116,25 @@ class EditWarehouse extends React.Component {
         }
       })
       .then (res => {
-        console.log("Res from axios put")
-        console.log(res)
-        this.props.history.push(`/`)
+        this.props.history.push(`/warehouses/${id}`)
       })
       .catch(err => {
         console.log(err)
       })
     } else {
-      alert("You need to use @ to submit")
+      // alert("You need to use @ to submit")
       console.log("bad")
     }
   }
 
   render() {
-
     if (this.state.editWarehouse !== {}) {
-
       return (
         <section className="editwarehouse">
           <div className="editwarehouse__nav">
+            <Link to ={`/warehouses/${this.state.editWarehouse.id}`}>
             <img className="editwarehouse__image" src={Arrow} alt="go back to warehouse details"/>
+            </Link>
             <h1 className="editwarehouse__title">Edit Warehouse</h1>
           </div>
           <form className="editwarehouse__form" onSubmit={(e) => this.handleSubmit(e)}>

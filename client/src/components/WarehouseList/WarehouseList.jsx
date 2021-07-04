@@ -90,7 +90,9 @@ class WarehouseList extends React.Component {
           </div>
           <div className="warehouse__actions">
             <img name = {warehouse.name} id = {warehouse.id}  onClick={this.onTrashHandler} className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
+            <Link to = {`warehouses/${warehouse.id}/edit`}>
             <img className ="warehouse__actions-edit"src={Edit} alt="edit"/>
+             </Link>
           </div>
         </div> 
       )
