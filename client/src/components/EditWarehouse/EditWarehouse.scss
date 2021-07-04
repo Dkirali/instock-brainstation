@@ -30,7 +30,7 @@
         @include tablet {
           display: flex;
           align-items: center;
-          padding: 0 2rem 0.7rem;
+          padding: 0 2rem 0;
         }
     
         @include desktop {
@@ -40,7 +40,6 @@
     }
 
     &__image {
-        margin-top: 0.5rem;
         padding-right: 0.5rem;
 
     }
@@ -55,14 +54,14 @@
     
     @include tablet {
       padding-left: 0;
-      padding: 0 0 0.9rem 0;
+      padding: 1.5rem 0 1.56rem;
     }
 
     @include desktop {
       padding-left: 1.5rem;
       font-size: 32px;
       line-height: 40px;
-      padding: 0 0 1.15rem 0;
+      padding: 1.4rem 0;
     }
   }
 
@@ -103,24 +102,20 @@
 
         &-input {
             height: 36px;
+            width: 100%;
             background: #FFFFFF;
             border: 1px solid #BDC5D5;
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
-        }
-
-        &-text {
-            position: absolute;
-            width: 120px;
-            height: 22px;
+            padding-left: 1rem;
             @include regular;
             font-size: 14px;
             line-height: 22px;
-            color: #13182C; 
-            left: 15px;
-            top: 7px;
-            margin: 0;
+        }
+
+        &-error::after{
+            background: red;
         }
 
     }
@@ -137,26 +132,20 @@
 
         &-input {
             height: 36px;
+            width: 100%;
             background: #FFFFFF;
             border: 1px solid #BDC5D5;
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
-
-        }
-
-        &-text {
-            position: absolute;
-            width: 125px;
-            height: 22px;
             @include regular;
             font-size: 14px;
             line-height: 22px;
-            color: #13182C; 
-            left: 15px;
-            top: 7px;
-            margin: 0;
+            padding-left: 1rem;
+        }
 
+        &-error{
+            background: red;
         }
     }
 
@@ -168,24 +157,16 @@
 
         &-input {
             height: 36px;
+            width: 100%;
             background: #FFFFFF;
             border: 1px solid #BDC5D5;
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
-        }
-
-        &-text {
-            position: absolute;
-            width: 120px;
-            height: 22px;
             @include regular;
             font-size: 14px;
             line-height: 22px;
-            color: #13182C; 
-            left: 15px;
-            top: 7px;
-            margin: 0;
+            padding-left: 1rem;
         }
     }
 
@@ -197,24 +178,16 @@
 
         &-input {
             height: 36px;
+            width: 100%;
             background: #FFFFFF;
             border: 1px solid #BDC5D5;
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
-        }
-
-        &-text {
-            position: absolute;
-            width: 60px;
-            height: 22px;
             @include regular;
             font-size: 14px;
             line-height: 22px;
-            color: #13182C; 
-            left: 15px;
-            top: 7px;
-            margin: 0;
+            padding-left: 1rem;
         }
     }
   }
@@ -265,14 +238,11 @@
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            padding-left: 1rem;
 
-            &::placeholder {
-                @include regular;
-                font-size: 13px;
-                line-height: 20px;
-                color: #13182C; 
-                padding-left: 0.8rem
-            }
         }
     }
 
@@ -294,14 +264,10 @@
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
-
-            &::placeholder {
-                @include regular;
-                font-size: 13px;
-                line-height: 20px;
-                color: #13182C; 
-                padding-left: 0.8rem
-            }
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            padding-left: 1rem;
 
         }
     }
@@ -320,15 +286,10 @@
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
-
-            &::placeholder {
-                @include regular;
-                font-size: 13px;
-                line-height: 20px;
-                color: #13182C; 
-                padding-left: 0.8rem
-            }
-
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            padding-left: 1rem;
 
         }
     }
@@ -351,14 +312,10 @@
             box-sizing: border-box;
             border-radius: 20px;
             position: relative;
-
-            &::placeholder {
-                @include regular;
-                font-size: 13px;
-                line-height: 20px;
-                color: #13182C; 
-                padding-left: 0.8rem
-            }
+            @include regular;
+            font-size: 14px;
+            line-height: 22px;
+            padding-left: 1rem;
 
         }
     }
@@ -373,9 +330,10 @@
             padding: 1rem 1rem;
             margin: 1rem 0 0 0;
 
-            @include tablet{
+            @include tablet {
                 justify-content: flex-end;
             }
+
         }
     }
 
@@ -431,4 +389,26 @@
         padding: 1rem 2rem 0;
         border-top: 1px solid #BDC5D5;;
     }
+}
+
+.lol {
+    @include regular;
+    font-size: 12px;
+    line-height: 18px;
+    color: #C94515;
+}
+
+.try {
+    display: none;
+
+    &-error{
+        display: flex;
+        align-items: center;
+        margin-top:0;
+    }
+}
+
+.no {
+    width: 20px;
+    height: 14px;
 }
