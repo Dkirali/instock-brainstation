@@ -9,7 +9,6 @@ import React from "react";
 import axios from "axios"; 
 import { API_URL } from "../../utils/utils";
 class Inventory extends React.Component {
-
   state = {
     inventory: null,
     loaded: false,
@@ -17,11 +16,9 @@ class Inventory extends React.Component {
     itemId: null,
     itemName: null
   };
-  
     clickHandler = (id) => {
       this.props.history.push(`/inventory/edit/${id}`)
     }
-
     onCloseHandler = () => {
       this.setState({
         show: false
@@ -36,10 +33,8 @@ class Inventory extends React.Component {
       console.log(e.target.name)
       console.log(this.state.itemId)
       console.log(this.state.itemName)
-
   }
   onDeleteHandler = (itemid) => {
-
     axios
     .delete(`${API_URL}/inventory/${itemid}/item`)
     .then((response) => {
@@ -48,7 +43,6 @@ class Inventory extends React.Component {
       inventory: response.data,
       loaded: true,
       show: false
-
       });
     })
     .catch((err) => console.log("error!", err))
@@ -65,13 +59,11 @@ class Inventory extends React.Component {
     })
     .catch((err) => console.log("error!", err));
   }
-
   render ( ) {
     let stockDecide
     if (this.state.loaded === false) {
     return <main className="load-screen">Loading...</main>;
     }
-
   return (
   <section className="inventory">
     <div className="inventory__nav">
@@ -92,7 +84,6 @@ class Inventory extends React.Component {
       <h3 className="inventory__button-text">+ Add New Item</h3>
     </button>
     </form>
-
     </div>
     <ul className="inventory-topbar">
       <li className="inventory-topbar__inventory">INVENTORY ITEM<img className="inventory-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
@@ -134,7 +125,6 @@ class Inventory extends React.Component {
                 <div className="inventory__information-bottom">
                   <div className="inventory__information-status">
                     <h4 className="inventory__subheader">STATUS</h4>
-                   
                     <p className={stockDecide} > {item.status}</p>
                   </div>
                   <div className="inventory__information-quantity-information">
@@ -163,41 +153,10 @@ class Inventory extends React.Component {
                   src={Edit}
                   alt="editing pencil"
                   onClick={() => this.clickHandler(item.id)}
-                 
                 />
               </div>
             </div>
           </div>
-          <div className="inventory__information-quantity-information">
-          <h4 className="inventory__subheader">
-            QTY
-          </h4>
-          <p className="inventory__warehouse-info">{item.quantity}</p>
-          </div>
-          <div className="inventory__information-warehouse-information">
-          <h4 className="inventory__subheader">WAREHOUSE</h4>
-          <p className="inventory__warehouse-info">{item.warehouseName}</p>
-          </div>
-        </div>
-        </div>
-        <div className="inventory__actions">
-        <img
-         id = {item.id}
-         name = {item.itemName}
-          className="inventory__action-trash"
-          src={Trash}
-          alt="trashcan"
-          onClick = {this.onTrashHandler}
-        />
-        <img
-          className="inventory__action-edit"
-          src={Edit}
-          alt="editing pencil"
-         
-        />
-        </div>
-      </div>
-      </div>
     );
     })}
     <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
@@ -205,5 +164,4 @@ class Inventory extends React.Component {
   </section>
   );}
 };
-
 export default Inventory;

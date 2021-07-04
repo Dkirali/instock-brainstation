@@ -46,6 +46,10 @@
       justify-content: space-between;
       padding: 0 2rem;
     }
+    @include desktop {
+      padding: 0 40px;
+
+    }
   }
 
   &-topbar {
