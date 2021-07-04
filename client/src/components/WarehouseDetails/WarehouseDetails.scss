@@ -4,13 +4,11 @@
 @use "../../partials/animations" as *;
 
 .warehousedetails{
-  padding-top: 1rem;
   position: relative;
   margin-left: 1rem;
   margin-right: 1rem;
   z-index: 1;
   top: -4rem;
-
   background: #ffffff;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   border-radius: 3px;
@@ -47,12 +45,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2rem 0.7rem;
+      padding: 0 2rem 0.2rem;
     }
 
     @include desktop {
-    
-      padding: 0 2rem 0;
+      padding: 0 2rem 0.2rem;
     }
 
     &-wrapper {
@@ -117,21 +114,19 @@
 
   &__title {
     @include demi;
-    padding: 0 0 1rem 0;
     font-size: 28px;
     line-height: 36px;
     margin-bottom: 0;
     
     @include tablet {
-      padding-left: 0;
-      padding: 0 0 0.9rem 0;
+      font-size: 32px;
+      line-height: 40px;
+      padding:0;
     }
 
     @include desktop {
-      padding-left: 1.5rem;
       font-size: 32px;
       line-height: 40px;
-      padding: 0 0 1.15rem 0;
     }
   }
 
@@ -186,7 +181,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 36px;
     height: 36px;
     background: #2e66e6;
     border-radius: 20px;
@@ -216,8 +211,9 @@
   &__specifics {
     display: flex;
     flex-direction: column;
-    padding: 0 1rem;
+    padding: 1rem 1rem;
     margin-bottom: 1rem;
+    border-top: 1px solid #BDC5D5;
     
 
     @include tablet {
@@ -385,7 +381,6 @@
   &__information {
     padding: 1rem 0;
     border-top: 1px solid #bdc5d5;
-    border-bottom: 1px solid #bdc5d5;
     display: flex;
     flex-direction: column;
     @include tablet {

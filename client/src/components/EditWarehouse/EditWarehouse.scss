@@ -22,7 +22,7 @@
       }
 
     &__nav{
-        padding: 0 1rem;
+        padding: 1.5rem 1rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -47,7 +47,6 @@
     
   &__title {
     @include demi;
-    padding: 0 0 1rem 0;
     font-size: 28px;
     line-height: 36px;
     margin-bottom: 0;
@@ -82,17 +81,21 @@
         font-size: 20px;
         line-height: 28px;
         color: #13182C;
+        padding: 1rem 0 1.5rem;
         
         @include tablet {
             margin: 0;
-            margin-bottom: 2rem;
+            font-size: 24px;
+            line-height: 32px;
+            padding: 0.5rem 0 2rem;
         }
 
       }
       
-    // &-top {
+    &-top {
+        margin-bottom: 1rem
+    }
 
-    // }
 
     &-name {
         @include demi;
@@ -120,9 +123,11 @@
 
     }
 
-    // &-mid {
 
-    // }
+    &-mid {
+        margin-bottom: 1rem
+    }
+
 
     &-address {
         @include demi;
@@ -170,6 +175,10 @@
         }
     }
 
+    &-bottom {
+        margin-bottom: 1rem
+    }
+
     &-country {
         @include demi;
         font-size: 13px;
@@ -210,19 +219,23 @@
             font-size: 20px;
             line-height: 28px;
             color: #13182C;
+            padding: 1rem 0 1.5rem;
 
             @include tablet {
                 margin: 0;
-                margin-bottom: 2rem;
+                font-size: 24px;
+                line-height: 32px;
+                padding: 0.5rem 0 2rem;
             }
         }
         
 
     }
 
-    // &-top {
+    &-top {
+        margin-bottom: 1rem;
+    }
 
-    // }
 
     &-name {
         @include demi;
@@ -242,13 +255,13 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
-
         }
     }
 
-    // &-mid {
+    &-mid {
+        margin-bottom: 1rem;
+    }
 
-    // }
 
     &-position {
         @include demi;
@@ -268,7 +281,6 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
-
         }
     }
 
@@ -294,9 +306,10 @@
         }
     }
 
-    // &-bottom {
+    &-bottom {
+        margin-bottom: 1rem;
+    }
 
-    // }
     
     &-email {
         @include demi;
@@ -316,7 +329,6 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
-
         }
     }
   }

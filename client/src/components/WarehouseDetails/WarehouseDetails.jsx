@@ -1,6 +1,5 @@
 import React from "react";
 import DelModal from "../DelModal/DelModal"
-
 import "./WarehouseDetails.scss";
 import Arrow from '../../assets/icons/arrow_back-24px.svg'
 import Trash from "../../assets/icon/delete_outline-24px.svg";
@@ -19,8 +18,8 @@ class WarehouseDetails extends React.Component {
     inventory: null,
     loaded: false,
     selectedWarehouse: [],
+    isUpdated: false
     };
-  
   
     onCloseHandler = () => {
       this.setState({
@@ -76,6 +75,11 @@ class WarehouseDetails extends React.Component {
   })  
   }
 
+
+  updatedData = () => {
+    this.setState({isUpdated:true})
+  }
+
     
  render () {
  let stockDecide
@@ -84,14 +88,13 @@ class WarehouseDetails extends React.Component {
   }
  
   return (
-    
     <section className="warehousedetails">
       <div className="warehousedetails__nav">
           <div className="warehousedetails__nav-wrapper">
             <Link to="/warehouses"> <img className="warehousedetails__image" src={Arrow} alt="go back to warehouse list"/> </Link>
             <h1 className="warehousedetails__title">{this.state.selectedWarehouse.name}</h1>
           </div>
-            <form className="warehousedetails__form">
+            <form className="warehousedetails__form" onSubmit="">
             <label className="warehousedetails__form-label" htmlFor="text"></label>
                 <Link to ={`/warehouses/${this.state.selectedWarehouse.id}/edit`}>
                 <button className="warehousedetails__button" type="submit">
