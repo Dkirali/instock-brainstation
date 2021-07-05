@@ -13,12 +13,14 @@ import { Link } from "react-router-dom";
 
 class WarehouseDetails extends React.Component {
 
-  state = {
-    show: false,
-    inventory: null,
-    loaded: false,
-    selectedWarehouse: [],
-    isUpdated: false
+    state = { 
+      show: false,
+      inventory: null,
+      loaded: false,
+      selectedWarehouse: [],
+      isUpdated: false,
+      newData: null ,
+      incomingData: false,
     };
   
     onCloseHandler = () => {
@@ -26,19 +28,16 @@ class WarehouseDetails extends React.Component {
         show: false
       })
     }
+
     onTrashHandler = (e) => {
       this.setState({
         show: true,
         itemId: e.target.id,
         itemName: e.target.name
       })
-      console.log(e.target.name)
-      console.log(this.state.itemId)
-      console.log(this.state.itemName)
-
     }
-    onDeleteHandler = (itemid) => {
 
+    onDeleteHandler = (itemid) => {
       axios
         .delete(`${API_URL}/inventory/${itemid}/item`)
         .then((response) => {
@@ -52,27 +51,44 @@ class WarehouseDetails extends React.Component {
         })
         .catch((err) => console.log("error!", err))
     }
-  componentDidMount(){
-  let id = this.props.match.params.id
-  let data = []
 
-  axios.get(`${API_URL}/warehouses/${id}`)
-  .then(res => {
-    data = res.data
-    return axios.get(`${API_URL}/warehouses/${id}/inventory`)
-  })
-  .then(res => {
-    this.setState({
-    selectedWarehouse: data,
-    inventory:res.data,   
-    loaded:true
+  
+  componentDidMount(){
+    let id = this.props.match.params.id
+    let data = []
+    
+    axios.get(`${API_URL}/warehouses/${id}`)
+    .then(res => {
+      data = res.data
+      return axios.get(`${API_URL}/warehouses/${id}/inventory`)
     })
-    console.log(this.state.selectedWarehouse)
-    console.log(this.state.inventory)
-  })
-  .catch(err => {
-  console.log("error", err)
-  })  
+    .then(res => {
+      this.setState({
+        selectedWarehouse: data,
+        inventory: res.data,   
+        loaded: true
+      })
+    })
+    .catch(err => {
+    console.log("error", err)
+    })  
+  }
+
+  componentDidUpdate() {
+    let id = this.props.match.params.id
+
+    if(this.state.incomingData === true) {
+      axios.get(`${API_URL}/warehouses/${id}`)
+      .then(res => {
+        this.setState({
+          selectedWarehouse: res.data,
+          inventory: res.data,   
+          loaded: true,
+          incomingData: false
+
+        })
+      })
+    }
   }
 
 
@@ -197,11 +213,11 @@ class WarehouseDetails extends React.Component {
           </div>
         );
       })}
-       <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
-      onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId} name = "Inventory" itemName = {this.state.itemName}/>
-    </section>
-  );
-};
+        <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
+        onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId} name = "Inventory" itemName = {this.state.itemName}/>
+      </section>
+    );
+  };
 }
 export default WarehouseDetails;
 

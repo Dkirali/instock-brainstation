@@ -13,16 +13,17 @@ class EditWarehouse extends React.Component {
   state = {
     editWarehouse:{},
     loaded: false,
-    inputValue: ""
+    phoneInputValue: ""
   }
 
   componentDidMount() {
     let id = this.props.match.params.id;
-
+    
     axios.get(`${API_URL}/warehouses/${id}/edit`)
     .then(res => {
       this.setState({
         editWarehouse: res.data,
+        phoneInputValue: res.data.contact.phone,
         loaded:true,
       });
     })
@@ -33,10 +34,12 @@ class EditWarehouse extends React.Component {
 
   onSaveEdits = (e) => {
     const { value, name } = e.target;
-
-    const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
-    this.setState({inputValue:formattedPhoneNumber})
     e.preventDefault();
+
+    if (name.includes("number")) {
+      const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
+      this.setState({phoneInputValue:formattedPhoneNumber})
+    }
 
     if (name.includes("contact")) {
       // Parse actual field name
@@ -83,6 +86,11 @@ class EditWarehouse extends React.Component {
       alert("All fields must be filled to save")
       return false;
     }
+
+    if(this.state.editWarehouse.contact.phone !== "" ) {
+      console.log("true")
+    }
+
     return true;
   }
 
@@ -216,7 +224,7 @@ class EditWarehouse extends React.Component {
               <div className="editwarehouse__contact-mid">
                 <h1 className="editwarehouse__contact-number">Phone Number</h1>
                 <label className="editwarehouse__contact-label" htmlFor="contact.number"/>
-                <input className={`editwarehouse__contact-number-input ${get(this.state.editWarehouse, "contact.number") === "" ? "editwarehouse__contact-number-error" : " "}`} name="contact.number" placeholder={get(this.state.editWarehouse, "contact.phone")} onChange={(e) => this.onSaveEdits(e)} value={this.state.inputValue}/>
+                <input className={`editwarehouse__contact-number-input ${get(this.state.editWarehouse, "contact.number") === "" ? "editwarehouse__contact-number-error" : " "}`} name="contact.number" onChange={(e) => this.onSaveEdits(e)} value={this.state.phoneInputValue}/>
                 <div className={`editwarehouse__wrapper ${get(this.state.editWarehouse, "contact.number") === "" ? "editwarehouse__wrapper-error" : " "}`}>
                   <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
                   <p className="editwarehouse__wrapper-text">This field is required</p>

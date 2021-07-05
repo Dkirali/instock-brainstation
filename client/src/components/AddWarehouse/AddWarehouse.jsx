@@ -19,10 +19,12 @@ class AddWarehouse extends React.Component {
 
   onSaveEdits = (e) => {
     const { value, name } = e.target;
-
-    const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
-    this.setState({inputValue:formattedPhoneNumber})
     e.preventDefault();
+
+    if (name.includes("number")) {
+      const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
+      this.setState({inputValue:formattedPhoneNumber})
+    }
 
     if (name.includes("contact")) {
       // Parse actual field name
@@ -44,6 +46,10 @@ class AddWarehouse extends React.Component {
         }
       });
     }
+
+    if(value === "") {
+      console.log("true")
+    }
   }
 
   validateEmail = () => {
@@ -62,7 +68,6 @@ class AddWarehouse extends React.Component {
   }
 
 
-  
   validateInputs = () => {
     if(this.state.addWarehouse.name !== "" && this.state.addWarehouse.address !== "" && this.state.addWarehouse.city !== "" && this.state.addWarehouse.country !== "" && this.state.addWarehouse.contact.name !== "" && this.state.addWarehouse.contact.position !== "" && this.state.addWarehouse.contact.number !== ""  && this.state.addWarehouse.contact.email !== "") {
       console.log("true")
