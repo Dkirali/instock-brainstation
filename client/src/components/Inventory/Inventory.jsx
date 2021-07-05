@@ -7,6 +7,8 @@ import Chevron from "../../assets/icon/chevron_right-24px.svg";
 import Sort from "../../assets/icon/sort-24px.svg"
 import React from "react";
 import axios from "axios"; 
+import { Link } from "react-router-dom";
+
 import { API_URL } from "../../utils/utils";
 
 class Inventory extends React.Component {
@@ -111,14 +113,11 @@ class Inventory extends React.Component {
                 <div className="inventory__information-top">
                   <div className="inventory__information-item">
                     <h4 className="inventory__subheader">INVENTORY ITEM</h4>
-                    <h3 className="inventory__itemname">
-                      {item.itemName}
-                      <img
+                    <Link to = {`inventory/${item.id}`} className="inventory__itemname"><p>{item.itemName}</p>     <img
                         className="inventory__chevron"
                         src={Chevron}
                         alt="trashcan"
-                      />
-                    </h3>
+                      /></Link> 
                   </div>
                   <div className="inventory__information-category">
                     <h4 className="inventory__subheader">CATEGORY</h4>

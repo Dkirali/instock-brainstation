@@ -150,14 +150,11 @@ class WarehouseDetails extends React.Component {
                 <div className="warehousedetails__information-top">
                   <div className="warehousedetails__information-item">
                     <h4 className="warehousedetails__subheader">INVENTORY ITEM</h4>
-                    <h3 className="warehousedetails__itemname">
-                      {item.itemName}
-                      <img
+                    <Link to = {`/inventory/${item.id}`} className="warehousedetails__itemname"><p>{item.itemName}</p>     <img
                         className="warehousedetails__chevron"
                         src={Chevron}
                         alt="trashcan"
-                      />
-                    </h3>
+                      /></Link> 
                   </div>
                   <div className="warehousedetails__information-category">
                     <h4 className="warehousedetails__subheader">CATEGORY</h4>
