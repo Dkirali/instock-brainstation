@@ -20,6 +20,10 @@ class Inventory extends React.Component {
     clickHandler = (id) => {
       this.props.history.push(`/inventory/edit/${id}`)
     }
+    addHandler = (e) => {
+      e.preventDefault()
+      this.props.history.push(`/inventory/add`)
+    }
     onCloseHandler = () => {
       this.setState({
         show: false
@@ -81,7 +85,7 @@ class Inventory extends React.Component {
       src={search}
       alt="search-icon"
       />
-          <button className="inventory__button" type="submit">
+          <button onClick = {this.addHandler} className="inventory__button" type="submit">
       <h3 className="inventory__button-text">+ Add New Item</h3>
     </button>
     </form>
