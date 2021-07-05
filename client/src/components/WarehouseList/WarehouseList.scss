@@ -121,7 +121,7 @@
         bottom: 1.5px;
         left: 0.5rem;
         @include tablet {
-          top: 0px;
+            bottom: 2px;
         }
         
         &:hover {
@@ -178,7 +178,7 @@
             @include tablet {
                 position: relative;
                 bottom: 1.5rem;
-                right: 3rem;
+                right: 4.5rem;
             }
 
 
@@ -192,7 +192,7 @@
             @include tablet {
                 position: relative;
                 bottom: 1.5rem;
-                right: 3rem;
+                right: 4.5rem;
                 width: 1rem;
 
             }
@@ -240,8 +240,11 @@
         }
 
         &-edit {
-            
-        }
+            @include tablet {
+                position: relative;
+                top: 2px;
+            }
+        }   
     }
 
 

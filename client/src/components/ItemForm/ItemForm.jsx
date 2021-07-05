@@ -109,7 +109,7 @@ class ItemForm extends Component {
                 <form className="itemForm__form" onSubmit={this.submitHandler}>
                     <div className="itemForm__form-container">
                         <div className="itemForm__itemDetails">
-                            <h2 className="itemForm__form--title">Item Details</h2>
+                            <h2 className="itemForm__form--title">Item Detailss</h2>
                             <label className="itemForm__form--label" htmlFor="itemName">Item Name</label>
                             <input className="itemForm__form--input"
                                 type="text"
