@@ -28,6 +28,42 @@
       margin-right: 5rem;
     }
 
+
+    &-status {
+        @include regular;
+        font-size: 13px;
+        line-height: 20px;
+        margin: 0;
+        margin-top: 0.3rem;
+  
+        @include tablet {
+          position: relative;
+        }
+        &--outstock {
+          @include bold;
+          background-color: rgba(201, 69, 21, 0.07);
+          color: $red;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          padding: 4px 6px;
+          border-radius: 20px;
+          @include tablet {
+            min-width: 5rem;
+          }
+        }
+        &--instock {
+          @include bold;
+          background-color: rgba(21, 132, 99, 0.07);
+          color: $green;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          padding: 4px 6px;
+          border-radius: 20px;
+        }
+      }
+
     &__header {
         border-bottom: 1px solid #bdc5d5;
         display: flex;
