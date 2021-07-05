@@ -69,7 +69,11 @@ class WarehouseList extends React.Component {
             <div className="warehouse__information-top">
               <div className="warehouse__information-location">
                 <h4 className="warehouse__subheader">WAREHOUSE</h4>
-                <Link to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p></Link> 
+                <Link to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p>     <img
+                        className="warehouse__chevron"
+                        src={Chevron}
+                        alt="trashcan"
+                      /></Link> 
               </div>
               <div className="warehouse__information-address">
                 <h4 className="warehouse__subheader">ADDRESS</h4>
