@@ -8,6 +8,7 @@ import HeroFooter from "./components/HeroFooter/HeroFooter";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AddItem from './components/AddItem/AddItem'
 import EditItem from './components/EditItem/EditItem'
+import AddWarehouse from './components/AddWarehouse/AddWarehouse'
 import React from "react";
 import "./App.scss";
 
@@ -21,6 +22,7 @@ function App () {
           <Route exact path="/warehouses" component={Warehouses} />
           <Route exact path="/inventory" component={Inventory}/>
           <Route exact path="/" component={Warehouses} />
+          <Route exact path="/warehouses/add" component={AddWarehouse} />
           <Route exact path="/warehouses/:id" component={WarehouseDetails} />
           <Route exact path="/inventory/add" component={AddItem} />
           <Route exact path="/inventory/edit/:id" component={EditItem} />

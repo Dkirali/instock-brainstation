@@ -9,10 +9,11 @@ import { Link } from "react-router-dom";
 
 
 class EditWarehouse extends React.Component {
-
+  
   state = {
     editWarehouse:{},
     loaded: false,
+    inputValue: ""
   }
 
   componentDidMount() {
@@ -33,6 +34,8 @@ class EditWarehouse extends React.Component {
   onSaveEdits = (e) => {
     const { value, name } = e.target;
 
+    const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
+    this.setState({inputValue:formattedPhoneNumber})
     e.preventDefault();
 
     if (name.includes("contact")) {
@@ -55,16 +58,6 @@ class EditWarehouse extends React.Component {
         }
       });
     }
-
-    if (value === "") {
-      this.setState({
-        edit:{...this.state.edit, [name]: true}
-      })
-    } else {
-      this.setState({
-        edit:{...this.state.edit, [name]: false}
-      })
-    }
   }
 
   validateEmail = () => {
@@ -82,10 +75,9 @@ class EditWarehouse extends React.Component {
     return true;
   }
 
-
   
   validateInputs = () => {
-    if(this.state.editWarehouse.name !== "" && this.state.editWarehouse.address !== "" && this.state.editWarehouse.city !== "" && this.state.editWarehouse.country !== "" && this.state.editWarehouse.contact.name !== "" && this.state.editWarehouse.contact.position !== "" && this.state.editWarehouse.contact.phone !== ""  && this.state.editWarehouse.contact.email !== "") {
+    if(this.state.editWarehouse.name !== "" && this.state.editWarehouse.address !== "" && this.state.editWarehouse.city !== "" && this.state.editWarehouse.country !== "" && this.state.editWarehouse.contact.name !== "" && this.state.editWarehouse.contact.position !== "" && this.state.editWarehouse.contact.number !== ""  && this.state.editWarehouse.contact.email !== "") {
       console.log("true")
     } else {
       alert("All fields must be filled to save")
@@ -93,6 +85,29 @@ class EditWarehouse extends React.Component {
     }
     return true;
   }
+
+  formatPhoneNumber = (value) => {
+    const phoneNumber = value.replace(/[^\d]/g, "");
+    const phoneNumberLength = phoneNumber.length;
+    
+    if (!value) {
+      return value
+    }
+
+    if (phoneNumberLength < 4) {
+      return phoneNumber;
+    }
+
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 10)}`;
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -111,7 +126,7 @@ class EditWarehouse extends React.Component {
         contact: {
           name: this.state.editWarehouse.contact.name,
           position: this.state.editWarehouse.contact.position,
-          phone: this.state.editWarehouse.contact.phone,
+          phone: this.state.editWarehouse.contact.number,
           email: this.state.editWarehouse.contact.email,
         }
       })
@@ -145,36 +160,36 @@ class EditWarehouse extends React.Component {
               <h1 className="editwarehouse__details-name">Warehouse Name</h1>
               <label className="editwarehouse__details-label" htmlFor="name"/>
               <input className={`editwarehouse__details-name-input ${this.state.editWarehouse.name === ""  ? "editwarehouse__details-name-error": " "}`} name="name" defaultValue={get(this.state.editWarehouse, "name")} onChange={this.onSaveEdits}/>
-              <div className={`try ${this.state.editWarehouse.name === ""  ? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+              <div className={`editwarehouse__wrapper ${this.state.editWarehouse.name === ""  ? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
               </div>
             </div>
             <div className="editwarehouse__details-mid">
               <h1 className="editwarehouse__details-address">Street Address</h1>
               <label className="editwarehouse__details-label" htmlFor="address"/>
-              <input className="editwarehouse__details-address-input" name="address" defaultValue={get(this.state.editWarehouse, "address")} onChange={this.onSaveEdits}/>
-              <div className={`try ${this.state.editWarehouse.address === "" ? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+              <input className={`editwarehouse__details-address-input ${this.state.editWarehouse.address === "" ? "editwarehouse__details-address-error": " "}`} name="address" defaultValue={get(this.state.editWarehouse, "address")} onChange={this.onSaveEdits}/>
+              <div className={`editwarehouse__wrapper ${this.state.editWarehouse.address === "" ? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
               </div>
             </div>
             <div className="editwarehouse__details-mid">
               <h1 className="editwarehouse__details-city">City</h1>
               <label className="editwarehouse__details-label" htmlFor="city"/>
-              <input className="editwarehouse__details-city-input" name="city" defaultValue={get(this.state.editWarehouse, "city")} onChange={this.onSaveEdits}/>
-              <div className={`try ${this.state.editWarehouse.city === "" ? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+              <input className={`editwarehouse__details-city-input ${this.state.editWarehouse.city === "" ? "editwarehouse__details-city-error" : " "}`} name="city" defaultValue={get(this.state.editWarehouse, "city")} onChange={this.onSaveEdits}/>
+              <div className={`editwarehouse__wrapper ${this.state.editWarehouse.city === "" ? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
               </div>
             </div>
             <div className="editwarehouse__details-bottom">
               <h1 className="editwarehouse__details-country">Country</h1>
               <label className="editwarehouse__details-label" htmlFor="country"/>
               <input className={`editwarehouse__details-country-input ${this.state.editWarehouse.country === "" ? "editwarehouse__details-country-error" : " "}`} name="country" defaultValue={get(this.state.editWarehouse, "country")} onChange={this.onSaveEdits}/>
-              <div className={`try ${this.state.editWarehouse.country === ""? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+              <div className={`editwarehouse__wrapper ${this.state.editWarehouse.country === ""? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
               </div>
             </div>
           </div>
@@ -183,37 +198,37 @@ class EditWarehouse extends React.Component {
               <div className="editwarehouse__contact-top">
                 <h1 className="editwarehouse__contact-name">Contact Name</h1>
                 <label className="editwarehouse__contact-label" htmlFor="contact.name"/>
-                <input className="editwarehouse__contact-name-input" name="contact.name" defaultValue={get(this.state.editWarehouse, "contact.name")} onChange={this.onSaveEdits}/>
-                <div className={`try ${get(this.state.editWarehouse, "contact.name") === "" ? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+                <input className={`editwarehouse__contact-name-input ${get(this.state.editWarehouse, "contact.name") === "" ? "editwarehouse__contact-name-error" : " "}`} name="contact.name" defaultValue={get(this.state.editWarehouse, "contact.name")} onChange={this.onSaveEdits}/>
+                <div className={`editwarehouse__wrapper ${get(this.state.editWarehouse, "contact.name") === "" ? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
                 </div>
               </div>
               <div className="editwarehouse__contact-mid">
                 <h1 className="editwarehouse__contact-position">Position</h1>
                 <label className="editwarehouse__contact-label" htmlFor="contact.position"/>
-                <input className="editwarehouse__contact-position-input" name="contact.position" defaultValue={get(this.state.editWarehouse, "contact.position")} onChange={this.onSaveEdits}/>
-                <div className={`try ${get(this.state.editWarehouse, "contact.position") === "" ? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+                <input className={`editwarehouse__contact-position-input ${get(this.state.editWarehouse, "contact.position") === "" ? "editwarehouse__contact-position-error" : " "}`} name="contact.position" defaultValue={get(this.state.editWarehouse, "contact.position")} onChange={this.onSaveEdits}/>
+                <div className={`editwarehouse__wrapper ${get(this.state.editWarehouse, "contact.position") === "" ? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
                 </div>
               </div>
               <div className="editwarehouse__contact-mid">
                 <h1 className="editwarehouse__contact-number">Phone Number</h1>
                 <label className="editwarehouse__contact-label" htmlFor="contact.number"/>
-                <input className="editwarehouse__contact-number-input" name="contact.number" id="phone-number" defaultValue={get(this.state.editWarehouse, "contact.phone")} onChange={this.onSaveEdits}/>
-                <div className={`try ${get(this.state.editWarehouse, "contact.number") === "" ? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+                <input className={`editwarehouse__contact-number-input ${get(this.state.editWarehouse, "contact.number") === "" ? "editwarehouse__contact-number-error" : " "}`} name="contact.number" placeholder={get(this.state.editWarehouse, "contact.phone")} onChange={(e) => this.onSaveEdits(e)} value={this.state.inputValue}/>
+                <div className={`editwarehouse__wrapper ${get(this.state.editWarehouse, "contact.number") === "" ? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
                 </div>
               </div>
               <div className="editwarehouse__contact-bottom">
                 <h1 className="editwarehouse__contact-email">Email</h1>
                 <label className="editwarehouse__contact-label" htmlFor="contact.email"/>
-                <input className="editwarehouse__contact-email-input" name="contact.email" defaultValue={get(this.state.editWarehouse, "contact.email")} onChange={this.onSaveEdits}/>
-                <div className={`try ${get(this.state.editWarehouse, "contact.email") === "" ? "try-error" : " "}`}>
-                  <img className="no" src={Error} alt="error alert"/>
-                  <p className="lol">This field is required</p>
+                <input className={`editwarehouse__contact-email-input ${get(this.state.editWarehouse, "contact.email") === "" ? "editwarehouse__contact-email-error" : " "}`} name="contact.email" defaultValue={get(this.state.editWarehouse, "contact.email")} onChange={this.onSaveEdits}/>
+                <div className={`editwarehouse__wrapper ${get(this.state.editWarehouse, "contact.email") === "" ? "editwarehouse__wrapper-error" : " "}`}>
+                  <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
+                  <p className="editwarehouse__wrapper-text">This field is required</p>
               </div>
               </div>
             </div>
