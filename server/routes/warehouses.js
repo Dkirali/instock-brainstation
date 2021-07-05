@@ -60,17 +60,19 @@ router.post('/add', (req, res ) => {
   const data = req.body;
   warehouses.push({
     id: nanoid(),
-    name: data.warehouseName,
+    name: data.name,
     address: data.address,
     city: data.city,
     country: data.country,
     contact: {
-      name: data.contactName,
-      position: data.position,
-      phone: data.phoneNumber,
-      email: data.email,
+      name: data.contact.name,
+      position: data.contact.position,
+      phone: data.contact.phone,
+      email: data.contact.email,
     }
   });
+  console.log(`line 74: ${data.phone}`)
+  console.log(`line 75: ${data.position}`)
   addWarehouse(warehouses)
   .then(() => res.status(201).json(warehouses))
   .catch((err) => res.status(500).json(err))
@@ -109,7 +111,7 @@ router.put('/edit/:id', (req, res ) => {
 
   //Rewrite warehouse JSON file
   fs.writeFile(pathToWarehouseFile, stringifiedWarehouses, (err) => {
-    console.log("write success!")
+    res.json("write success!")
     if (err) {
       console.log("Got err: ", err);
       res.status(403).json("error, not found");

@@ -4,6 +4,7 @@ import search from "../../assets/icons/search-24px.svg"
 import WarehouseList from "../WarehouseList/WarehouseList"
 import Sort from "../../assets/icon/sort-24px.svg"
 import DelModal from "../DelModal/DelModal"
+import { Link } from "react-router-dom";
 
 const Warehouses = () => {
   return(
@@ -16,7 +17,9 @@ const Warehouses = () => {
             <input className="warehouse__form-search" placeholder="Search..." name="text"/>
               <img className="warehouse__form-search-icon" src={search} alt="search-icon"/>
           </form>
+          <Link to="/warehouses/add">
           <button className="warehouse__button" type="submit"><h3 className="warehouse__button-text">+Add New Warehouse</h3> </button>
+          </Link>
         </div>
       </div>
       <ul className="warehouse-topbar">
