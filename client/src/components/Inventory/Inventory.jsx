@@ -8,6 +8,7 @@ import Sort from "../../assets/icon/sort-24px.svg"
 import React from "react";
 import axios from "axios"; 
 import { API_URL } from "../../utils/utils";
+
 class Inventory extends React.Component {
   state = {
     inventory: null,
