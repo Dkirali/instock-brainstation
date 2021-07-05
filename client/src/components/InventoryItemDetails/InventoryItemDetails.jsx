@@ -9,6 +9,11 @@ class InventoryItemDetails extends Component {
     state = {
         item: {},
     };
+
+    clickHandler = (id) => {
+        this.props.history.push(`/inventory/edit/${id}`)
+      }
+
     onCloseHandler = () => {
         this.setState({
           show: false
@@ -68,6 +73,7 @@ class InventoryItemDetails extends Component {
                         className='itemDetails__header--edit'
                         src={Edit}
                         alt='edit'
+                        onClick={() => this.clickHandler(item.id)}
                     />
                 </div>
                 <div className='itemDetails__info'>
