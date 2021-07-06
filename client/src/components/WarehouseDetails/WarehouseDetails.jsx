@@ -9,6 +9,7 @@ import Sort from "../../assets/icon/sort-24px.svg"
 import axios from "axios";
 import { API_URL } from "../../utils/utils";
 import { Link } from "react-router-dom";
+import { get } from 'lodash';
 
 
 class WarehouseDetails extends React.Component {
@@ -71,11 +72,15 @@ class WarehouseDetails extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.data !== this.state.selectedWarehouse && this.props.data !== null) {
+    console.log(prevProps)
+    console.log(prevState)
+    console.log(this.props.data)
+    if (this.props.data !== this.state.selectedWarehouse && this.props.data !== null)  {
       this.setState({
         selectedWarehouse: this.props.data
       })
-    }
+      console.log("pass 1")
+    } 
   }
 
   updatedData = () => {
@@ -119,13 +124,13 @@ class WarehouseDetails extends React.Component {
           <div className="warehousedetails__specifics-bottom">
             <div className="warehousedetails__specifics-bottom-upper-section">
               <h4 className="warehousedetails__specifics-contact">CONTACT NAME:</h4>
-              <p className="warehousedetails__specifics-contact-name">{this.state.selectedWarehouse.name}</p>
-              <p className="warehousedetails__specifics-contact-position">{this.state.selectedWarehouse.contactPosition}</p>
+              <p className="warehousedetails__specifics-contact-name">{`${get(this.state.selectedWarehouse, "contact.name")}`}</p>
+              <p className="warehousedetails__specifics-contact-position">{`${get(this.state.selectedWarehouse, "contact.position")}`}</p>
             </div>
             <div className="warehouse__specifics-bottom-lower-section">
               <h4 className="warehousedetails__specifics-contact-information">CONTACT INFORMATION:</h4>
-              <p className="warehousedetails__specifics-contact-number">{this.state.selectedWarehouse.contactPhone}</p>
-              <p className="warehousedetails__specifics-contact-email">{this.state.selectedWarehouse.contactEmail}</p>
+              <p className="warehousedetails__specifics-contact-number">{`${get(this.state.selectedWarehouse, "contact.phone")}`}</p>
+              <p className="warehousedetails__specifics-contact-email">{`${get(this.state.selectedWarehouse, "contact.email")}`}</p>
             </div>
           </div>
         </div>
