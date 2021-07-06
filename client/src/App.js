@@ -44,7 +44,8 @@ class App extends React.Component {
           <Route exact path="/" component={Warehouses} />
           <Route exact path="/warehouses/add" component={AddWarehouse} />
           <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} datas = {this.state.data}/>} ></Route>
-          <Route exact path="/inventory/add" component={AddItem} /
+          <Route exact path="/inventory/add" component={AddItem} />
+          {/* <Route exact path="/inventory/edit/:id" component={EditItem} /> */}
 
        
           <Route exact path="/inventory/edit/:id" render={(props) => <EditItem {...props} onChangeHandler = {this.onChangeHandlerItem}/>} />
