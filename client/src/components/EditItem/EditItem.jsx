@@ -27,11 +27,14 @@ export default class EditItem extends Component {
     submitHandler = (formData) => {
         const { id } = this.props.match.params
         axios.put(`${API_URL}/inventory/edit/${id}`, formData )
+        .then(() => {
+            this.props.history.push(`/inventory/${id}`)
+        })
     }
 
     clickHandler = () => {
         const { id } = this.props.match.params
-        this.props.history.push(`/inventory/${id}`)
+        this.props.history.push(`/inventory`)
     }
 
     render() {
@@ -47,7 +50,7 @@ export default class EditItem extends Component {
             initialFormData = {this.state}
             button = "Save"
             handleClick={this.clickHandler}
-            route= {`/inventory/${this.props.match.params.id}`}
+            route= {`/inventory`}
             />
         )
     }

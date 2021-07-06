@@ -39,10 +39,40 @@ router.get("/:id", (req, res) => {
   res.status(200).json(itemFound);
 });
 
+// Add a new item
+router.post('/add', (req, res ) => {
+  const data = req.body;
+  inventory.push({
+    id: nanoid(),
+    warehouseID: data.warehouse,
+    warehouseName: data.warehouseName,
+    itemName: data.itemName,
+    description: data.description,
+    category: data.category,
+    status: data.status,
+    quantity: data.quantity,
+    });
+  addItem(inventory)
+  .then(() => res.status(201).json(inventory))
+  .catch((err) => res.status(500).json(err))
+})
 
 //Modifiy an existing item
 router.put('/edit/:id', (req, res ) => {
   const data = req.body;
+  inventory.push({
+    id: nanoid(),
+    warehouseID: data.warehouse,
+    warehouseName: data.warehouseName,
+    itemName: data.itemName,
+    description: data.description,
+    category: data.category,
+    status: data.status,
+    quantity: data.quantity,
+    });
+  addItem(inventory)
+  .then(() => res.status(201).json(inventory))
+  .catch((err) => res.status(500).json(err))
   console.log(data)
   const id = req.params.id
   let pathToInventoryFile = "../server/data/inventories.json"

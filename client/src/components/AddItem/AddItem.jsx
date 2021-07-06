@@ -7,6 +7,11 @@ export default class AddItem extends Component {
 
 submitHandler = (formData) => {
     axios.post(`${API_URL}/inventory/add`, formData)
+    .then(() => {
+        this.props.history.push('/inventory')})
+    .catch((err) => {
+        console.log(err)
+    })
     }
 
 clickHandler = () => {
@@ -20,7 +25,7 @@ clickHandler = () => {
             handleSubmit={this.submitHandler} 
             button="+ Add Item" 
             handleClick={this.clickHandler}
-            route='/inventory'
+            route="/inventory"
             />
 
         )
