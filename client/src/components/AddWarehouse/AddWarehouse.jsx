@@ -8,7 +8,6 @@ import { get } from 'lodash';
 import { Link } from "react-router-dom";
 const { v4: uuidv4 } = require('uuid');
 
-
 class AddWarehouse extends React.Component {
 
   state = {
@@ -21,7 +20,7 @@ class AddWarehouse extends React.Component {
     const { value, name } = e.target;
     e.preventDefault();
 
-    if (name.includes("number")) {
+    if (name.includes("contactNumber")) {
       const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
       this.setState({inputValue:formattedPhoneNumber})
     }
@@ -46,16 +45,13 @@ class AddWarehouse extends React.Component {
         }
       });
     }
-
-    if(value === "") {
-      console.log("true")
-    }
   }
 
-  validateEmail = () => {
+  validateEmail = (e) => {
+    console.log(e.target.email.value)
     let emailError = "";
   
-    if (!this.state.addWarehouse.contact.email.includes("@")) {
+    if (!e.target.email.value.includes("@")) {
       emailError = "invalid email";
       alert("please use @ in the email section in order to submit")
     }
@@ -68,8 +64,9 @@ class AddWarehouse extends React.Component {
   }
 
 
-  validateInputs = () => {
-    if(this.state.addWarehouse.name !== "" && this.state.addWarehouse.address !== "" && this.state.addWarehouse.city !== "" && this.state.addWarehouse.country !== "" && this.state.addWarehouse.contact.name !== "" && this.state.addWarehouse.contact.position !== "" && this.state.addWarehouse.contact.number !== ""  && this.state.addWarehouse.contact.email !== "") {
+  
+  validateInputs = (e) => {
+    if(e.target.name.value !== "" && e.target.address.value !== "" && e.target.city.value !== "" && e.target.country.value !== "" && e.target.contactName.value !== "" && e.target.contactPosition.value !== "" && e.target.contactNumber.value !== ""  && e.target.email.value !== "") {
       console.log("true")
     } else {
       alert("All fields must be filled to save")
@@ -102,23 +99,24 @@ class AddWarehouse extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(e.target.email)
 
     // Check that all fields are valid
-    const isValidEmail = this.validateEmail();
-    const isValidInputs = this.validateInputs();
+    const isValidEmail = this.validateEmail(e);
+    const isValidInputs = this.validateInputs(e);
 
     if (isValidEmail && isValidInputs) {
       axios.post(`${API_URL}/warehouses/add`, {
         id:  uuidv4(),
-        name: this.state.addWarehouse.name,
-        address: this.state.addWarehouse.address,
-        city: this.state.addWarehouse.city,
-        country: this.state.addWarehouse.country,
+        name: e.target.name.value,
+        address: e.target.address.value,
+        city:  e.target.city.value,
+        country: e.target.country.value,
         contact: {
-          name: this.state.addWarehouse.contact.name,
-          position: this.state.addWarehouse.contact.position,
-          phone: this.state.addWarehouse.contact.number,
-          email: this.state.addWarehouse.contact.email,
+          name: e.target.contactName.value,
+          position:e.target.contactPosition.value,
+          phone: e.target.contactNumber.value,
+          email: e.target.email.value,
         }
       })
       .then (res => {
@@ -189,7 +187,7 @@ class AddWarehouse extends React.Component {
               <div className="addwarehouse__contact-top">
                 <h1 className="addwarehouse__contact-name">Contact Name</h1>
                 <label className="addwarehouse__contact-label" htmlFor="contact.name"/>
-                <input className={`addwarehouse__contact-name-input ${get(this.state.addWarehouse, "contact.name") === "" ? "addwarehouse__contact-name-error" : " "}`} name="contact.name" placeholder={"Contact Name"} onChange={this.onSaveEdits}/>
+                <input className={`addwarehouse__contact-name-input ${get(this.state.addWarehouse, "contact.name") === "" ? "addwarehouse__contact-name-error" : " "}`} name="contactName" placeholder={"Contact Name"} onChange={this.onSaveEdits}/>
                 <div className={`addwarehouse__wrapper ${get(this.state.addWarehouse, "contact.name") === "" ? "addwarehouse__wrapper-error" : " "}`}>
                   <img className="addwarehouse__wrapper-image" src={Error} alt="error alert"/>
                   <p className="addwarehouse__wrapper-text">This field is required</p>
@@ -198,7 +196,7 @@ class AddWarehouse extends React.Component {
               <div className="addwarehouse__contact-mid">
                 <h1 className="addwarehouse__contact-position">Position</h1>
                 <label className="addwarehouse__contact-label" htmlFor="contact.position"/>
-                <input className={`addwarehouse__contact-position-input ${get(this.state.addWarehouse, "contact.position") === "" ? "addwarehouse__contact-position-error" : " "}`} name="contact.position" placeholder={"Contact Position"} onChange={this.onSaveEdits}/>
+                <input className={`addwarehouse__contact-position-input ${get(this.state.addWarehouse, "contact.position") === "" ? "addwarehouse__contact-position-error" : " "}`} name="contactPosition" placeholder={"Contact Position"} onChange={this.onSaveEdits}/>
                 <div className={`addwarehouse__wrapper ${get(this.state.addWarehouse, "contact.position") === "" ? "addwarehouse__wrapper-error" : " "}`}>
                   <img className="addwarehouse__wrapper-image" src={Error} alt="error alert"/>
                   <p className="addwarehouse__wrapper-text">This field is required</p>
@@ -207,7 +205,7 @@ class AddWarehouse extends React.Component {
               <div className="addwarehouse__contact-mid">
                 <h1 className="addwarehouse__contact-number">Phone Number</h1>
                 <label className="addwarehouse__contact-label" htmlFor="contact.number"/>
-                <input className={`addwarehouse__contact-number-input ${get(this.state.addWarehouse, "contact.number") === "" ? "addwarehouse__contact-number-error" : " "}`} name="contact.number" placeholder={"Phone Number"} onChange={(e) => this.onSaveEdits(e)} value={this.state.inputValue}/>
+                <input className={`addwarehouse__contact-number-input ${get(this.state.addWarehouse, "contact.number") === "" ? "addwarehouse__contact-number-error" : " "}`} name="contactNumber" placeholder={"Phone Number"} onChange={(e) => this.onSaveEdits(e)} value={this.state.inputValue}/>
                 <div className={`addwarehouse__wrapper ${get(this.state.addWarehouse, "contact.number") === "" ? "addwarehouse__wrapper-error" : " "}`}>
                   <img className="addwarehouse__wrapper-image" src={Error} alt="error alert"/>
                   <p className="addwarehouse__wrapper-text">This field is required</p>
@@ -216,7 +214,7 @@ class AddWarehouse extends React.Component {
               <div className="addwarehouse__contact-bottom">
                 <h1 className="addwarehouse__contact-email">Email</h1>
                 <label className="addwarehouse__contact-label" htmlFor="contact.email"/>
-                <input className={`addwarehouse__contact-email-input ${get(this.state.addWarehouse, "contact.email") === "" ? "addwarehouse__contact-email-error" : " "}`} name="contact.email" placeholder={"Contact Email"}onChange={this.onSaveEdits}/>
+                <input className={`addwarehouse__contact-email-input ${get(this.state.addWarehouse, "contact.email") === "" ? "addwarehouse__contact-email-error" : " "}`} name="email" placeholder={"Contact Email"}onChange={this.onSaveEdits}/>
                 <div className={`addwarehouse__wrapper ${get(this.state.addWarehouse, "contact.email") === "" ? "addwarehouse__wrapper-error" : " "}`}>
                   <img className="addwarehouse__wrapper-image" src={Error} alt="error alert"/>
                   <p className="addwarehouse__wrapper-text">This field is required</p>
@@ -237,3 +235,8 @@ class AddWarehouse extends React.Component {
   }
 }
 export default AddWarehouse;
+
+
+
+
+
