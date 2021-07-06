@@ -28,7 +28,6 @@ class App extends React.Component {
   }
 
   onChangeHandlerItem = (data) => {
-    console.log(data)
     this.setState({
     itemdata: data
     }) 
@@ -39,11 +38,18 @@ class App extends React.Component {
       <BrowserRouter>
         <HeroHeader />
         <Switch>
-          <Route exact path="/warehouses" component={Warehouses} />
+
+          <Route exact path="/warehouses" render = {(props) => <Warehouses {...props} data = {this.state.data}onChangeHandler = {this.onChangeHandler}/>} />
+
           <Route exact path="/inventory" render = {(props) => <Inventory {...props} onChangeHandler = {this.onChangeHandlerItem}/>} />
+
           <Route exact path="/" component={Warehouses} />
+
           <Route exact path="/warehouses/add" component={AddWarehouse} />
-          <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} datas = {this.state.data} onChangeHandler = {this.onChangeHandlerItem}/>} ></Route>
+
+          <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} data = {this.state.data} onChangeHandler = {this.onChangeHandlerItem}/>} >
+
+          </Route>
           <Route exact path="/inventory/add" component={AddItem} />
          
 

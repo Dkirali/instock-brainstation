@@ -16,7 +16,6 @@ const addItem = (list) => {
     const stringData = JSON.stringify(list);
     fs.writeFile(__dirname + "/../data/inventories.json", stringData, (err) => {
       if (err) {
-        console.log("hello", err);
         rej({ err, message: "could not add item" });
       } else {
         res("item successfully added");
@@ -66,7 +65,6 @@ router.put('/edit/:id', (req, res ) => {
     "status" : data.status,
     "quantity" : data.quantity
   };
-  console.log(editedInventory)
   const rawData = fs.readFileSync(pathToInventoryFile, 'utf8', () => {})
   const inventories = JSON.parse(rawData);
   //Find and update this warehouse in the array

@@ -29,7 +29,6 @@ export default class EditItem extends Component {
         .then((res) => {
             this.props.history.push(`/inventory/${id}`)
             this.props.onChangeHandler(res.data)
-            console.log(res)
         }).catch(err => console.log(err))
         
     }

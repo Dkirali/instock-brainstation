@@ -37,15 +37,12 @@ class Inventory extends React.Component {
         itemId: e.target.id,
         itemName: e.target.name
       })
-      console.log(e.target.name)
-      console.log(this.state.itemId)
-      console.log(this.state.itemName)
+
   }
   onDeleteHandler = (itemid) => {
     axios
     .delete(`${API_URL}/inventory/${itemid}/item`)
     .then((response) => {
-      console.log(response)
       this.setState({
       inventory: response.data,
       loaded: true,
@@ -58,7 +55,6 @@ class Inventory extends React.Component {
     axios
     .get(`${API_URL}/inventory`)
     .then((response) => {
-      console.log(response)
       this.setState({
       inventory: response.data,
       loaded: true,

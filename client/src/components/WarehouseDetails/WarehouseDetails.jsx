@@ -32,9 +32,7 @@ class WarehouseDetails extends React.Component {
       itemId: e.target.id,
       itemName: e.target.name
     })
-    console.log(e.target.name)
-    console.log(this.state.itemId)
-    console.log(this.state.itemName)
+
 
   }
   onDeleteHandler = (itemid) => {
@@ -42,7 +40,6 @@ class WarehouseDetails extends React.Component {
     axios
       .delete(`${API_URL}/inventory/${itemid}/item`)
       .then((response) => {
-        console.log(response)
         this.setState({
           inventory: response.data,
           loaded: true,
@@ -55,9 +52,9 @@ class WarehouseDetails extends React.Component {
   componentDidMount() {
     let id = this.props.match.params.id
     let data = this.props.datas
-    console.log(this.props)
     axios.get(`${API_URL}/warehouses/${id}`)
       .then(res => {
+
         data = res.data
         return axios.get(`${API_URL}/warehouses/${id}/inventory`)
       })
@@ -74,9 +71,9 @@ class WarehouseDetails extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.datas !== this.state.selectedWarehouse && this.props.datas !== null) {
+    if (this.props.data !== this.state.selectedWarehouse && this.props.data !== null) {
       this.setState({
-        selectedWarehouse: this.props.datas
+        selectedWarehouse: this.props.data
       })
     }
   }
@@ -122,13 +119,13 @@ class WarehouseDetails extends React.Component {
           <div className="warehousedetails__specifics-bottom">
             <div className="warehousedetails__specifics-bottom-upper-section">
               <h4 className="warehousedetails__specifics-contact">CONTACT NAME:</h4>
-              <p className="warehousedetails__specifics-contact-name">{this.state.selectedWarehouse.contact.name}</p>
-              <p className="warehousedetails__specifics-contact-position">{this.state.selectedWarehouse.contact.position}</p>
+              <p className="warehousedetails__specifics-contact-name">{this.state.selectedWarehouse.name}</p>
+              <p className="warehousedetails__specifics-contact-position">{this.state.selectedWarehouse.contactPosition}</p>
             </div>
             <div className="warehouse__specifics-bottom-lower-section">
               <h4 className="warehousedetails__specifics-contact-information">CONTACT INFORMATION:</h4>
-              <p className="warehousedetails__specifics-contact-number">{this.state.selectedWarehouse.contact.phone}</p>
-              <p className="warehousedetails__specifics-contact-email">{this.state.selectedWarehouse.contact.email}</p>
+              <p className="warehousedetails__specifics-contact-number">{this.state.selectedWarehouse.contactPhone}</p>
+              <p className="warehousedetails__specifics-contact-email">{this.state.selectedWarehouse.contactEmail}</p>
             </div>
           </div>
         </div>

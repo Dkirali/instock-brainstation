@@ -1,7 +1,7 @@
 [
   {
     "id": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "name": "Ge14422344",
+    "name": "Ge14422342323",
     "address": "455 Granville Street2",
     "city": "123123",
     "country": "CAN",
@@ -25,14 +25,13 @@
   },
   {
     "id": "89898957-04ba-4bd0-9f5c-a7aea7447963",
-    "name": "Santa Monica",
+    "name": "Santa Monicaa",
     "address": "520 Broadway",
     "city": "Santa Monica",
     "country": "USA",
     "contact": {
       "name": "Sharon Ng",
       "position": "Warehouse Manager",
-      "phone": "(164) 612-31232",
       "email": "sng@instock.com"
     }
   },
@@ -63,14 +62,13 @@
   },
   {
     "id": "150a36cf-f38e-4f59-8e31-39974207372d",
-    "name": "Boston",
+    "name": "Bostonasd",
     "address": "215 Essex Street",
     "city": "Boston",
     "country": "USA",
     "contact": {
       "name": "Vanessa Mendoza",
       "position": "Warehouse Manager",
-      "phone": "+1 (646) 123-1234",
       "email": "vmendoza@instock.com"
     }
   },

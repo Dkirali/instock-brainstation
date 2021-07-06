@@ -23,20 +23,16 @@ class WarehouseList extends React.Component {
     })
     }
     onTrashHandler = (e) => {
-    console.log(e.target.id)
     this.setState({
       show: true,
       warehouseId: e.target.id,
       warehouseName: e.target.name
     })
-    console.log(this.state.itemId)
     }
     onDeleteHandler = (itemid) => {
-      console.log(itemid)
     axios
       .delete(`${API_URL}/warehouses/${itemid}/warehouse`)
       .then((response) => {
-      console.log(response)
       this.setState({
         allWarehouses: response.data,
         show: false
@@ -49,7 +45,6 @@ class WarehouseList extends React.Component {
   componentDidMount() {
     axios.get(`${API_URL}/warehouses`)
     .then(res => {
-      console.log(res)
       this.setState({
         allWarehouses: res.data,
       })
@@ -69,7 +64,7 @@ class WarehouseList extends React.Component {
             <div className="warehouse__information-top">
               <div className="warehouse__information-location">
                 <h4 className="warehouse__subheader">WAREHOUSE</h4>
-                <Link to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p>     <img
+                <Link onClick = {() => {this.props.onChangeHandler(warehouse)}} to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p>     <img
                         className="warehouse__chevron"
                         src={Chevron}
                         alt="trashcan"
@@ -94,7 +89,7 @@ class WarehouseList extends React.Component {
           </div>
           <div className="warehouse__actions">
             <img name = {warehouse.name} id = {warehouse.id}  onClick={this.onTrashHandler} className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
-            <Link to = {`warehouses/${warehouse.id}/edit`}>
+            <Link  to = {`warehouses/${warehouse.id}/edit`}>
             <img className ="warehouse__actions-edit"src={Edit} alt="edit"/>
              </Link>
           </div>

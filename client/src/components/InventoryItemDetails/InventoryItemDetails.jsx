@@ -26,9 +26,7 @@ class InventoryItemDetails extends Component {
           itemId: e.target.id,
           itemName: e.target.name
         })
-        console.log(e.target.name)
-        console.log(this.state.itemId)
-        console.log(this.state.itemName)
+    
   
       }
       onDeleteHandler = (itemid) => {
@@ -36,7 +34,6 @@ class InventoryItemDetails extends Component {
         axios
           .delete(`${API_URL}/inventory/${itemid}/item`)
           .then((response) => {
-            console.log(response)
             this.setState({
               inventory: response.data,
               loaded: true,
@@ -47,7 +44,6 @@ class InventoryItemDetails extends Component {
           .catch((err) => console.log("error!", err))
       }
     componentDidMount() {
-        console.log(this.props.datas)
         axios
             .get(`${API_URL}/inventory/${this.props.match.params.id}`)
             .then((response) => {
@@ -59,11 +55,7 @@ class InventoryItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("hello")
-        console.log(prevProps.match.params)
-        console.log(this.props.match.params)
-        console.log(this.props.datas)
-        console.log(prevProps.datas)
+    
         const prevItem = prevState.item
         if (this.props.datas !== this.state.item && this.props.datas !== null  ) {
             this.setState({
