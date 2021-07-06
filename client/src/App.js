@@ -13,25 +13,53 @@ import React from "react";
 import "./App.scss";
 
 
-function App () {
+class App extends React.Component {
 
+  state = {
+    data: null,
+    itemdata: null
+  }
+
+
+  onChangeHandler = (data) => {
+      this.setState({
+      data: data
+      }) 
+  }
+
+  onChangeHandlerItem = (data) => {
+    console.log(data)
+    this.setState({
+    itemdata: data
+    }) 
+}
+
+  render() {
     return (
       <BrowserRouter>
         <HeroHeader />
         <Switch>
           <Route exact path="/warehouses" component={Warehouses} />
-          <Route exact path="/inventory" component={Inventory}/>
+          <Route exact path="/inventory" component={Inventory} />
           <Route exact path="/" component={Warehouses} />
           <Route exact path="/warehouses/add" component={AddWarehouse} />
-          <Route exact path="/warehouses/:id" component={WarehouseDetails} />
+          <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} datas = {this.state.data}/>} ></Route>
           <Route exact path="/inventory/add" component={AddItem} />
-          <Route exact path="/inventory/edit/:id" component={EditItem} />
-          <Route exact path="/warehouses/:id/edit" component={EditWarehouse} />
-          <Route path='/inventory/:id' render={(props) => <InventoryItemDetails {...props} />} />
+          {/* <Route exact path="/inventory/edit/:id" component={EditItem} /> */}
+
+       
+          <Route exact path="/inventory/edit/:id" render={(props) => <EditItem {...props} onChangeHandler = {this.onChangeHandlerItem}/>} />
+
+          <Route exact path="/warehouses/:id/edit" render={(props) => <EditWarehouse {...props} onChangeHandler = {this.onChangeHandler}/>} />
+          {/* <Route path='/inventory/:id' render={(props) => <InventoryItemDetails {...props} />} /> */}
+
+          <Route path='/inventory/:id' render={(props) => <InventoryItemDetails {...props} datas = {this.state.itemdata}/>} ></Route>
+
         </Switch>
         <HeroFooter />
       </BrowserRouter>
     );
   }
+}
 
 export default App;

@@ -26,7 +26,10 @@ export default class EditItem extends Component {
 
     submitHandler = (formData) => {
         const { id } = this.props.match.params
-        axios.put(`${API_URL}/inventory/edit/${id}`, formData )
+        axios.put(`${API_URL}/inventory/edit/${id}`, formData ).then(res => {
+            console.log(res)
+            return this.props.onChangeHandler(res.data)
+        }).catch(err => console.log(err))
     }
 
 

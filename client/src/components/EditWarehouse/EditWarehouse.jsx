@@ -115,7 +115,6 @@ class EditWarehouse extends React.Component {
     // Check that all fields are valid
     const isValidEmail = this.validateEmail();
     const isValidInputs = this.validateInputs();
-
     if (isValidEmail && isValidInputs) {
       console.log("ID: ", id);
       axios.put(`${API_URL}/warehouses/edit/${id}`, {
@@ -131,7 +130,10 @@ class EditWarehouse extends React.Component {
         }
       })
       .then (res => {
+        console.log(res)
         this.props.history.push(`/warehouses/${id}`)
+       return this.props.onChangeHandler(res.data)
+
       })
       .catch(err => {
         console.log(err)
