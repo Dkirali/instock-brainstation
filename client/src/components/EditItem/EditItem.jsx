@@ -2,8 +2,6 @@ import ItemForm from '../ItemForm/ItemForm'
 import React, { Component } from 'react'
 import axios from 'axios'
 import { API_URL } from "../../utils/utils";
-
-
 export default class EditItem extends Component {
     state = {
         itemName: "",
@@ -13,8 +11,8 @@ export default class EditItem extends Component {
         quantity: 0,
         warehouse: null,
         loaded: false,
+        location: null
     }
-    
     componentDidMount = () => {
         const { id } = this.props.match.params
         axios.get(`${API_URL}/inventory/${id}`)
@@ -24,35 +22,40 @@ export default class EditItem extends Component {
         })
     }
 
+ 
     submitHandler = (formData) => {
         const { id } = this.props.match.params
-        axios.put(`${API_URL}/inventory/edit/${id}`, formData ).then(res => {
-           this.props.history.push(`/inventory/${id}`)
+        axios.put(`${API_URL}/inventory/edit/${id}`, formData )
+        .then((res) => {
+            this.props.history.push(`/inventory/${id}`)
+            this.props.onChangeHandler(res.data)
             console.log(res)
-            return this.props.onChangeHandler(res.data)
         }).catch(err => console.log(err))
-
+        
     }
-
     clickHandler = () => {
         const { id } = this.props.match.params
         this.props.history.push(`/inventory`)
+    }
+
+    routeClickHandler = () => {
+        const { id } = this.props.match.params
+        this.props.history.goBack()
     }
 
     render() {
         if(this.state.loaded === false){
             return <div>Loading...</div>
         }
-        
         return (
-            
             <ItemForm 
             title="Edit Inventory Item"
             handleSubmit = {this.submitHandler}
             initialFormData = {this.state}
             button = "Save"
             handleClick={this.clickHandler}
-            route= {`/inventory`}
+            backClick = {this.routeClickHandler}
+            route= "/warehouses"
             />
         )
     }

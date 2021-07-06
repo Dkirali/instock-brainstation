@@ -48,7 +48,6 @@ class AddWarehouse extends React.Component {
   }
 
   validateEmail = (e) => {
-    console.log(e.target.email.value)
     let emailError = "";
   
     if (!e.target.email.value.includes("@")) {
@@ -99,7 +98,6 @@ class AddWarehouse extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.email)
 
     // Check that all fields are valid
     const isValidEmail = this.validateEmail(e);
@@ -125,10 +123,7 @@ class AddWarehouse extends React.Component {
       .catch(err => {
         console.log(err)
       })
-    } else {
-      // alert("You need to use @ to submit")
-      console.log("bad")
-    }
+    } 
   }
 
   render() {

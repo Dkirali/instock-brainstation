@@ -40,11 +40,12 @@ class App extends React.Component {
         <HeroHeader />
         <Switch>
           <Route exact path="/warehouses" component={Warehouses} />
-          <Route exact path="/inventory" component={Inventory} />
+          <Route exact path="/inventory" render = {(props) => <Inventory {...props} onChangeHandler = {this.onChangeHandlerItem}/>} />
           <Route exact path="/" component={Warehouses} />
           <Route exact path="/warehouses/add" component={AddWarehouse} />
-          <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} datas = {this.state.data}/>} ></Route>
-          <Route exact path="/inventory/add" component={AddItem} /
+          <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} datas = {this.state.data} onChangeHandler = {this.onChangeHandlerItem}/>} ></Route>
+          <Route exact path="/inventory/add" component={AddItem} />
+         
 
        
           <Route exact path="/inventory/edit/:id" render={(props) => <EditItem {...props} onChangeHandler = {this.onChangeHandlerItem}/>} />
@@ -62,3 +63,4 @@ class App extends React.Component {
 }
 
 export default App;
+

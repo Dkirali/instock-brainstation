@@ -4,13 +4,48 @@ import Edit from "../../assets/icon/edit-24px.svg";
 import Back from "../../assets/icon/arrow_back-24px.svg";
 import axios from "axios";
 import "./InventoryItemDetails.scss";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class InventoryItemDetails extends Component {
     state = {
         item: {},
     };
 
+    clickHandler = (id) => {
+        this.props.history.push(`/inventory/edit/${id}`)
+      }
+
+    onCloseHandler = () => {
+        this.setState({
+          show: false
+        })
+      }
+      onTrashHandler = (e) => {
+        this.setState({
+          show: true,
+          itemId: e.target.id,
+          itemName: e.target.name
+        })
+        console.log(e.target.name)
+        console.log(this.state.itemId)
+        console.log(this.state.itemName)
+  
+      }
+      onDeleteHandler = (itemid) => {
+  
+        axios
+          .delete(`${API_URL}/inventory/${itemid}/item`)
+          .then((response) => {
+            console.log(response)
+            this.setState({
+              inventory: response.data,
+              loaded: true,
+              show: false
+  
+            });
+          })
+          .catch((err) => console.log("error!", err))
+      }
     componentDidMount() {
         console.log(this.props.datas)
         axios
@@ -24,11 +59,22 @@ class InventoryItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.datas !== this.state.item && this.props.datas !== null) {
+        console.log("hello")
+        console.log(prevProps.match.params)
+        console.log(this.props.match.params)
+        console.log(this.props.datas)
+        console.log(prevProps.datas)
+        const prevItem = prevState.item
+        if (this.props.datas !== this.state.item && this.props.datas !== null  ) {
             this.setState({
               item: this.props.datas
             })
-          }
+          } 
+        //   else if (this.props.datas === prevProps.datas) {
+        //     this.setState({
+        //         item: prevItem
+        //       })
+        //   }
     }
 
     render() {
@@ -42,13 +88,8 @@ class InventoryItemDetails extends Component {
         return (
             <div className='itemDetails'>
                 <div className='itemDetails__header'>
-                    <Link className='itemDetails__header--back' 
-                    to="/inventory">
-                    <img
-                        
-                        src={Back}
-                        alt='back'
-                    />
+                <Link to="/inventory" className='itemDetails__header--back'>
+                    <img src={Back} alt="back" />
                     </Link>
                     <h1 className='itemDetails__header--name'>
                         {item.itemName}

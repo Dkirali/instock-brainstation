@@ -115,7 +115,7 @@ class WarehouseDetails extends React.Component {
             <Link to="/warehouses"> <img className="warehousedetails__image" src={Arrow} alt="go back to warehouse list" /> </Link>
             <h1 className="warehousedetails__title">{this.state.selectedWarehouse.name}</h1>
           </div>
-          <form className="warehousedetails__form" onSubmit="">
+          <form className="warehousedetails__form" >
             <label className="warehousedetails__form-label" htmlFor="text"></label>
             <Link to={`/warehouses/${this.state.selectedWarehouse.id}/edit`}>
               <button className="warehousedetails__button" type="submit">
@@ -171,7 +171,8 @@ class WarehouseDetails extends React.Component {
                   <div className="warehousedetails__information-top">
                     <div className="warehousedetails__information-item">
                       <h4 className="warehousedetails__subheader">INVENTORY ITEM</h4>
-                      <Link to={`/inventory/${item.id}`} className="warehousedetails__itemname"><p>{item.itemName}</p>     <img
+                      <Link onClick = {() => {this.props.onChangeHandler(item)}} to={`/inventory/${item.id}`
+                      } className="warehousedetails__itemname"><p>{item.itemName}</p>     <img
                         className="warehousedetails__chevron"
                         src={Chevron}
                         alt="trashcan"
