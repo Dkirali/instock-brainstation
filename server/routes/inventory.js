@@ -52,9 +52,10 @@ router.post('/add', (req, res ) => {
     status: data.status,
     quantity: data.quantity,
     });
-  addItem(inventory)
-  .then(() => res.status(201).json(inventory))
-  .catch((err) => res.status(500).json(err))
+    
+    addItem(inventory)
+    .then(() => res.status(201).json(inventory))
+    .catch((err) => res.status(500).json(err))
 })
 
 //Modifiy an existing item
