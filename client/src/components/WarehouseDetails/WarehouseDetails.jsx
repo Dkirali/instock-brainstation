@@ -102,10 +102,10 @@ class WarehouseDetails extends React.Component {
   }
 
 
-  render() {
+  render () {
     let stockDecide
     if (this.state.loaded === false) {
-      return <main className="load-screen">Loading...</main>;
+      return <main className="load-screen">Loading...</main>
     }
 
     return (
@@ -213,19 +213,18 @@ class WarehouseDetails extends React.Component {
                     src={Edit}
                     alt="trashcan"
                   />
-                </div>
+                       </div>
               </div>
             </div>
-
-          </div>
-        );
-      })}
-        <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
-        onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId} name = "Inventory" itemName = {this.state.itemName}/>
-
+          );
+        })}
+        <DelModal show={this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
+          onDeleteHandler={this.onDeleteHandler} itemId={this.state.itemId} name="Inventory" itemName={this.state.itemName} />
       </section>
     );
   };
 }
+}
 export default WarehouseDetails;
+
 
