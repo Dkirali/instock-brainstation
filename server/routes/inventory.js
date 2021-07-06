@@ -50,7 +50,7 @@ router.post('/add', (req, res ) => {
     description: data.description,
     category: data.category,
     status: data.status,
-    quanity: data.quantity,
+    quantity: data.quantity,
     });
   addItem(inventory)
   .then(() => res.status(201).json(inventory))
