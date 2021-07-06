@@ -4,6 +4,7 @@ import Edit from "../../assets/icon/edit-24px.svg";
 import Back from "../../assets/icon/arrow_back-24px.svg";
 import axios from "axios";
 import "./InventoryItemDetails.scss";
+import { Link } from "react-router-dom";
 
 class InventoryItemDetails extends Component {
     state = {
@@ -58,11 +59,22 @@ class InventoryItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.datas !== this.state.item && this.props.datas !== null) {
+        console.log("hello")
+        console.log(prevProps.match.params)
+        console.log(this.props.match.params)
+        console.log(this.props.datas)
+        console.log(prevProps.datas)
+        const prevItem = prevState.item
+        if (this.props.datas !== this.state.item && this.props.datas !== null  ) {
             this.setState({
               item: this.props.datas
             })
-          }
+          } 
+        //   else if (this.props.datas === prevProps.datas) {
+        //     this.setState({
+        //         item: prevItem
+        //       })
+        //   }
     }
 
     render() {
@@ -76,11 +88,9 @@ class InventoryItemDetails extends Component {
         return (
             <div className='itemDetails'>
                 <div className='itemDetails__header'>
-                    <img
-                        className='itemDetails__header--back'
-                        src={Back}
-                        alt='back'
-                    />
+                <Link to="/inventory" className='itemDetails__header--back'>
+                    <img src={Back} alt="back" />
+                    </Link>
                     <h1 className='itemDetails__header--name'>
                         {item.itemName}
                     </h1>

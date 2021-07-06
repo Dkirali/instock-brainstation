@@ -4,7 +4,7 @@ import axios from 'axios';
 import { API_URL } from "../../utils/utils";
 import './ItemForm.scss'
 import error from '../../assets/icons/error-24px.svg'
-
+import { Link } from "react-router-dom";
 class ItemForm extends Component {
     state={
         warehouses: [],
@@ -103,7 +103,9 @@ class ItemForm extends Component {
         return (
             <div className="addItem">
                 <div className="itemForm__header">
-                    <img className="itemForm__header--back"src={Back} alt="back"/>
+                <div onClick = {this.props.backClick}className="itemForm__header--back">
+                    <img src={Back} alt="back" />
+                    </div>
                     <h1 className="itemForm__header--title">{this.props.title}</h1>
                 </div>
                 <form className="itemForm__form" onSubmit={this.submitHandler}>
@@ -203,7 +205,8 @@ class ItemForm extends Component {
                         </div>
                     </div>
                     <div className="itemForm__buttons">
-                        <button className="itemForm__cancel-button">Cancel</button>
+                        <button type = "button" onClick = {this.props.handleClick}
+className="itemForm__cancel-button">Cancel</button>
                         <button className="itemForm__add-button">{this.props.button}</button>
                     </div>
                 </form>

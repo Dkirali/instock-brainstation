@@ -1,9 +1,9 @@
 [
   {
     "id": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "name": "Gene2222",
-    "address": "455 Granville Street",
-    "city": "Vancouver",
+    "name": "Ge14422344",
+    "address": "455 Granville Street2",
+    "city": "123123",
     "country": "CAN",
     "contact": {
       "name": "Brad MacDonald",
@@ -13,7 +13,7 @@
   },
   {
     "id": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
-    "name": "San Franw",
+    "name": "San Franwasdasd",
     "address": "890 Brannnan Street",
     "city": "San Francisco",
     "country": "USA",
@@ -38,14 +38,13 @@
   },
   {
     "id": "ade0a47b-cee6-4693-b4cd-a7e6cb25f4b7",
-    "name": "Seattle",
+    "name": "Seattleasd",
     "address": "1201 Third Avenue",
     "city": "Seattle",
     "country": "USA",
     "contact": {
       "name": "Daniel Bachu",
       "position": "Warehouse Manager",
-      "phone": "+1 (646) 123-1234",
       "email": "dbachu@instock.com"
     }
   },

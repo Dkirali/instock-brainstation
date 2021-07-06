@@ -1,18 +1,17 @@
 [
   {
     "id": "2c0185c7-89ef-48ad-a22f-9fc022a5c90c",
-    "warehouseName": "San Franw",
-    "itemName": "Televisiondwwww2211`",
-    "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.",
+    "warehouseName": "Montreal",
+    "itemName": "Telasdfasdfasd",
+    "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.asdfsadf",
     "category": "Electronics",
     "status": "In Stock",
     "quantity": "21"
   },
   {
     "id": "f3e13429-b5e9-4a50-b01c-75fb07cefded",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Gym Bag",
+    "warehouseName": "Seattle",
+    "itemName": "Gym Bag3124fadfasdfasdasd",
     "description": "Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.",
     "category": "Gear",
     "status": "In Stock",
@@ -20,9 +19,8 @@
   },
   {
     "id": "3b042051-f18c-4a16-a393-68ceba87277a",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Hoodie",
+    "warehouseName": "Santa Monica",
+    "itemName": "Hoodie22asdgggeee",
     "description": "A simple 100% cotton hoodie, this is an essential piece for any wardrobe.",
     "category": "Apparel",
     "status": "In Stock",
@@ -30,9 +28,8 @@
   },
   {
     "id": "4d6ce289-eb58-45a1-bae3-e3874290ee48",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Keychain",
+    "warehouseName": "Ge14422344",
+    "itemName": "Keychaindd",
     "description": "Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.",
     "category": "Accessories",
     "status": "Out of Stock",
@@ -40,9 +37,8 @@
   },
   {
     "id": "d3c08f85-4570-48e1-88df-610614477359",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Shampoo",
+    "warehouseName": "Ge14422344",
+    "itemName": "Shampoos",
     "description": "Natural shampoo made from 99% biodegradable ingredients.",
     "category": "Health",
     "status": "In Stock",
@@ -50,9 +46,8 @@
   },
   {
     "id": "043a70e2-cf28-4ce1-a9a4-e5b3fac9c593",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Phone Charger",
+    "warehouseName": "Ge14422344",
+    "itemName": "Phone Chargerasdasdsad",
     "description": "This USB-C phone charger features fast charging for the latest devices.",
     "category": "Electronics",
     "status": "Out of Stock",
@@ -90,9 +85,8 @@
   },
   {
     "id": "d3d7aa3c-6e27-4ab0-9496-f95faa5042f0",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Soap",
+    "warehouseName": "Seattle",
+    "itemName": "Soapdasdasdeeewwwadadad",
     "description": "Organic and hypoallergenic, this soap is safe to use for all skin types.",
     "category": "Health",
     "status": "In Stock",
@@ -100,9 +94,8 @@
   },
   {
     "id": "828c12d1-c0dd-4fd4-b8db-ac8eb493f8f8",
-    "warehouseID": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
-    "warehouseName": "San Fran",
-    "itemName": "Monitor",
+    "warehouseName": "San Franw",
+    "itemName": "Monitorasdasd",
     "description": "A 32\" IPS LED ultrawide monitor, perfect for work or gaming.",
     "category": "Electronics",
     "status": "In Stock",
@@ -130,9 +123,8 @@
   },
   {
     "id": "f516e1c9-486a-40c2-9bed-c8eba070f1f6",
-    "warehouseID": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
-    "warehouseName": "San Fran",
-    "itemName": "Belt",
+    "warehouseName": "San Franw",
+    "itemName": "Beltasd",
     "description": "Made from 100% full grain leather this belt will go with any dress or casual outfit.",
     "category": "Accessories",
     "status": "Out of Stock",
@@ -190,9 +182,8 @@
   },
   {
     "id": "462e4097-ae85-4771-ba42-d28393e39e03",
-    "warehouseID": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
-    "warehouseName": "San Fran",
-    "itemName": "Protein Powder",
+    "warehouseName": "Seattle",
+    "itemName": "Protein Powderasdds",
     "description": "100% natural plant-based protein powder from organic ingredients.",
     "category": "Health",
     "status": "Out of Stock",
@@ -300,9 +291,8 @@
   },
   {
     "id": "2c66cfb9-0136-4e79-a6cd-c7802fa245f3",
-    "warehouseID": "ade0a47b-cee6-4693-b4cd-a7e6cb25f4b7",
     "warehouseName": "Seattle",
-    "itemName": "Monitor",
+    "itemName": "Monitorasdasdasd",
     "description": "A 32\" IPS LED ultrawide monitor, perfect for work or gaming.",
     "category": "Electronics",
     "status": "Out of Stock",
@@ -310,9 +300,8 @@
   },
   {
     "id": "3563eb2f-372d-4cf4-a4d9-cbb7851738d2",
-    "warehouseID": "ade0a47b-cee6-4693-b4cd-a7e6cb25f4b7",
-    "warehouseName": "Seattle",
-    "itemName": "Backpack",
+    "warehouseName": "Seattleasd",
+    "itemName": "Backpackw",
     "description": "This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.",
     "category": "Gear",
     "status": "In Stock",
@@ -497,5 +486,54 @@
     "category": "Health",
     "status": "Out of Stock",
     "quantity": 0
+  },
+  {
+    "id": "JB120251yabr7uGjTqzgo",
+    "warehouseID": "oEyXLw8pPYZWDa_fhJTg8",
+    "warehouseName": "asdfa23124124",
+    "itemName": "adsfasd",
+    "description": "fasdfasdfasdf",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": "033"
+  },
+  {
+    "id": "sNBIXff-lTQK_raVAR8JV",
+    "warehouseID": "oEyXLw8pPYZWDa_fhJTg8",
+    "warehouseName": "asdfa23124124",
+    "itemName": "adsfasd",
+    "description": "fasdfasdfasdf",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": "033"
+  },
+  {
+    "id": "8O8svw2Ehyfv1KSs5co8n",
+    "warehouseID": "oEyXLw8pPYZWDa_fhJTg8",
+    "warehouseName": "asdfa23124124",
+    "itemName": "adsfasd",
+    "description": "fasdfasdfasdf",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": "033"
+  },
+  {
+    "id": "osSEclenh4XtcPh-Jwfdn",
+    "warehouseID": "oEyXLw8pPYZWDa_fhJTg8",
+    "warehouseName": "asdfa23124124",
+    "itemName": "adsfasd",
+    "description": "fasdfasdfasdf",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": "033"
+  },
+  {
+    "id": "hkz0H4XQoWG3Ufd8K3Y4B",
+    "warehouseName": "Lol",
+    "itemName": "Lolasdasd",
+    "description": "sadfafasf",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": "24"
   }
 ]
