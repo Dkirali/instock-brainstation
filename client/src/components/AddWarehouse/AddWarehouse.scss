@@ -137,10 +137,19 @@
             @include regular;
             font-size: 14px;
             line-height: 22px;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
 
         &-error {
-            border: 1px solid #C94515;
+            
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
 
     }
@@ -169,10 +178,19 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
 
         &-error {
-            border: 1px solid #C94515;
+            
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
     }
 
@@ -194,10 +212,19 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
         
         &-error {
-            border: 1px solid #C94515;
+            
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
     }
 
@@ -223,10 +250,19 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
 
         &-error {
-            border: 1px solid #C94515;
+            
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
     }
   }
@@ -285,10 +321,19 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
 
         &-error {
-            border: 1px solid #C94515;
+            
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
     }
 
@@ -315,10 +360,19 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
 
         &-error {
-            border: 1px solid #C94515;
+            
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
     }
 
@@ -340,10 +394,19 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
 
         &-error {
-            border: 1px solid #C94515;
+            
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
     }
 
@@ -370,10 +433,19 @@
             font-size: 14px;
             line-height: 22px;
             padding-left: 1rem;
+
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
         }
 
         &-error {
-            border: 1px solid #C94515;
+
+            &:focus {
+                border: 1px solid #C94515;
+                outline: 0;
+            }
         }
     }
   }
@@ -410,6 +482,10 @@
             line-height: 20px;
             color: #5C667E;
 
+            &:hover {
+                border: 1px solid #2E66E5;
+            }
+
             @include tablet{
                 margin-right:1rem;
                 padding: 8px 21px;
@@ -432,6 +508,11 @@
             color: #FFFFFF;
             border: 0;     
 
+            &:hover {
+                background: #232940;
+                outline: 0;
+            }
+
             @include tablet {
                 padding: 8px 28px;
             }
@@ -448,24 +529,3 @@
     }
 }
 
-.lol {
-    @include regular;
-    font-size: 12px;
-    line-height: 18px;
-    color: #C94515;
-}
-
-.try {
-    display: none;
-
-    &-error{
-        display: flex;
-        align-items: center;
-        margin-top:0;
-    }
-}
-
-.no {
-    width: 20px;
-    height: 14px;
-}

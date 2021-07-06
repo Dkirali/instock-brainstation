@@ -151,6 +151,11 @@
             box-sizing: border-box;
             border-radius: 20px;
 
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
+
             @include tablet {
                 padding-right: 1.5rem;
                 margin-right: 1rem;
@@ -198,6 +203,10 @@
         border-radius: 20px;
         margin: 1rem 0;
         border:none;
+
+        &:hover {
+            background: #232940
+        }
 
         @include tablet {
             width: none;

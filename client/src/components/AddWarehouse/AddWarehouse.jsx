@@ -224,7 +224,9 @@ class AddWarehouse extends React.Component {
             </div>
             <div className="bottom-section">
               <div className="addwarehouse__button-section">
-                <button className="addwarehouse__cancel-button"> CANCEL </button>
+                <Link to="/" style={{textDecoration: 'none'}}>
+                  <button className="addwarehouse__cancel-button"> CANCEL </button>
+                </Link>
                 <button className="addwarehouse__save-button"> SAVE </button>
               </div>
             </div>
