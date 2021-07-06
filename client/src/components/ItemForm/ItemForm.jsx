@@ -3,9 +3,8 @@ import Back from '../../assets/icons/arrow_back-24px.svg';
 import axios from 'axios';
 import { API_URL } from "../../utils/utils";
 import './ItemForm.scss'
-import error from '../../assets/icons/error-24px.svg';
-import {Link} from 'react-router-dom'
-
+import error from '../../assets/icons/error-24px.svg'
+import { Link } from "react-router-dom";
 class ItemForm extends Component {
     state={
         warehouses: [],
@@ -104,15 +103,15 @@ class ItemForm extends Component {
         return (
             <div className="addItem">
                 <div className="itemForm__header">
-                    <Link to={this.props.route} className="itemForm__header--back">
+                <div onClick = {this.props.backClick}className="itemForm__header--back">
                     <img src={Back} alt="back" />
-                    </Link>
+                    </div>
                     <h1 className="itemForm__header--title">{this.props.title}</h1>
                 </div>
                 <form className="itemForm__form" onSubmit={this.submitHandler}>
                     <div className="itemForm__form-container">
                         <div className="itemForm__itemDetails">
-                            <h2 className="itemForm__form--title">Item Details</h2>
+                            <h2 className="itemForm__form--title">Item Detailss</h2>
                             <label className="itemForm__form--label" htmlFor="itemName">Item Name</label>
                             <input className="itemForm__form--input"
                                 type="text"
@@ -206,8 +205,9 @@ class ItemForm extends Component {
                         </div>
                     </div>
                     <div className="itemForm__buttons">
-                        <button className="itemForm__cancel-button" type="button" onClick={this.props.handleClick}>Cancel</button>
-                        <button className="itemForm__add-button" >{this.props.button}</button>
+                        <button type = "button" onClick = {this.props.handleClick}
+className="itemForm__cancel-button">Cancel</button>
+                        <button className="itemForm__add-button">{this.props.button}</button>
                     </div>
                 </form>
             </div>

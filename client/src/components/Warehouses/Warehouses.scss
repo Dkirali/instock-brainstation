@@ -1,11 +1,6 @@
 @use "../../partials/typography" as *;
 @use "../../partials/mixin" as *;
 @use "../../partials/variables" as *;
-
-// * {
-//   overflow: hidden;
-// }
-
 .warehouse {
     padding-top: 1rem;
     position: relative;
@@ -13,8 +8,7 @@
     margin-right: 1rem;
     z-index: 1;
     top: -4rem;
-  
-    background: #ffffff;
+    background: #FFFFFF;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
     border-radius: 3px;
     @include tablet {
@@ -26,7 +20,6 @@
       margin-left: 5rem;
       margin-right: 5rem;
     }
-
     &-topbar {
         @include demi;
         color: $graphite;
@@ -36,7 +29,6 @@
         background-color: $light-grey;
         font-size: 11px;
         position: relative;
-
         @include tablet {
             padding-left: 2rem;
             padding-right: 2rem;
@@ -44,7 +36,6 @@
             justify-content: space-between;
             list-style-type: none;
         }
-
         @include desktop {
             padding-left: 3rem;
             padding-right: 3rem;
@@ -52,117 +43,85 @@
             justify-content: space-between;
             list-style-type: none;
         }
-
         &__sort {
             width: 1rem;
             position: relative;
             top: 0.2rem;
             left: 0.5rem;
         }
-
         &__warehouse {
-
-         
         }
-
         &__address {
             position: absolute;
             right: 67%;
-
-     
         }
-
         &__contact {
-
             &-name {
                 position: absolute;
                 right: 48%;
-
-         
             }
-
-
             &-information {
                 position: absolute;
                 right: 20%;
-                
             }
-            
         }
-
-      
         &__actions{
-            
         }
     }
-
     &__nav {
         padding: 0 1rem;
-
         @include tablet {
             padding:0 2rem;
             display: flex;
             justify-content: space-between;
             align-items:center;
         }
-
         @include desktop {
             display: flex;
             justify-content: space-between;
             align-items:center;
             padding: 0 40px;
-            
         }
-
         &-right {
-
             @include tablet {
                 display: flex;
                 align-items: center;
             }
-        
         }
-
     }
-
     &__title {
         @include demi;
         padding: 0 1rem 1rem;
         font-size: 28px;
         line-height: 36px;
         margin-bottom: 0;
-
         @include tablet{
             padding-left: 0;
             font-size: 32px;
             line-height: 40px;
         }
     }
-
     &__form {
         position: relative;
-
-
-
         &-search {
             width: 100%;
             height: 36px;
             border: 1px solid #BDC5D5;
             box-sizing: border-box;
             border-radius: 20px;
-
+            &:focus {
+                border: 1px solid #2E66E5;
+                outline: 0;
+            }
             @include tablet {
                 padding-right: 1.5rem;
                 margin-right: 1rem;
                 width: -webkit-fill-available;
             }
-
             @include desktop {
                 padding-right: 6.5rem;
-        
                 width: -webkit-fill-available;
             }
-
             &::placeholder {
                 padding-left: 15px;
                 color: #5C667E;
@@ -170,23 +129,16 @@
                 line-height: 20px;
                 @include regular;
             }
-            
-
-
             &-icon {
                 position: absolute;
                 right: 15px;
                 top:6px;
-
                 @include tablet {
                     right: 30px;
                 }
             }
-            
         }
-
     }
-
     &__button {
         display: flex;
         flex-direction: row;
@@ -198,13 +150,14 @@
         border-radius: 20px;
         margin: 1rem 0;
         border:none;
-
+        &:hover {
+            background: #232940
+        }
         @include tablet {
             width: none;
             padding: 0 1rem;
             max-width: 180px;
         }
-
         &-text {
             width: 127px;
             height: 20px;
@@ -213,6 +166,5 @@
             line-height: 20px;
             color: #FFFFFF;
         }
-
     }
 }

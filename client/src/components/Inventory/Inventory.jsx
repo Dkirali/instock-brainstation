@@ -113,7 +113,7 @@ class Inventory extends React.Component {
                 <div className="inventory__information-top">
                   <div className="inventory__information-item">
                     <h4 className="inventory__subheader">INVENTORY ITEM</h4>
-                    <Link to = {`inventory/${item.id}`} className="inventory__itemname"><p>{item.itemName}</p>     <img
+                    <Link onClick = {() => {this.props.onChangeHandler(item)}}to = {`inventory/${item.id}`} className="inventory__itemname"><p>{item.itemName}</p>     <img
                         className="inventory__chevron"
                         src={Chevron}
                         alt="trashcan"

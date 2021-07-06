@@ -6,19 +6,14 @@ import { API_URL } from "../../utils/utils";
 import "./EditWarehouse.scss"
 import { get } from 'lodash';
 import { Link } from "react-router-dom";
-
-
 class EditWarehouse extends React.Component {
-  
   state = {
     editWarehouse:{},
     loaded: false,
     phoneInputValue: ""
   }
-
   componentDidMount() {
     let id = this.props.match.params.id;
-    
     axios.get(`${API_URL}/warehouses/${id}/edit`)
     .then(res => {
       this.setState({
@@ -31,16 +26,13 @@ class EditWarehouse extends React.Component {
     console.log("error", err)
     })
   }
-
   onSaveEdits = (e) => {
     const { value, name } = e.target;
     e.preventDefault();
-
     if (name.includes("number")) {
       const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
       this.setState({phoneInputValue:formattedPhoneNumber})
     }
-
     if (name.includes("contact")) {
       // Parse actual field name
       const contactFieldName = name.split('.')[1];
@@ -62,23 +54,18 @@ class EditWarehouse extends React.Component {
       });
     }
   }
-
   validateEmail = () => {
     let emailError = "";
-  
     if (!this.state.editWarehouse.contact.email.includes("@")) {
       emailError = "invalid email";
       alert("please use @ in the email section in order to submit")
     }
-
     if (emailError) {
       this.setState({ emailError });
       return false
-    } 
+    }
     return true;
   }
-
-  
   validateInputs = () => {
     if(this.state.editWarehouse.name !== "" && this.state.editWarehouse.address !== "" && this.state.editWarehouse.city !== "" && this.state.editWarehouse.country !== "" && this.state.editWarehouse.contact.name !== "" && this.state.editWarehouse.contact.position !== "" && this.state.editWarehouse.contact.number !== ""  && this.state.editWarehouse.contact.email !== "") {
       console.log("true")
@@ -86,37 +73,28 @@ class EditWarehouse extends React.Component {
       alert("All fields must be filled to save")
       return false;
     }
-
     if(this.state.editWarehouse.contact.phone !== "" ) {
       console.log("true")
     }
-
     return true;
   }
-
   formatPhoneNumber = (value) => {
     const phoneNumber = value.replace(/[^\d]/g, "");
     const phoneNumberLength = phoneNumber.length;
-    
     if (!value) {
       return value
     }
-
     if (phoneNumberLength < 4) {
       return phoneNumber;
     }
-
     if (phoneNumberLength < 7) {
       return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
     }
-
     return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
       3,
       6
     )}-${phoneNumber.slice(6, 10)}`;
   }
-
-
   handleSubmit = (e) => {
     e.preventDefault();
     let id = this.props.match.params.id;
@@ -138,10 +116,8 @@ class EditWarehouse extends React.Component {
         }
       })
       .then (res => {
-        console.log(res)
         this.props.history.push(`/warehouses/${id}`)
-       return this.props.onChangeHandler(res.data)
-
+        return this.props.onChangeHandler(res.data)
       })
       .catch(err => {
         console.log(err)
@@ -151,8 +127,9 @@ class EditWarehouse extends React.Component {
       console.log("bad")
     }
   }
+New
 
-  render() {
+render() {
     if (this.state.editWarehouse !== {}) {
       return (
         <section className="editwarehouse">
@@ -255,5 +232,4 @@ class EditWarehouse extends React.Component {
     }
   }
 }
-
 export default EditWarehouse;
