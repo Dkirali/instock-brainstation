@@ -27,22 +27,32 @@ export default class EditItem extends Component {
     submitHandler = (formData) => {
         const { id } = this.props.match.params
         axios.put(`${API_URL}/inventory/edit/${id}`, formData ).then(res => {
+           this.props.history.push(`/inventory/${id}`)
             console.log(res)
             return this.props.onChangeHandler(res.data)
         }).catch(err => console.log(err))
+
     }
 
+    clickHandler = () => {
+        const { id } = this.props.match.params
+        this.props.history.push(`/inventory`)
+    }
 
     render() {
         if(this.state.loaded === false){
             return <div>Loading...</div>
         }
+        
         return (
+            
             <ItemForm 
             title="Edit Inventory Item"
             handleSubmit = {this.submitHandler}
             initialFormData = {this.state}
             button = "Save"
+            handleClick={this.clickHandler}
+            route= {`/inventory`}
             />
         )
     }

@@ -4,47 +4,13 @@ import Edit from "../../assets/icon/edit-24px.svg";
 import Back from "../../assets/icon/arrow_back-24px.svg";
 import axios from "axios";
 import "./InventoryItemDetails.scss";
+import {Link} from "react-router-dom";
 
 class InventoryItemDetails extends Component {
     state = {
         item: {},
     };
 
-    clickHandler = (id) => {
-        this.props.history.push(`/inventory/edit/${id}`)
-      }
-
-    onCloseHandler = () => {
-        this.setState({
-          show: false
-        })
-      }
-      onTrashHandler = (e) => {
-        this.setState({
-          show: true,
-          itemId: e.target.id,
-          itemName: e.target.name
-        })
-        console.log(e.target.name)
-        console.log(this.state.itemId)
-        console.log(this.state.itemName)
-  
-      }
-      onDeleteHandler = (itemid) => {
-  
-        axios
-          .delete(`${API_URL}/inventory/${itemid}/item`)
-          .then((response) => {
-            console.log(response)
-            this.setState({
-              inventory: response.data,
-              loaded: true,
-              show: false
-  
-            });
-          })
-          .catch((err) => console.log("error!", err))
-      }
     componentDidMount() {
         console.log(this.props.datas)
         axios
@@ -76,11 +42,14 @@ class InventoryItemDetails extends Component {
         return (
             <div className='itemDetails'>
                 <div className='itemDetails__header'>
+                    <Link className='itemDetails__header--back' 
+                    to="/inventory">
                     <img
-                        className='itemDetails__header--back'
+                        
                         src={Back}
                         alt='back'
                     />
+                    </Link>
                     <h1 className='itemDetails__header--name'>
                         {item.itemName}
                     </h1>

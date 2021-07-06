@@ -13,73 +13,89 @@ import { Link } from "react-router-dom";
 
 class WarehouseDetails extends React.Component {
 
-  state = {
-    show: false,
-    inventory: null,
-    loaded: false,
+   state = { 
+      show: false,
+      inventory: null,
+      loaded: false,
     selectedWarehouse: null,
-    isUpdated: false
-  };
+      isUpdated: false,
+      newData: null ,
+      incomingData: false,
+    };
+  
 
-  onCloseHandler = () => {
-    this.setState({
-      show: false
-    })
-  }
-  onTrashHandler = (e) => {
-    this.setState({
-      show: true,
-      itemId: e.target.id,
-      itemName: e.target.name
-    })
-    console.log(e.target.name)
-    console.log(this.state.itemId)
-    console.log(this.state.itemName)
-
-  }
-  onDeleteHandler = (itemid) => {
-
-    axios
-      .delete(`${API_URL}/inventory/${itemid}/item`)
-      .then((response) => {
-        console.log(response)
-        this.setState({
-          inventory: response.data,
-          loaded: true,
-          show: false
-
-        });
+ 
+    onCloseHandler = () => {
+      this.setState({
+        show: false
       })
-      .catch((err) => console.log("error!", err))
-  }
-  componentDidMount() {
-    let id = this.props.match.params.id
-    let data = this.props.datas
-    console.log(this.props)
-    axios.get(`${API_URL}/warehouses/${id}`)
-      .then(res => {
-        data = res.data
-        return axios.get(`${API_URL}/warehouses/${id}/inventory`)
+    }
+
+    onTrashHandler = (e) => {
+      this.setState({
+        show: true,
+        itemId: e.target.id,
+        itemName: e.target.name
       })
-      .then(res => {
-        this.setState({
-          selectedWarehouse: data,
-          inventory: res.data,
-          loaded: true
+    }
+
+    onDeleteHandler = (itemid) => {
+      axios
+        .delete(`${API_URL}/inventory/${itemid}/item`)
+        .then((response) => {
+          console.log(response)
+          this.setState({
+            inventory: response.data,
+            loaded: true,
+            show: false
+
+          });
         })
+        .catch((err) => console.log("error!", err))
+    }
+
+  
+  componentDidMount(){
+    let id = this.props.match.params.id
+    let data = []
+    
+    axios.get(`${API_URL}/warehouses/${id}`)
+    .then(res => {
+      data = res.data
+      return axios.get(`${API_URL}/warehouses/${id}/inventory`)
+    })
+    .then(res => {
+      this.setState({
+        selectedWarehouse: data,
+        inventory: res.data,   
+        loaded: true
       })
-      .catch(err => {
-        console.log("error", err)
-      })
+    })
+    .catch(err => {
+    console.log("error", err)
+    })  
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
+    let id = this.props.match.params.id
     if (this.props.datas !== this.state.selectedWarehouse && this.props.datas !== null) {
       this.setState({
         selectedWarehouse: this.props.datas
       })
     }
-  }
+    if(this.state.incomingData === true) {
+      axios.get(`${API_URL}/warehouses/${id}`)
+      .then(res => {
+        this.setState({
+          selectedWarehouse: res.data,
+          inventory: res.data,   
+          loaded: true,
+          incomingData: false
+
+        })
+      })
+    }
+
 
   updatedData = () => {
     this.setState({ isUpdated: true })
@@ -200,10 +216,13 @@ class WarehouseDetails extends React.Component {
                 </div>
               </div>
             </div>
-          );
-        })}
-        <DelModal show={this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
-          onDeleteHandler={this.onDeleteHandler} itemId={this.state.itemId} name="Inventory" itemName={this.state.itemName} />
+
+          </div>
+        );
+      })}
+        <DelModal show = {this.state.show} onCloseHandler={this.onCloseHandler} onTrashHandler={this.onTrashHandler}
+        onDeleteHandler={this.onDeleteHandler} itemId = {this.state.itemId} name = "Inventory" itemName = {this.state.itemName}/>
+
       </section>
     );
   };

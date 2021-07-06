@@ -21,18 +21,18 @@ class WarehouseList extends React.Component {
     this.setState({
       show: false
     })
-    }
-    onTrashHandler = (e) => {
-    console.log(e.target.id)
+  }
+    
+  onTrashHandler = (e) => {
     this.setState({
       show: true,
       warehouseId: e.target.id,
       warehouseName: e.target.name
     })
     console.log(this.state.itemId)
-    }
-    onDeleteHandler = (itemid) => {
-      console.log(itemid)
+  }
+    
+  onDeleteHandler = (itemid) => {
     axios
       .delete(`${API_URL}/warehouses/${itemid}/warehouse`)
       .then((response) => {
@@ -42,9 +42,9 @@ class WarehouseList extends React.Component {
         show: false
   
       });
-      })
-      .catch((err) => console.log("error!", err))
-    }
+    })
+    .catch((err) => console.log("error!", err))
+  }
 
   componentDidMount() {
     axios.get(`${API_URL}/warehouses`)

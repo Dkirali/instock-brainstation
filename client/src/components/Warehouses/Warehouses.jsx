@@ -7,6 +7,7 @@ import DelModal from "../DelModal/DelModal"
 import { Link } from "react-router-dom";
 
 const Warehouses = () => {
+  
   return(
     <section className="warehouse">
       <div className="warehouse__nav">
@@ -17,7 +18,7 @@ const Warehouses = () => {
             <input className="warehouse__form-search" placeholder="Search..." name="text"/>
               <img className="warehouse__form-search-icon" src={search} alt="search-icon"/>
           </form>
-          <Link to="/warehouses/add">
+          <Link to="/warehouses/add" style={{textDecoration: 'none'}}>
           <button className="warehouse__button" type="submit"><h3 className="warehouse__button-text">+Add New Warehouse</h3> </button>
           </Link>
         </div>
@@ -28,10 +29,8 @@ const Warehouses = () => {
         <li className="warehouse-topbar__contact-name">CONTACT NAME <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
         <li className="warehouse-topbar__contact-information"> CONTACT INFORMATION  <img className=" warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
         <li className="warehouse-topbar__actions"> ACTIONS <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
-      </ul>    
-      
+      </ul>        
       <DelModal />
-
       <WarehouseList/>
     </section>  
   )
