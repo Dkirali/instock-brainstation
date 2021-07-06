@@ -15,10 +15,10 @@ const warehouseData = () => {
       "address":warehouse.address,
       "city": warehouse.city,
       "country": warehouse.country,
-      "contactName":warehouse.contact.name,
-      "contactPosition":warehouse.contact.position,
-      "contactPhone":warehouse.contact.phone,
-      "contactEmail":warehouse.contact.email,
+      "contact.name":warehouse.contact.name,
+      "contact.position":warehouse.contact.position,
+      "contact.phone":warehouse.contact.phone,
+      "contact.email":warehouse.contact.email,
     };
     warehousesInfo.push(warehouseData);
   })

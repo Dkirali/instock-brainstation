@@ -7,6 +7,7 @@ import './WarehouseList.scss'
 import { Link } from "react-router-dom";
 import DelModal from "../DelModal/DelModal"
 import Chevron from "../../assets/icon/chevron_right-24px.svg";
+import { get } from 'lodash';
 
 class WarehouseList extends React.Component {
   
@@ -64,7 +65,7 @@ class WarehouseList extends React.Component {
             <div className="warehouse__information-top">
               <div className="warehouse__information-location">
                 <h4 className="warehouse__subheader">WAREHOUSE</h4>
-                <Link onClick = {() => {this.props.onChangeHandler(warehouse)}} to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p>     <img
+                <Link onClick = {() => {this.props.onChangeHandler(warehouse)}} to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p><img
                         className="warehouse__chevron"
                         src={Chevron}
                         alt="trashcan"
@@ -78,12 +79,12 @@ class WarehouseList extends React.Component {
             <div className="warehouse__information-bottom">
               <div className="warehouse__information-contact">
                 <h4 className="warehouse__subheader">CONTACT NAME</h4>
-                <p className="warehouse__contact-name">{warehouse.contactName}</p>
+                <p className="warehouse__contact-name">{`${get(warehouse, "contact.name")}`}</p>
               </div>
               <div className="warehouse__information-contact-information">
                 <h4 className="warehouse__subheader">CONTACT INFORMATION</h4>
-                <p className="warehouse__contact-number">{warehouse.contactPhone}</p>
-                <p className="warehouse__contact-email">{warehouse.contactEmail}</p>
+                <p className="warehouse__contact-number">{`${get(warehouse, "contact.phone")}`}</p>
+                <p className="warehouse__contact-email">{`${get(warehouse, "contact.email")}`}</p>
               </div>
             </div>
           </div>

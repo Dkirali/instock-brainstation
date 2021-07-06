@@ -6,12 +6,14 @@ import { API_URL } from "../../utils/utils";
 import "./EditWarehouse.scss"
 import { get } from 'lodash';
 import { Link } from "react-router-dom";
+
 class EditWarehouse extends React.Component {
   state = {
     editWarehouse:{},
     loaded: false,
     phoneInputValue: ""
   }
+  
   componentDidMount() {
     let id = this.props.match.params.id;
     axios.get(`${API_URL}/warehouses/${id}/edit`)
@@ -26,13 +28,16 @@ class EditWarehouse extends React.Component {
     console.log("error", err)
     })
   }
+  
   onSaveEdits = (e) => {
     const { value, name } = e.target;
     e.preventDefault();
-    if (name.includes("number")) {
+   
+    if (name.includes("phone")) {
       const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
       this.setState({phoneInputValue:formattedPhoneNumber})
     }
+   
     if (name.includes("contact")) {
       // Parse actual field name
       const contactFieldName = name.split('.')[1];
@@ -54,6 +59,7 @@ class EditWarehouse extends React.Component {
       });
     }
   }
+  
   validateEmail = () => {
     let emailError = "";
     if (!this.state.editWarehouse.contact.email.includes("@")) {
@@ -66,8 +72,9 @@ class EditWarehouse extends React.Component {
     }
     return true;
   }
+  
   validateInputs = () => {
-    if(this.state.editWarehouse.name !== "" && this.state.editWarehouse.address !== "" && this.state.editWarehouse.city !== "" && this.state.editWarehouse.country !== "" && this.state.editWarehouse.contact.name !== "" && this.state.editWarehouse.contact.position !== "" && this.state.editWarehouse.contact.number !== ""  && this.state.editWarehouse.contact.email !== "") {
+    if(this.state.editWarehouse.name !== "" && this.state.editWarehouse.address !== "" && this.state.editWarehouse.city !== "" && this.state.editWarehouse.country !== "" && this.state.editWarehouse.contact.name !== "" && this.state.editWarehouse.contact.position !== "" && this.state.editWarehouse.contact.phone !== ""  && this.state.editWarehouse.contact.email !== "") {
     } else {
       alert("All fields must be filled to save")
       return false;
@@ -76,29 +83,37 @@ class EditWarehouse extends React.Component {
     }
     return true;
   }
+  
   formatPhoneNumber = (value) => {
     const phoneNumber = value.replace(/[^\d]/g, "");
     const phoneNumberLength = phoneNumber.length;
+    
     if (!value) {
       return value
     }
+    
     if (phoneNumberLength < 4) {
       return phoneNumber;
     }
+    
     if (phoneNumberLength < 7) {
       return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
     }
+   
     return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
       3,
       6
     )}-${phoneNumber.slice(6, 10)}`;
   }
+  
   handleSubmit = (e) => {
     e.preventDefault();
+    
     let id = this.props.match.params.id;
     // Check that all fields are valid
     const isValidEmail = this.validateEmail();
     const isValidInputs = this.validateInputs();
+
     if (isValidEmail && isValidInputs) {
       axios.put(`${API_URL}/warehouses/edit/${id}`, {
         name: this.state.editWarehouse.name,
@@ -108,7 +123,7 @@ class EditWarehouse extends React.Component {
         contact: {
           name: this.state.editWarehouse.contact.name,
           position: this.state.editWarehouse.contact.position,
-          phone: this.state.editWarehouse.contact.number,
+          phone: this.state.editWarehouse.contact.phone,
           email: this.state.editWarehouse.contact.email,
         }
       })
@@ -121,7 +136,7 @@ class EditWarehouse extends React.Component {
       })
     } 
   }
-New
+
 
 render() {
     if (this.state.editWarehouse !== {}) {
@@ -196,9 +211,9 @@ render() {
               </div>
               <div className="editwarehouse__contact-mid">
                 <h1 className="editwarehouse__contact-number">Phone Number</h1>
-                <label className="editwarehouse__contact-label" htmlFor="contact.number"/>
-                <input className={`editwarehouse__contact-number-input ${get(this.state.editWarehouse, "contact.number") === "" ? "editwarehouse__contact-number-error" : " "}`} name="contact.number" onChange={(e) => this.onSaveEdits(e)} value={this.state.phoneInputValue}/>
-                <div className={`editwarehouse__wrapper ${get(this.state.editWarehouse, "contact.number") === "" ? "editwarehouse__wrapper-error" : " "}`}>
+                <label className="editwarehouse__contact-label" htmlFor="contact.phone"/>
+                <input className={`editwarehouse__contact-number-input ${get(this.state.editWarehouse, "contact.phone") === "" ? "editwarehouse__contact-number-error" : " "}`} name="contact.phone" onChange={(e) => this.onSaveEdits(e)} value={this.state.phoneInputValue}/>
+                <div className={`editwarehouse__wrapper ${get(this.state.editWarehouse, "contact.phone") === "" ? "editwarehouse__wrapper-error" : " "}`}>
                   <img className="editwarehouse__wrapper-image" src={Error} alt="error alert"/>
                   <p className="editwarehouse__wrapper-text">This field is required</p>
                 </div>
