@@ -14,7 +14,7 @@
   },
   {
     "id": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
-    "name": "San Franwasdasd",
+    "name": "San Franwasdasdasewww",
     "address": "890 Brannnan Street",
     "city": "San Francisco",
     "country": "USA",
@@ -26,14 +26,13 @@
   },
   {
     "id": "89898957-04ba-4bd0-9f5c-a7aea7447963",
-    "name": "Santa Monica",
+    "name": "Santa Monicad",
     "address": "520 Broadway",
     "city": "Santa Monica",
     "country": "USA",
     "contact": {
       "name": "Sharon Ng",
       "position": "Warehouse Manager",
-      "phone": "+1 (646) 123-1234",
       "email": "sng@instock.com"
     }
   },
