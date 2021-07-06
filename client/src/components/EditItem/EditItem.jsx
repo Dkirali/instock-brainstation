@@ -27,6 +27,9 @@ export default class EditItem extends Component {
     submitHandler = (formData) => {
         const { id } = this.props.match.params
         axios.put(`${API_URL}/inventory/edit/${id}`, formData )
+        .then(() => {
+            this.props.history.push(`/inventory/${id}`)
+        })
     }
 
 
