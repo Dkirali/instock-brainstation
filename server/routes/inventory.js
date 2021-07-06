@@ -60,27 +60,13 @@ router.post('/add', (req, res ) => {
 //Modifiy an existing item
 router.put('/edit/:id', (req, res ) => {
   const data = req.body;
-  inventory.push({
-    id: nanoid(),
-    warehouseID: data.warehouse,
-    warehouseName: data.warehouseName,
-    itemName: data.itemName,
-    description: data.description,
-    category: data.category,
-    status: data.status,
-    quantity: data.quantity,
-    });
-  addItem(inventory)
-  .then(() => res.status(201).json(inventory))
-  .catch((err) => res.status(500).json(err))
-  console.log(data)
   const id = req.params.id
   let pathToInventoryFile = "../server/data/inventories.json"
   
   const editedInventory = {
     "id" : id,
-    "warehouseID" : data.id,
-    "WarehouseName": data.warehouseName,
+    "warehouseID" : data.warehouseID,
+    "warehouseName": data.warehouseName,
     "itemName" : data.itemName,
     "description": data.description,
     "category": data.category,
@@ -88,11 +74,9 @@ router.put('/edit/:id', (req, res ) => {
     "quantity" : data.quantity
   };
 
-  console.log(editedInventory)
 
   const rawData = fs.readFileSync(pathToInventoryFile, 'utf8', () => {})
   const inventories = JSON.parse(rawData);
-  //Find and update this warehouse in the array
   const updatedInventories = inventories.map(inv => inv.id !== id ? inv : editedInventory);
   const stringifiedInventories = JSON.stringify(updatedInventories, null, 2);
 
