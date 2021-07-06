@@ -23,6 +23,44 @@ router.get("/:id", (req, res) => {
   res.status(200).json(itemFound);
 });
 
+//Modifiy an existing item
+router.put('/edit/:id', (req, res ) => {
+  const data = req.body;
+  console.log(data)
+  const id = req.params.id
+  let pathToInventoryFile = "../server/data/inventories.json"
+  
+  const editedInventory = {
+    "id" : id,
+    "warehouseID" : data.id,
+    "WarehouseName": data.warehouseName,
+    "itemName" : data.itemName,
+    "description": data.description,
+    "category": data.category,
+    "status" : data.status,
+    "quantity" : data.quantity
+  };
+
+  console.log(editedInventory)
+
+  const rawData = fs.readFileSync(pathToInventoryFile, 'utf8', () => {})
+  const inventories = JSON.parse(rawData);
+  //Find and update this warehouse in the array
+  const updatedInventories = inventories.map(inv => inv.id !== id ? inv : editedInventory);
+  const stringifiedInventories = JSON.stringify(updatedInventories, null, 2);
+
+
+  //Rewrite warehouse JSON file
+  fs.writeFile(pathToInventoryFile, stringifiedInventories, (err) => {
+    res.json("write success!")
+    if (err) {
+      console.log("Got err: ", err);
+      res.status(403).json("error, not found");
+    }
+  });
+})
+
+
 router.delete("/:id/item", (req, res) => {
   let { id } = req.params;
   const itemFound = getItem(id);
