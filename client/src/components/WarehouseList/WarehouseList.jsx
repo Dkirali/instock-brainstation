@@ -21,17 +21,15 @@ class WarehouseList extends React.Component {
     this.setState({
       show: false
     })
-  }
-    
-  onTrashHandler = (e) => {
+    }
+    onTrashHandler = (e) => {
     this.setState({
       show: true,
       warehouseId: e.target.id,
       warehouseName: e.target.name
     })
-  }
-    
-  onDeleteHandler = (itemid) => {
+    }
+    onDeleteHandler = (itemid) => {
     axios
       .delete(`${API_URL}/warehouses/${itemid}/warehouse`)
       .then((response) => {
@@ -40,9 +38,9 @@ class WarehouseList extends React.Component {
         show: false
   
       });
-    })
-    .catch((err) => console.log("error!", err))
-  }
+      })
+      .catch((err) => console.log("error!", err))
+    }
 
   componentDidMount() {
     axios.get(`${API_URL}/warehouses`)
@@ -66,7 +64,7 @@ class WarehouseList extends React.Component {
             <div className="warehouse__information-top">
               <div className="warehouse__information-location">
                 <h4 className="warehouse__subheader">WAREHOUSE</h4>
-                <Link to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p>     <img
+                <Link onClick = {() => {this.props.onChangeHandler(warehouse)}} to = {`warehouses/${warehouse.id}`} className="warehouse__location"><p>{warehouse.name}</p>     <img
                         className="warehouse__chevron"
                         src={Chevron}
                         alt="trashcan"
@@ -91,7 +89,7 @@ class WarehouseList extends React.Component {
           </div>
           <div className="warehouse__actions">
             <img name = {warehouse.name} id = {warehouse.id}  onClick={this.onTrashHandler} className ="warehouse__actions-trash" src={Trash} alt="trashcan"/>
-            <Link  onClick = {() => {this.props.onChangeHandler(warehouse)}}to = {`warehouses/${warehouse.id}/edit`}>
+            <Link  to = {`warehouses/${warehouse.id}/edit`}>
             <img className ="warehouse__actions-edit"src={Edit} alt="edit"/>
              </Link>
           </div>

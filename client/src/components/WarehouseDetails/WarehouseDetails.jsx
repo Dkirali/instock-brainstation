@@ -33,6 +33,7 @@ class WarehouseDetails extends React.Component {
       itemName: e.target.name
     })
 
+
   }
   onDeleteHandler = (itemid) => {
 
@@ -53,6 +54,7 @@ class WarehouseDetails extends React.Component {
     let data = this.props.datas
     axios.get(`${API_URL}/warehouses/${id}`)
       .then(res => {
+
         data = res.data
         return axios.get(`${API_URL}/warehouses/${id}/inventory`)
       })
@@ -69,9 +71,9 @@ class WarehouseDetails extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.datas !== this.state.selectedWarehouse && this.props.datas !== null) {
+    if (this.props.data !== this.state.selectedWarehouse && this.props.data !== null) {
       this.setState({
-        selectedWarehouse: this.props.datas
+        selectedWarehouse: this.props.data
       })
     }
   }
@@ -80,9 +82,6 @@ class WarehouseDetails extends React.Component {
     this.setState({ isUpdated: true })
   }
 
-  clickHandler = (id) => {
-    this.props.history.push(`/inventory/edit/${id}`)
-  }
 
   render() {
     let stockDecide
@@ -120,13 +119,13 @@ class WarehouseDetails extends React.Component {
           <div className="warehousedetails__specifics-bottom">
             <div className="warehousedetails__specifics-bottom-upper-section">
               <h4 className="warehousedetails__specifics-contact">CONTACT NAME:</h4>
-              <p className="warehousedetails__specifics-contact-name">{this.state.selectedWarehouse.contact.name}</p>
-              <p className="warehousedetails__specifics-contact-position">{this.state.selectedWarehouse.contact.position}</p>
+              <p className="warehousedetails__specifics-contact-name">{this.state.selectedWarehouse.name}</p>
+              <p className="warehousedetails__specifics-contact-position">{this.state.selectedWarehouse.contactPosition}</p>
             </div>
             <div className="warehouse__specifics-bottom-lower-section">
               <h4 className="warehousedetails__specifics-contact-information">CONTACT INFORMATION:</h4>
-              <p className="warehousedetails__specifics-contact-number">{this.state.selectedWarehouse.contact.phone}</p>
-              <p className="warehousedetails__specifics-contact-email">{this.state.selectedWarehouse.contact.email}</p>
+              <p className="warehousedetails__specifics-contact-number">{this.state.selectedWarehouse.contactPhone}</p>
+              <p className="warehousedetails__specifics-contact-email">{this.state.selectedWarehouse.contactEmail}</p>
             </div>
           </div>
         </div>
@@ -153,7 +152,7 @@ class WarehouseDetails extends React.Component {
                   <div className="warehousedetails__information-top">
                     <div className="warehousedetails__information-item">
                       <h4 className="warehousedetails__subheader">INVENTORY ITEM</h4>
-                      <Link   onClick = {() => {this.props.onChangeHandler(item)}} to={`/inventory/${item.id}`
+                      <Link onClick = {() => {this.props.onChangeHandler(item)}} to={`/inventory/${item.id}`
                       } className="warehousedetails__itemname"><p>{item.itemName}</p>     <img
                         className="warehousedetails__chevron"
                         src={Chevron}
@@ -191,12 +190,11 @@ class WarehouseDetails extends React.Component {
                     alt="trashcan"
                     onClick={this.onTrashHandler}
                   />
-                <img
-                  className="inventory__action-edit"
-                  src={Edit}
-                  alt="editing pencil"
-                  onClick={() => this.clickHandler(item.id)}
-                />
+                  <img
+                    className="warehousedetails__action-edit"
+                    src={Edit}
+                    alt="trashcan"
+                  />
                 </div>
               </div>
             </div>

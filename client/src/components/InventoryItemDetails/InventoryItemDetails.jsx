@@ -26,7 +26,7 @@ class InventoryItemDetails extends Component {
           itemId: e.target.id,
           itemName: e.target.name
         })
-
+    
   
       }
       onDeleteHandler = (itemid) => {
@@ -55,13 +55,14 @@ class InventoryItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-  
+    
+        const prevItem = prevState.item
         if (this.props.datas !== this.state.item && this.props.datas !== null  ) {
             this.setState({
               item: this.props.datas
             })
           } 
-        
+  
     }
 
     render() {
@@ -132,3 +133,4 @@ class InventoryItemDetails extends Component {
 }
 
 export default InventoryItemDetails;
+

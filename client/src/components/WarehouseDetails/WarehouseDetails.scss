@@ -21,8 +21,6 @@
     margin-left: 5rem;
     margin-right: 5rem;
   }
-
-
   &__chevron {
     position: relative;
     top: 0.5rem;
@@ -477,7 +475,6 @@
   &__itemname {
     margin: 0;
     text-decoration: none;
-
     @include demi;
     font-size: 13px;
     line-height: 20px;
@@ -565,4 +562,5 @@
     }
   }
 }
+
 

@@ -17,8 +17,7 @@ class App extends React.Component {
 
   state = {
     data: null,
-    itemdata: null,
-    warehousedata: null
+    itemdata: null
   }
 
 
@@ -29,31 +28,26 @@ class App extends React.Component {
   }
 
   onChangeHandlerItem = (data) => {
-    console.log(data)
     this.setState({
     itemdata: data
     }) 
 }
 
-onChangeHandlerWare = (data) => {
-  console.log(data)
-  this.setState({
-  warehousedata: data
-  }) 
-}
   render() {
     return (
       <BrowserRouter>
         <HeroHeader />
         <Switch>
 
-          <Route exact path="/warehouses" render = {(props) => <Warehouses {...props} onChangeHandler = {this.onChangeHandlerWare}/>} />
+          <Route exact path="/warehouses" render = {(props) => <Warehouses {...props} data = {this.state.data}onChangeHandler = {this.onChangeHandler}/>} />
 
           <Route exact path="/inventory" render = {(props) => <Inventory {...props} onChangeHandler = {this.onChangeHandlerItem}/>} />
 
           <Route exact path="/" component={Warehouses} />
+
           <Route exact path="/warehouses/add" component={AddWarehouse} />
-          <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} datas = {this.state.data} warehousedata = {this.state.warehousedata} onChangeHandler = {this.onChangeHandlerItem}/>} >
+
+          <Route exact path="/warehouses/:id" render={(props) => <WarehouseDetails {...props} data = {this.state.data} onChangeHandler = {this.onChangeHandlerItem}/>} >
 
           </Route>
           <Route exact path="/inventory/add" component={AddItem} />

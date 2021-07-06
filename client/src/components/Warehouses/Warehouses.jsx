@@ -5,7 +5,7 @@ import WarehouseList from "../WarehouseList/WarehouseList"
 import Sort from "../../assets/icon/sort-24px.svg"
 import DelModal from "../DelModal/DelModal"
 import { Link } from "react-router-dom";
-const Warehouses = () => {
+const Warehouses = (props) => {
   return(
     <section className="warehouse">
       <div className="warehouse__nav">
@@ -29,7 +29,7 @@ const Warehouses = () => {
         <li className="warehouse-topbar__actions"> ACTIONS <img className="warehouse-topbar__sort"src = {Sort} alt="up arrow and down arrow"/></li>
       </ul>
       <DelModal />
-      <WarehouseList/>
+      <WarehouseList onChangeHandler = {props.onChangeHandler} data = {props.data}/>
     </section>
   )
 }

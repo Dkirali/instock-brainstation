@@ -16,6 +16,7 @@ const warehouseData = () => {
       "city": warehouse.city,
       "country": warehouse.country,
       "contactName":warehouse.contact.name,
+      "contactPosition":warehouse.contact.position,
       "contactPhone":warehouse.contact.phone,
       "contactEmail":warehouse.contact.email,
     };
@@ -110,45 +111,7 @@ router.put('/edit/:id', (req, res ) => {
   fs.writeFile(pathToWarehouseFile, stringifiedWarehouses, (err) => {
     res.json(editedWarehouse)
     if (err) {
-      res.status(403).json("error, not found");
-    }
-  });
-})
-
-//Modifiy an existing warehouse
-router.put('/edit/:id', (req, res ) => {
-
-  const data = req.body;
-  const id = req.params.id
-
-  let pathToWarehouseFile = "../server/data/warehouses.json"
-  // Constructing a new warehouse object
-  const editedWarehouse = {
-    "id" : id,
-    "name" : data.name,
-    "address":data.address,
-    "city" : data.city,
-    "country": data.country,
-    "contact": {
-      "name": data.contact.name,
-      "position": data.contact.position,
-      "phone": data.contact.phone,
-      "email": data.contact.email,
-    }
-  };
-
-
-  const rawData = fs.readFileSync(pathToWarehouseFile, 'utf8', () => {})
-  const warehouses = JSON.parse(rawData);
-  //Find and update this warehouse in the array
-  const updatedWarehouses = warehouses.map(wh => wh.id !== id ? wh : editedWarehouse);
-  const stringifiedWarehouses = JSON.stringify(updatedWarehouses, null, 2);
-
-
-  //Rewrite warehouse JSON file
-  fs.writeFile(pathToWarehouseFile, stringifiedWarehouses, (err) => {
-    res.json("write success!")
-    if (err) {
+      console.log("Got err: ", err);
       res.status(403).json("error, not found");
     }
   });
@@ -177,6 +140,7 @@ router.delete("/:id/warehouse", (req, res) => {
 
   // fs writefiles
   fs.writeFileSync("../server/data/inventories.json", newInv, (err) => {
+    console.log("write success!")
     if (err) {
       res.status(403).json("error, not found");
     }
@@ -206,4 +170,6 @@ router.get('/', (req, res) => {
 });
 
 module.exports = router;
+
+
 
