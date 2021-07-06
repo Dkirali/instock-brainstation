@@ -1,13 +1,12 @@
 [
   {
     "id": "2c0185c7-89ef-48ad-a22f-9fc022a5c90c",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Television",
-    "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.",
-    "category": "Electronics",
-    "status": "Out of Stock",
-    "quantity": 0
+    "WarehouseName": "San Fran",
+    "itemName": "lol",
+    "description": "erwerwre",
+    "category": "Health",
+    "status": "In Stock",
+    "quantity": 863
   },
   {
     "id": "f3e13429-b5e9-4a50-b01c-75fb07cefded",
