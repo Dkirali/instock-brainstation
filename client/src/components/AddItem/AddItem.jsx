@@ -9,15 +9,19 @@ submitHandler = (formData) => {
     axios.post(`${API_URL}/inventory/add`, formData)
     }
 
+clickHandler = () => {
+    this.props.history.push('/inventory')
+}
 
     render() {
         return (
-            
-            
             <ItemForm
             title="Add New Inventory Item"
             handleSubmit={this.submitHandler} 
-            button="+ Add Item" />
+            button="+ Add Item" 
+            handleClick={this.clickHandler}
+            route='/inventory'
+            />
 
         )
     }

@@ -9,6 +9,11 @@ class InventoryItemDetails extends Component {
     state = {
         item: {},
     };
+
+    clickHandler = (id) => {
+        this.props.history.push(`/inventory/edit/${id}`)
+      }
+
     onCloseHandler = () => {
         this.setState({
           show: false
@@ -52,7 +57,13 @@ class InventoryItemDetails extends Component {
     }
 
     render() {
+        let stockDecide
         const { item } = this.state;
+        if(item.status === "Out of Stock") {
+            stockDecide = "itemDetails-status itemDetails-status--outstock"
+        } else {
+            stockDecide = "itemDetails-status itemDetails-status--instock"
+        }
         return (
             <div className='itemDetails'>
                 <div className='itemDetails__header'>
@@ -68,6 +79,7 @@ class InventoryItemDetails extends Component {
                         className='itemDetails__header--edit'
                         src={Edit}
                         alt='edit'
+                        onClick={() => this.clickHandler(item.id)}
                     />
                 </div>
                 <div className='itemDetails__info'>
@@ -89,7 +101,7 @@ class InventoryItemDetails extends Component {
                                 <h3 className='itemDetails__info--header'>
                                     STATUS
                                 </h3>
-                                <p className='itemDetails__info--text'>
+                                <p className={stockDecide}>
                                     {item.status}
                                 </p>
                             </div>
