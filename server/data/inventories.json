@@ -1,12 +1,12 @@
 [
   {
     "id": "2c0185c7-89ef-48ad-a22f-9fc022a5c90c",
-    "WarehouseName": "San Fran",
-    "itemName": "lol",
-    "description": "erwerwre",
+    "warehouseName": "Santa Monica",
+    "itemName": "Dan the rapper",
+    "description": "I don't like organic food at all.",
     "category": "Health",
     "status": "In Stock",
-    "quantity": 863
+    "quantity": "50"
   },
   {
     "id": "f3e13429-b5e9-4a50-b01c-75fb07cefded",
@@ -497,5 +497,15 @@
     "category": "Health",
     "status": "Out of Stock",
     "quantity": 0
+  },
+  {
+    "id": "SxCGdHaXq7yiDMubZM2On",
+    "warehouseID": "bfc9bea7-66f1-44e9-879b-4d363a888eb4",
+    "warehouseName": "San Fran",
+    "itemName": "Dan the rapper",
+    "description": "rap god",
+    "category": "Apparel",
+    "status": "In Stock",
+    "quantity": "45"
   }
 ]
