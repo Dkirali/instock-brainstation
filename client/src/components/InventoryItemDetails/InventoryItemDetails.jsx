@@ -12,6 +12,7 @@ class InventoryItemDetails extends Component {
     };
 
     componentDidMount() {
+        console.log(this.props.datas)
         axios
             .get(`${API_URL}/inventory/${this.props.match.params.id}`)
             .then((response) => {
@@ -20,6 +21,14 @@ class InventoryItemDetails extends Component {
                 });
             })
             .catch((err) => console.log("error!", err));
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.datas !== this.state.item && this.props.datas !== null) {
+            this.setState({
+              item: this.props.datas
+            })
+          }
     }
 
     render() {

@@ -111,7 +111,7 @@ router.put('/edit/:id', (req, res ) => {
 
   //Rewrite warehouse JSON file
   fs.writeFile(pathToWarehouseFile, stringifiedWarehouses, (err) => {
-    res.json("write success!")
+    res.json(editedWarehouse)
     if (err) {
       console.log("Got err: ", err);
       res.status(403).json("error, not found");
