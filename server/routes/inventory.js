@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const inventory = require("../data/inventories.json");
+const { nanoid } = require('nanoid')
 
 // Helper function to find inventory item by ID
 const getItem = (id) => {
@@ -9,6 +10,21 @@ const getItem = (id) => {
     return id === item.id;
   });
   return foundItem;
+};
+
+// Helper function to write warehouse object to json
+const addItem = (list) => {
+  return new Promise((res, rej) => {
+    const stringData = JSON.stringify(list);
+    fs.writeFile(__dirname + "/../data/inventories.json", stringData, (err) => {
+      if (err) {
+        console.log("hello", err);
+        rej({ err, message: "could not add item" });
+      } else {  
+        res("item successfully added");
+      }
+    });
+  });
 };
 
 // Route to get list of all inventory items
@@ -22,6 +38,24 @@ router.get("/:id", (req, res) => {
   const itemFound = getItem(id);
   res.status(200).json(itemFound);
 });
+
+// Add a new item
+router.post('/add', (req, res ) => {
+  const data = req.body;
+  inventory.push({
+    id: nanoid(),
+    warehouseID: data.warehouse,
+    warehouseName: data.warehouseName,
+    itemName: data.itemName,
+    description: data.description,
+    category: data.category,
+    status: data.status,
+    quanity: data.quantity,
+    });
+  addItem(inventory)
+  .then(() => res.status(201).json(inventory))
+  .catch((err) => res.status(500).json(err))
+})
 
 router.delete("/:id/item", (req, res) => {
   let { id } = req.params;
