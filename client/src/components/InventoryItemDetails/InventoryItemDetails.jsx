@@ -4,42 +4,13 @@ import Edit from "../../assets/icon/edit-24px.svg";
 import Back from "../../assets/icon/arrow_back-24px.svg";
 import axios from "axios";
 import "./InventoryItemDetails.scss";
+import {Link} from "react-router-dom";
 
 class InventoryItemDetails extends Component {
     state = {
         item: {},
     };
-    onCloseHandler = () => {
-        this.setState({
-          show: false
-        })
-      }
-      onTrashHandler = (e) => {
-        this.setState({
-          show: true,
-          itemId: e.target.id,
-          itemName: e.target.name
-        })
-        console.log(e.target.name)
-        console.log(this.state.itemId)
-        console.log(this.state.itemName)
-  
-      }
-      onDeleteHandler = (itemid) => {
-  
-        axios
-          .delete(`${API_URL}/inventory/${itemid}/item`)
-          .then((response) => {
-            console.log(response)
-            this.setState({
-              inventory: response.data,
-              loaded: true,
-              show: false
-  
-            });
-          })
-          .catch((err) => console.log("error!", err))
-      }
+
     componentDidMount() {
         axios
             .get(`${API_URL}/inventory/${this.props.match.params.id}`)
@@ -52,15 +23,24 @@ class InventoryItemDetails extends Component {
     }
 
     render() {
+        let stockDecide
         const { item } = this.state;
+        if(item.status === "Out of Stock") {
+            stockDecide = "itemDetails-status itemDetails-status--outstock"
+        } else {
+            stockDecide = "itemDetails-status itemDetails-status--instock"
+        }
         return (
             <div className='itemDetails'>
                 <div className='itemDetails__header'>
+                    <Link className='itemDetails__header--back' 
+                    to="/inventory">
                     <img
-                        className='itemDetails__header--back'
+                        
                         src={Back}
                         alt='back'
                     />
+                    </Link>
                     <h1 className='itemDetails__header--name'>
                         {item.itemName}
                     </h1>
@@ -68,6 +48,7 @@ class InventoryItemDetails extends Component {
                         className='itemDetails__header--edit'
                         src={Edit}
                         alt='edit'
+                        onClick={() => this.clickHandler(item.id)}
                     />
                 </div>
                 <div className='itemDetails__info'>
@@ -89,7 +70,7 @@ class InventoryItemDetails extends Component {
                                 <h3 className='itemDetails__info--header'>
                                     STATUS
                                 </h3>
-                                <p className='itemDetails__info--text'>
+                                <p className={stockDecide}>
                                     {item.status}
                                 </p>
                             </div>

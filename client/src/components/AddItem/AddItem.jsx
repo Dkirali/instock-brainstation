@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { API_URL } from "../../utils/utils";
 export default class AddItem extends Component {
-submitHandler = (formData) => {
+
+  submitHandler = (formData) => {
     axios.post(`${API_URL}/inventory/add`, formData)
     .then(() => {
         this.props.history.push('/inventory')})
@@ -11,9 +12,11 @@ submitHandler = (formData) => {
         console.log(err)
     })
     }
-clickHandler = () => {
+
+  clickHandler = () => {
     this.props.history.push('/inventory')
-}
+  }
+
     render() {
         return (
             <ItemForm

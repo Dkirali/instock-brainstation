@@ -32,17 +32,25 @@ export default class EditItem extends Component {
         })
     }
 
+    clickHandler = () => {
+        const { id } = this.props.match.params
+        this.props.history.push(`/inventory`)
+    }
 
     render() {
         if(this.state.loaded === false){
             return <div>Loading...</div>
         }
+        
         return (
+            
             <ItemForm 
             title="Edit Inventory Item"
             handleSubmit = {this.submitHandler}
             initialFormData = {this.state}
             button = "Save"
+            handleClick={this.clickHandler}
+            route= {`/inventory`}
             />
         )
     }

@@ -27,6 +27,18 @@ const addItem = (list) => {
   });
 };
 
+// Route to get list of all inventory items
+router.get("/", (req, res) => {
+  res.status(200).json(inventory);
+});
+
+// Route to get a single item and details by ID
+router.get("/:id", (req, res) => {
+  let { id } = req.params;
+  const itemFound = getItem(id);
+  res.status(200).json(itemFound);
+});
+
 // Add a new item
 router.post('/add', (req, res ) => {
   const data = req.body;
@@ -45,18 +57,6 @@ router.post('/add', (req, res ) => {
   .catch((err) => res.status(500).json(err))
 })
 
-// Route to get list of all inventory items
-router.get("/", (req, res) => {
-  res.status(200).json(inventory);
-});
-
-// Route to get a single item and details by ID
-router.get("/:id", (req, res) => {
-  let { id } = req.params;
-  const itemFound = getItem(id);
-  res.status(200).json(itemFound);
-});
-
 //Modifiy an existing item
 router.put('/edit/:id', (req, res ) => {
   const data = req.body;
@@ -74,11 +74,9 @@ router.put('/edit/:id', (req, res ) => {
     "quantity" : data.quantity
   };
 
-  console.log(editedInventory)
 
   const rawData = fs.readFileSync(pathToInventoryFile, 'utf8', () => {})
   const inventories = JSON.parse(rawData);
-  //Find and update this warehouse in the array
   const updatedInventories = inventories.map(inv => inv.id !== id ? inv : editedInventory);
   const stringifiedInventories = JSON.stringify(updatedInventories, null, 2);
 

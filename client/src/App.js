@@ -27,7 +27,7 @@ function App () {
           <Route exact path="/inventory/add" component={AddItem} />
           <Route exact path="/inventory/edit/:id" component={EditItem} />
           <Route exact path="/warehouses/:id/edit" component={EditWarehouse} />
-          <Route path='/inventory/:id' render={(props) => <InventoryItemDetails {...props} />} />
+          <Route path='/inventory/:id' component={InventoryItemDetails} />
         </Switch>
         <HeroFooter />
       </BrowserRouter>
