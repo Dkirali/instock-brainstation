@@ -13,99 +13,81 @@ import { Link } from "react-router-dom";
 
 class WarehouseDetails extends React.Component {
 
-   state = { 
-      show: false,
-      inventory: null,
-      loaded: false,
+  state = {
+    show: false,
+    inventory: null,
+    loaded: false,
     selectedWarehouse: null,
-      isUpdated: false,
-      newData: null ,
-      incomingData: false,
-    };
-  
+    isUpdated: false
+  };
 
- 
-    onCloseHandler = () => {
-      this.setState({
-        show: false
+  onCloseHandler = () => {
+    this.setState({
+      show: false
+    })
+  }
+  onTrashHandler = (e) => {
+    this.setState({
+      show: true,
+      itemId: e.target.id,
+      itemName: e.target.name
+    })
+
+  }
+  onDeleteHandler = (itemid) => {
+
+    axios
+      .delete(`${API_URL}/inventory/${itemid}/item`)
+      .then((response) => {
+        this.setState({
+          inventory: response.data,
+          loaded: true,
+          show: false
+
+        });
       })
-    }
-
-    onTrashHandler = (e) => {
-      this.setState({
-        show: true,
-        itemId: e.target.id,
-        itemName: e.target.name
-      })
-    }
-
-    onDeleteHandler = (itemid) => {
-      axios
-        .delete(`${API_URL}/inventory/${itemid}/item`)
-        .then((response) => {
-          console.log(response)
-          this.setState({
-            inventory: response.data,
-            loaded: true,
-            show: false
-
-          });
-        })
-        .catch((err) => console.log("error!", err))
-    }
-
-  
-  componentDidMount(){
+      .catch((err) => console.log("error!", err))
+  }
+  componentDidMount() {
     let id = this.props.match.params.id
-    let data = []
-    
+    let data = this.props.datas
     axios.get(`${API_URL}/warehouses/${id}`)
-    .then(res => {
-      data = res.data
-      return axios.get(`${API_URL}/warehouses/${id}/inventory`)
-    })
-    .then(res => {
-      this.setState({
-        selectedWarehouse: data,
-        inventory: res.data,   
-        loaded: true
+      .then(res => {
+        data = res.data
+        return axios.get(`${API_URL}/warehouses/${id}/inventory`)
       })
-    })
-    .catch(err => {
-    console.log("error", err)
-    })  
+      .then(res => {
+        this.setState({
+          selectedWarehouse: data,
+          inventory: res.data,
+          loaded: true
+        })
+      })
+      .catch(err => {
+        console.log("error", err)
+      })
   }
 
-  componentDidUpdate() {
-    let id = this.props.match.params.id
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.datas !== this.state.selectedWarehouse && this.props.datas !== null) {
       this.setState({
         selectedWarehouse: this.props.datas
       })
     }
-    if(this.state.incomingData === true) {
-      axios.get(`${API_URL}/warehouses/${id}`)
-      .then(res => {
-        this.setState({
-          selectedWarehouse: res.data,
-          inventory: res.data,   
-          loaded: true,
-          incomingData: false
-
-        })
-      })
-    }
-
+  }
 
   updatedData = () => {
     this.setState({ isUpdated: true })
   }
 
+  clickHandler = (id) => {
+    this.props.history.push(`/inventory/edit/${id}`)
+  }
 
-  render () {
+  render() {
     let stockDecide
     if (this.state.loaded === false) {
-      return <main className="load-screen">Loading...</main>
+      return <main className="load-screen">Loading...</main>;
     }
 
     return (
@@ -171,7 +153,7 @@ class WarehouseDetails extends React.Component {
                   <div className="warehousedetails__information-top">
                     <div className="warehousedetails__information-item">
                       <h4 className="warehousedetails__subheader">INVENTORY ITEM</h4>
-                      <Link onClick = {() => {this.props.onChangeHandler(item)}} to={`/inventory/${item.id}`
+                      <Link   onClick = {() => {this.props.onChangeHandler(item)}} to={`/inventory/${item.id}`
                       } className="warehousedetails__itemname"><p>{item.itemName}</p>     <img
                         className="warehousedetails__chevron"
                         src={Chevron}
@@ -209,12 +191,13 @@ class WarehouseDetails extends React.Component {
                     alt="trashcan"
                     onClick={this.onTrashHandler}
                   />
-                  <img
-                    className="warehousedetails__action-edit"
-                    src={Edit}
-                    alt="trashcan"
-                  />
-                       </div>
+                <img
+                  className="inventory__action-edit"
+                  src={Edit}
+                  alt="editing pencil"
+                  onClick={() => this.clickHandler(item.id)}
+                />
+                </div>
               </div>
             </div>
           );
@@ -225,7 +208,5 @@ class WarehouseDetails extends React.Component {
     );
   };
 }
-}
 export default WarehouseDetails;
-
 

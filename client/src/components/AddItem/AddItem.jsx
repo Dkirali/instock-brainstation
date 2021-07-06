@@ -15,7 +15,6 @@ clickHandler = () => {
     this.props.history.push('/inventory')
 }
 routeClickHandler = () => {
-    const { id } = this.props.match.params
     this.props.history.goBack()
 }
     render() {

@@ -68,13 +68,11 @@ class EditWarehouse extends React.Component {
   }
   validateInputs = () => {
     if(this.state.editWarehouse.name !== "" && this.state.editWarehouse.address !== "" && this.state.editWarehouse.city !== "" && this.state.editWarehouse.country !== "" && this.state.editWarehouse.contact.name !== "" && this.state.editWarehouse.contact.position !== "" && this.state.editWarehouse.contact.number !== ""  && this.state.editWarehouse.contact.email !== "") {
-      console.log("true")
     } else {
       alert("All fields must be filled to save")
       return false;
     }
     if(this.state.editWarehouse.contact.phone !== "" ) {
-      console.log("true")
     }
     return true;
   }
@@ -102,7 +100,6 @@ class EditWarehouse extends React.Component {
     const isValidEmail = this.validateEmail();
     const isValidInputs = this.validateInputs();
     if (isValidEmail && isValidInputs) {
-      console.log("ID: ", id);
       axios.put(`${API_URL}/warehouses/edit/${id}`, {
         name: this.state.editWarehouse.name,
         address: this.state.editWarehouse.address,
@@ -122,10 +119,7 @@ class EditWarehouse extends React.Component {
       .catch(err => {
         console.log(err)
       })
-    } else {
-      // alert("You need to use @ to submit")
-      console.log("bad")
-    }
+    } 
   }
 New
 

@@ -29,17 +29,14 @@ export default class EditItem extends Component {
         .then((res) => {
             this.props.history.push(`/inventory/${id}`)
             this.props.onChangeHandler(res.data)
-            console.log(res)
         }).catch(err => console.log(err))
         
     }
     clickHandler = () => {
-        const { id } = this.props.match.params
         this.props.history.push(`/inventory`)
     }
 
     routeClickHandler = () => {
-        const { id } = this.props.match.params
         this.props.history.goBack()
     }
 

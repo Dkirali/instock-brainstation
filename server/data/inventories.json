@@ -9,15 +9,6 @@
     "quantity": "21"
   },
   {
-    "id": "f3e13429-b5e9-4a50-b01c-75fb07cefded",
-    "warehouseName": "Seattle",
-    "itemName": "Gym Bag3124fadfasdfasdasd",
-    "description": "Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.",
-    "category": "Gear",
-    "status": "In Stock",
-    "quantity": 565
-  },
-  {
     "id": "3b042051-f18c-4a16-a393-68ceba87277a",
     "warehouseName": "Santa Monica",
     "itemName": "Hoodie22asdgggeee",
@@ -45,19 +36,9 @@
     "quantity": 209
   },
   {
-    "id": "043a70e2-cf28-4ce1-a9a4-e5b3fac9c593",
-    "warehouseName": "Ge14422344",
-    "itemName": "Phone Chargerasdasdsad",
-    "description": "This USB-C phone charger features fast charging for the latest devices.",
-    "category": "Electronics",
-    "status": "Out of Stock",
-    "quantity": 0
-  },
-  {
     "id": "66327933-ce38-47e0-9bfe-5d29048bacae",
-    "warehouseID": "90ac3319-70d1-4a51-b91d-ba6c2464408c",
-    "warehouseName": "Granville",
-    "itemName": "Tent",
+    "warehouseName": "Ge14422344",
+    "itemName": "Tentasdas",
     "description": "Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.",
     "category": "Gear",
     "status": "Out of Stock",
@@ -82,15 +63,6 @@
     "category": "Accessories",
     "status": "In Stock",
     "quantity": 123
-  },
-  {
-    "id": "d3d7aa3c-6e27-4ab0-9496-f95faa5042f0",
-    "warehouseName": "Seattle",
-    "itemName": "Soapdasdasdeeewwwadadad",
-    "description": "Organic and hypoallergenic, this soap is safe to use for all skin types.",
-    "category": "Health",
-    "status": "In Stock",
-    "quantity": 863
   },
   {
     "id": "828c12d1-c0dd-4fd4-b8db-ac8eb493f8f8",

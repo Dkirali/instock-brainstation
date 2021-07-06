@@ -39,7 +39,6 @@ const addWarehouse = (list) => {
     const stringData = JSON.stringify(list);
     fs.writeFile(__dirname + "/../data/warehouses.json", stringData, (err) => {
       if (err) {
-        console.log("hello", err);
         rej({ err, message: "could not add warehouse" });
       } else {  
         res("warehouse successfully added");
@@ -71,8 +70,7 @@ router.post('/add', (req, res ) => {
       email: data.contact.email,
     }
   });
-  console.log(`line 74: ${data.phone}`)
-  console.log(`line 75: ${data.position}`)
+
   addWarehouse(warehouses)
   .then(() => res.status(201).json(warehouses))
   .catch((err) => res.status(500).json(err))
@@ -83,8 +81,7 @@ router.put('/edit/:id', (req, res ) => {
 
   const data = req.body;
   const id = req.params.id
-  console.log(` line 84: ${data}`)
-  console.log(` line 85: ${id}`)
+
   let pathToWarehouseFile = "../server/data/warehouses.json"
   // Constructing a new warehouse object
   const editedWarehouse = {
@@ -113,12 +110,9 @@ router.put('/edit/:id', (req, res ) => {
   fs.writeFile(pathToWarehouseFile, stringifiedWarehouses, (err) => {
     res.json(editedWarehouse)
     if (err) {
-      console.log("Got err: ", err);
       res.status(403).json("error, not found");
     }
-    console.log(`line 124: ${req.body}`)
   });
-  console.log(`line 126: ${req.body}`)
 })
 
 //Modifiy an existing warehouse
@@ -126,8 +120,7 @@ router.put('/edit/:id', (req, res ) => {
 
   const data = req.body;
   const id = req.params.id
-  console.log(` line 84: ${data}`)
-  console.log(` line 85: ${id}`)
+
   let pathToWarehouseFile = "../server/data/warehouses.json"
   // Constructing a new warehouse object
   const editedWarehouse = {
@@ -156,12 +149,9 @@ router.put('/edit/:id', (req, res ) => {
   fs.writeFile(pathToWarehouseFile, stringifiedWarehouses, (err) => {
     res.json("write success!")
     if (err) {
-      console.log("Got err: ", err);
       res.status(403).json("error, not found");
     }
-    console.log(`line 124: ${req.body}`)
   });
-  console.log(`line 126: ${req.body}`)
 })
 
 // Delete a single warehouse, and all the inventories in that warehouse
@@ -187,7 +177,6 @@ router.delete("/:id/warehouse", (req, res) => {
 
   // fs writefiles
   fs.writeFileSync("../server/data/inventories.json", newInv, (err) => {
-    console.log("write success!")
     if (err) {
       res.status(403).json("error, not found");
     }

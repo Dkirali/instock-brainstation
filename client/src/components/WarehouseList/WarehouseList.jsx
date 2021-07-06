@@ -29,14 +29,12 @@ class WarehouseList extends React.Component {
       warehouseId: e.target.id,
       warehouseName: e.target.name
     })
-    console.log(this.state.itemId)
   }
     
   onDeleteHandler = (itemid) => {
     axios
       .delete(`${API_URL}/warehouses/${itemid}/warehouse`)
       .then((response) => {
-      console.log(response)
       this.setState({
         allWarehouses: response.data,
         show: false
@@ -49,7 +47,6 @@ class WarehouseList extends React.Component {
   componentDidMount() {
     axios.get(`${API_URL}/warehouses`)
     .then(res => {
-      console.log(res)
       this.setState({
         allWarehouses: res.data,
       })

@@ -66,7 +66,6 @@ class AddWarehouse extends React.Component {
   
   validateInputs = (e) => {
     if(e.target.name.value !== "" && e.target.address.value !== "" && e.target.city.value !== "" && e.target.country.value !== "" && e.target.contactName.value !== "" && e.target.contactPosition.value !== "" && e.target.contactNumber.value !== ""  && e.target.email.value !== "") {
-      console.log("true")
     } else {
       alert("All fields must be filled to save")
       return false;
