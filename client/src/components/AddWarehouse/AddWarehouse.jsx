@@ -8,7 +8,6 @@ import { get } from 'lodash';
 import { Link } from "react-router-dom";
 const { v4: uuidv4 } = require('uuid');
 
-
 class AddWarehouse extends React.Component {
 
   state = {
@@ -19,10 +18,12 @@ class AddWarehouse extends React.Component {
 
   onSaveEdits = (e) => {
     const { value, name } = e.target;
-
-    const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
-    this.setState({inputValue:formattedPhoneNumber})
     e.preventDefault();
+
+    if (name.includes("contactNumber")) {
+      const formattedPhoneNumber = this.formatPhoneNumber(e.target.value);
+      this.setState({inputValue:formattedPhoneNumber})
+    }
 
     if (name.includes("contact")) {
       // Parse actual field name
@@ -217,7 +218,9 @@ class AddWarehouse extends React.Component {
             </div>
             <div className="bottom-section">
               <div className="addwarehouse__button-section">
-                <button className="addwarehouse__cancel-button"> CANCEL </button>
+                <Link to="/" style={{textDecoration: 'none'}}>
+                  <button className="addwarehouse__cancel-button"> CANCEL </button>
+                </Link>
                 <button className="addwarehouse__save-button"> SAVE </button>
               </div>
             </div>
@@ -228,3 +231,8 @@ class AddWarehouse extends React.Component {
   }
 }
 export default AddWarehouse;
+
+
+
+
+

@@ -4,7 +4,6 @@ import axios from 'axios';
 import { API_URL } from "../../utils/utils";
 import './ItemForm.scss'
 import error from '../../assets/icons/error-24px.svg'
-import { Link } from "react-router-dom";
 class ItemForm extends Component {
     state={
         warehouses: [],

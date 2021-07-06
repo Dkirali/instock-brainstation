@@ -10,6 +10,7 @@ const getItem = (id) => {
   });
   return foundItem;
 };
+
 // Helper function to write warehouse object to json
 const addItem = (list) => {
   return new Promise((res, rej) => {
@@ -18,12 +19,14 @@ const addItem = (list) => {
       if (err) {
         rej({ err, message: "could not add item" });
       } else {
+ 
+
         res("item successfully added");
       }
     });
   });
 };
-// Add a new item
+
 router.post('/add', (req, res ) => {
   const data = req.body;
   inventory.push({
@@ -40,6 +43,8 @@ router.post('/add', (req, res ) => {
   .then(() => res.status(201).json(inventory))
   .catch((err) => res.status(500).json(err))
 })
+
+
 // Route to get list of all inventory items
 router.get("/", (req, res) => {
   res.status(200).json(inventory);
@@ -50,11 +55,32 @@ router.get("/:id", (req, res) => {
   const itemFound = getItem(id);
   res.status(200).json(itemFound);
 });
-//Modifiy an existing item
+
+
+router.post('/add', (req, res ) => {
+  const data = req.body;
+  inventory.push({
+    id: nanoid(),
+    warehouseID: data.warehouse,
+    warehouseName: data.warehouseName,
+    itemName: data.itemName,
+    description: data.description,
+    category: data.category,
+    status: data.status,
+    quantity: data.quantity,
+    });
+    
+    addItem(inventory)
+    .then(() => res.status(201).json(inventory))
+    .catch((err) => res.status(500).json(err))
+})
+
+
 router.put('/edit/:id', (req, res ) => {
   const data = req.body;
   const id = req.params.id
   let pathToInventoryFile = "../server/data/inventories.json"
+
   const editedInventory = {
     "id" : id,
     "warehouseID" : data.warehouseID,
@@ -79,6 +105,8 @@ router.put('/edit/:id', (req, res ) => {
     }
   });
 })
+
+
 router.delete("/:id/item", (req, res) => {
   let { id } = req.params;
   const itemFound = getItem(id);

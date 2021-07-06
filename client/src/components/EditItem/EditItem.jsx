@@ -33,12 +33,10 @@ export default class EditItem extends Component {
         
     }
     clickHandler = () => {
-        const { id } = this.props.match.params
         this.props.history.push(`/inventory`)
     }
 
     routeClickHandler = () => {
-        const { id } = this.props.match.params
         this.props.history.goBack()
     }
 

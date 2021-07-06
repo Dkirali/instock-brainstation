@@ -62,11 +62,7 @@ class InventoryItemDetails extends Component {
               item: this.props.datas
             })
           } 
-        //   else if (this.props.datas === prevProps.datas) {
-        //     this.setState({
-        //         item: prevItem
-        //       })
-        //   }
+  
     }
 
     render() {
@@ -137,3 +133,4 @@ class InventoryItemDetails extends Component {
 }
 
 export default InventoryItemDetails;
+
